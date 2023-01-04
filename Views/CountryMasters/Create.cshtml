@@ -1,0 +1,89 @@
+﻿@model NAMIS.Models.CountryMaster
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<hr />
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+        <form id="myForm" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Natinality" class="control-label"></label>
+                <input asp-for="Natinality" id="txtName" class="form-control" />
+                <span asp-validation-for="Natinality" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountryCode" class="control-label"></label>
+                <input asp-for="CountryCode" id="txtCode" class="form-control" />
+                <span asp-validation-for="CountryCode" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" id="btnSubmit" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+@section Scripts {
+    <script>
+        $('#SignIn').click(function (e) {
+            e.preventDefault();
+            $('#SignIn').val('Please Wait');
+
+            Ajax_Login();
+        });
+
+        function Ajax_Login() {
+
+            var countryMaster = {};
+            countryMaster.username = $('#txtName').val().trim();
+            countryMaster.password = $('#txtCode').val();
+
+            $.ajax({
+                type: "POST",
+                url: "/CountryMasters/Create",
+                countryMaster: JSON.stringify(countryMaster),
+                contentType: "application/json",
+                dataType: "json"
+            }).done(function (response) {
+                console.log(response);
+            }).fail(function (response) {
+                console.log('Error: ' + response);
+            });
+        }
+    </script>
+    
+        <script src="~/lib/jquery/dist/jquery-1.4.1.min.js"></script>
+        <script>
+            $('form').submit(function () {
+
+                $(this).find(':submit').attr('disabled', 'disabled');
+
+            });
+
+        </script>
+        <script>
+            $(function () {
+                $('#btnSubmit').on('click', function () {
+                    $(this).val('Please wait ...')
+                        .attr('disabled', 'disabled');
+                    $('#myForm').submit();
+                });
+
+            });
+        </script>
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");
+
+        }
+}

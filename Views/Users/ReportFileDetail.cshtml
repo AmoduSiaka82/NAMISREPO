@@ -1,0 +1,72 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@model IEnumerable<NAMIS.Models.reportupload>
+@{
+    ViewData["Title"] = "Report File Detail";
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Executive Director")
+    {
+        Layout = "~/Views/Shared/_EdLayout.cshtml";
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Director")
+    {
+        Layout = "~/Views/Shared/_DirectorLayout.cshtml";
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Unit Head")
+    {
+        Layout = "~/Views/Shared/_UnitHeadLayout.cshtml";
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Staff")
+    {
+
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Zonal Head" || HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Out Station Head")
+    {
+        Layout = "~/Views/Shared/_ZonalHeadLayout.cshtml";
+    } }
+
+<h6>Report File Detail</h6>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<script src="~/js/zoom.js"></script>
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th styly="width:90%">
+                            @Html.DisplayNameFor(model => model.ReportFile)
+                        </th>
+                        <th>
+                            <a asp-action="WriteReport" asp-controller="Users" class="btn btn-sm btn-primary rounded-0 text-uppercase"><i class="fas fa-fast-backward"></i>Back to List</a>
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+
+
+                                <img data-action="zoom" style="width:90%" src="~/image/@item.ReportFile"
+                                     class="rounded-circle"
+                                     height="40" width="90%"
+                                     asp-append-version="true" />
+
+
+                            </td>
+                            <td>
+                                <a asp-action="DownLoad" asp-area="" asp-controller="Users" asp-route-id="@item.Id"><i class="fa fa-download" aria-hidden="true"></i></a>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿@model NAMIS.Models.recordofservice
+
+@{
+    Layout = null;
+}
+
+
+
+    <h6><b>Record Of Service </b>&nbsp;&nbsp;/&nbsp;&nbsp;Record of Service Page</h6>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form id="myForm" asp-action="CreateEdit" asp-route-id="@Model.ID" onsubmit="return jQueryAjaxPost(this);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DateOfEntery" class="control-label"></label>
+                <input asp-for="DateOfEntery" class="form-control" />
+                <span asp-validation-for="DateOfEntery" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Detail" class="control-label"></label>
+                <textarea asp-for="Detail" class="form-control"></textarea>
+                <span asp-validation-for="Detail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Signature" class="control-label"></label>
+                <input asp-for="Signature" class="form-control" />
+                <span asp-validation-for="Signature" class="text-danger"></span>
+            </div>
+           
+
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <input type="submit" id="btnSubmit" value="Save" class="btn btn-primary btn-block" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,40 @@
+﻿
+
+
+
+@model NAMIS.ViewModels.UsersTabViewModel
+@{
+    ViewData["Title"] = "Confirmation List";
+}
+    
+<div class="card card-primary card-outline">
+
+    <div class="card-body">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="@(Model.ActiveTabC==NAMIS.ViewModels.TabC.ConfirmationList? "active" : string.Empty)"><a asp-route-tabname="ConfirmationList" class="btn btn-default" asp-action="SwitchToTabsC">Confirmation List</a></li>
+            <li role="presentation" class="@(Model.ActiveTabC==NAMIS.ViewModels.TabC.PreparedComfirmation? "active" : string.Empty)"><a asp-route-tabname="PreparedComfirmation" class="btn btn-default" asp-action="SwitchToTabsC">Prepared Comfirmation </a></li>
+            <li role="presentation" class="@(Model.ActiveTabC==NAMIS.ViewModels.TabC.ApprovedConfirmation? "active" : string.Empty)"><a asp-route-tabname="ApprovedConfirmation" class="btn btn-default" asp-action="SwitchToTabsC">Approved Confirmation</a></li>
+            <li role="presentation" class="@(Model.ActiveTabC==NAMIS.ViewModels.TabC.WrittenConfirmationLetter? "active" : string.Empty)"><a asp-route-tabname="WrittenConfirmationLetter" class="btn btn-default" asp-action="SwitchToTabsC">Written Letters</a></li>
+
+        </ul>
+        @switch (Model.ActiveTabC)
+        {
+            case NAMIS.ViewModels.TabC.ConfirmationList:
+                @await Component.InvokeAsync("ConfirmationList");
+                break;
+            case NAMIS.ViewModels.TabC.PreparedComfirmation:
+                @await Component.InvokeAsync("PreparedComfirmation");
+                break;
+
+            case NAMIS.ViewModels.TabC.ApprovedConfirmation:
+                @await Component.InvokeAsync("ApprovedConfirmation");
+                break;
+            case NAMIS.ViewModels.TabC.WrittenConfirmationLetter:
+                @await Component.InvokeAsync("WrittenConfirmationLetter");
+                break;
+            default:
+                break;
+        }
+
+    </div>
+</div>

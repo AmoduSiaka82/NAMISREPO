@@ -1,0 +1,40 @@
+﻿@model NAMIS.Models.locals
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<h4>locals</h4>
+<hr />
+<div class="row">
+    <div class="col-xs-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="local_id" />
+            <div class="form-group">
+                <label asp-for="state_id" class="control-label"></label>
+                <input asp-for="state_id" class="form-control" />
+                <span asp-validation-for="state_id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LGAOrigin" class="control-label"></label>
+                <input asp-for="LGAOrigin" class="form-control" />
+                <span asp-validation-for="LGAOrigin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

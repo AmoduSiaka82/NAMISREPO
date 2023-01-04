@@ -1,0 +1,55 @@
+﻿@model NAMIS.Models.Memo
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+
+<h6>Memo</h6>
+<hr />
+<div class="row">
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ReportTitle" class="control-label"></label>
+                <input asp-for="ReportTitle" class="form-control" />
+                <span asp-validation-for="ReportTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Body" class="control-label"></label>
+                <textarea style="width:100%;height:25rem" asp-for="Body" class="form-control"></textarea>
+                <span asp-validation-for="Body" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <textarea asp-for="Address" class="form-control"></textarea>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="Recipient" class="control-label"></label>
+                <input asp-for="Recipient" class="form-control" />
+                <span asp-validation-for="Recipient" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RefNo" class="control-label"></label>
+                <input asp-for="RefNo" class="form-control" />
+                <span asp-validation-for="RefNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-controller="Users" asp-action="WriteReport" class="btn btn-sm btn-primary rounded-0 text-uppercase">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

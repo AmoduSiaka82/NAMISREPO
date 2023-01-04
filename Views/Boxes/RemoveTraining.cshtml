@@ -1,0 +1,139 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@model NAMIS.Models.TrainingAndStudy
+
+@{ ViewData["Title"] = "Remove Training and Study";
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Executive Director")
+    {
+        Layout = "~/Views/Shared/_EdLayout.cshtml";
+    }
+                @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Director")
+                {
+                    Layout = "~/Views/Shared/_DirectorLayout.cshtml";
+                }
+                            @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Unit Head")
+                            {
+                                Layout = "~/Views/Shared/_UnitHeadLayout.cshtml";
+                            }
+                                        @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Staff")
+                                        {
+
+                                        }
+                                                    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Zonal Head" || HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Out Station Head")
+                                                    {
+                                                        Layout = "~/Views/Shared/_ZonalHeadLayout.cshtml";
+                                                    } }
+
+
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.MiddleName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.MiddleName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SprpNo)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SprpNo)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StationName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StationName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Department)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.GradeLevel)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.GradeLevel)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Step)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Step)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HighestQualification)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HighestQualification)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SDate)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EDate)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NoOfDays)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NoOfDays)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.QualificationInView)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.QualificationInView)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TrainingDescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TrainingDescription)
+        </dd>
+
+
+
+    </dl>
+
+    <form asp-action="RemoveTraining">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Remove" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

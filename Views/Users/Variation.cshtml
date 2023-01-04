@@ -1,0 +1,34 @@
+﻿@model NAMIS.ViewModels.UsersTabViewModel
+@{
+    ViewData["Title"] = "Variation";
+}
+
+<div class="card card-primary card-outline">
+
+    <div class="card-body">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="@(Model.ActiveTabV==NAMIS.ViewModels.TabV.Variation? "active" : string.Empty)"><a asp-route-tabname="Variation" class="btn btn-default" asp-action="SwitchToTabsV">Staff Info</a></li>
+            <li role="presentation" class="@(Model.ActiveTabV==NAMIS.ViewModels.TabV.VariationList? "active" : string.Empty)"><a asp-route-tabname="VariationList" class="btn btn-default" asp-action="SwitchToTabsV">Variation List </a></li>
+            <li role="presentation" class="@(Model.ActiveTabV==NAMIS.ViewModels.TabV.ApprovedVariation? "active" : string.Empty)"><a asp-route-tabname="ApprovedVariation" class="btn btn-default" asp-action="SwitchToTabsV">Approved Variation</a></li>
+       
+
+        </ul>
+        @switch (Model.ActiveTabV)
+        {
+            case NAMIS.ViewModels.TabV.Variation:
+                @await Component.InvokeAsync("Variation");
+                break;
+            case NAMIS.ViewModels.TabV.VariationList:
+                @await Component.InvokeAsync("VariationList");
+                break;
+
+            case NAMIS.ViewModels.TabV.ApprovedVariation:
+                @await Component.InvokeAsync("ApprovedVariation");
+                break;
+            
+            default:
+                break;
+        }
+
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿@model NAMIS.ViewModels.UsersTabViewModel
+@{
+    ViewData["Title"] = "File List";
+}
+
+<div class="card card-primary card-outline">
+
+    <div class="card-body">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="@(Model.ActiveTabF==NAMIS.ViewModels.TabF.FileList? "active" : string.Empty)"><a asp-route-tabname="FileList" class="btn btn-default" asp-action="SwitchToTabsF">File List</a></li>
+            <li role="presentation" class="@(Model.ActiveTabF==NAMIS.ViewModels.TabF.PreparedFile? "active" : string.Empty)"><a asp-route-tabname="PreparedFile" class="btn btn-default" asp-action="SwitchToTabsF">Prepared File List </a></li>
+            <li role="presentation" class="@(Model.ActiveTabF==NAMIS.ViewModels.TabF.ApprovedPersonnelFile? "active" : string.Empty)"><a asp-route-tabname="ApprovedPersonnelFile" class="btn btn-default" asp-action="SwitchToTabsF">Personnel File Out </a></li>
+
+            
+        </ul>
+        @switch (Model.ActiveTabF)
+        {
+            case NAMIS.ViewModels.TabF.FileList:
+                @await Component.InvokeAsync("FileList");
+                break;
+            case NAMIS.ViewModels.TabF.PreparedFile:
+                @await Component.InvokeAsync("PreparedFile");
+                break;
+            case NAMIS.ViewModels.TabF.ApprovedPersonnelFile:
+                @await Component.InvokeAsync("ApprovedPersonnelFile");
+                break;
+                
+
+
+        default:
+                break;
+        }
+
+    </div>
+</div>

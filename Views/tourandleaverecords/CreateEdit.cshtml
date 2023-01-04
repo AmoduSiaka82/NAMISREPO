@@ -1,0 +1,118 @@
+﻿@model NAMIS.Models.tourandleaverecord
+
+@{
+    Layout = null;
+}
+
+
+
+<form id="myForm" asp-action="CreateEdit" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPost(this);">
+    <div class="row">
+        <div class="col-md-12">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DateStarted" class="control-label"></label>
+                <input asp-for="DateStarted" class="form-control" />
+                <span asp-validation-for="DateStarted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GazetteNoticeNo" class="control-label"></label>
+                <input asp-for="GazetteNoticeNo" class="form-control" />
+                <span asp-validation-for="GazetteNoticeNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LengthOfTourForAge" class="control-label"></label>
+                <input asp-for="LengthOfTourForAge" class="form-control" />
+                <span asp-validation-for="LengthOfTourForAge" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateDueForLeave" class="control-label"></label>
+                <input asp-for="DateDueForLeave" class="form-control" />
+                <span asp-validation-for="DateDueForLeave" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateDepartedOnLeave" class="control-label"></label>
+                <input asp-for="DateDepartedOnLeave" class="form-control" />
+                <span asp-validation-for="DateDepartedOnLeave" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GazetteNoticeNumber" class="control-label"></label>
+                <input asp-for="GazetteNoticeNumber" class="form-control" />
+                <span asp-validation-for="GazetteNoticeNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateExtentionGranted" class="control-label"></label>
+                <input asp-for="DateExtentionGranted" class="form-control" />
+                <span asp-validation-for="DateExtentionGranted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SalaryRuleForExtention" class="control-label"></label>
+                <input asp-for="SalaryRuleForExtention" class="form-control" />
+                <span asp-validation-for="SalaryRuleForExtention" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DateResumedDuty" class="control-label"></label>
+                <input asp-for="DateResumedDuty" class="form-control" />
+                <span asp-validation-for="DateResumedDuty" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="PassageBySeaOrAirToUk" class="control-label"></label>
+                        <input asp-for="PassageBySeaOrAirToUk" class="form-control" />
+                        <span asp-validation-for="PassageBySeaOrAirToUk" class="text-danger"></span>
+                    </div>
+                </div>
+                
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="PassageBySeaOrAirFrmUk" class="control-label"></label>
+                            <input asp-for="PassageBySeaOrAirFrmUk" class="form-control" />
+                            <span asp-validation-for="PassageBySeaOrAirFrmUk" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="ResidentMonths" class="control-label"></label>
+                            <input asp-for="ResidentMonths" class="form-control" />
+                            <span asp-validation-for="ResidentMonths" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="ResidentDays" class="control-label"></label>
+                            <input asp-for="ResidentDays" class="form-control" />
+                            <span asp-validation-for="ResidentDays" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="LeaveMonths" class="control-label"></label>
+                            <input asp-for="LeaveMonths" class="form-control" />
+                            <span asp-validation-for="LeaveMonths" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="LeaveDays" class="control-label"></label>
+                            <input asp-for="LeaveDays" class="form-control" />
+                            <span asp-validation-for="LeaveDays" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <div class="col-md-6 offset-md-3">
+                        <input type="submit" id="btnSubmit" value="Save" class="btn btn-primary btn-block" />
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+  
+

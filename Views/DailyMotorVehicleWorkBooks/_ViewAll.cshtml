@@ -1,0 +1,120 @@
+﻿@model IEnumerable<NAMIS.Models.DailyMotorVehicleWorkBook>
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.VehicleNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TankCapacity)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Make)
+                        </th>
+                      
+                        <th>
+                            @Html.DisplayNameFor(model => model.TimeIn)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TimeOut)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SpeedometerOut)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Frm)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Tos)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SpeedometerReadsIn)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TotalMilesKmRun)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PetrolOilReceived)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AuthorityforJourney)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserSign)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DriverName)
+                        </th>
+                        <th>
+                            <a onclick="showInPopup('@Url.Action("CreateEdit","DailyMotorVehicleWorkBooks",new {Id=0},Context.Request.Scheme)','New Record')" class="btn btn-success text-white"><i class="fas fa-random"></i> New Record</a>
+                          
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VehicleNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TankCapacity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Make)
+                            </td>
+                           
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TimeIn)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TimeOut)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SpeedometerOut)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Frm)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Tos)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SpeedometerReadsIn)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalMilesKmRun)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PetrolOilReceived)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AuthorityforJourney)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserSign)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DriverName)
+                            </td>
+                            <td>
+                                <div>
+                                    <a onclick="showInPopup('@Url.Action("CreateEdit","DailyMotorVehicleWorkBooks",new {id=item.Id},Context.Request.Scheme)','Update Record')" ><i class="fas fa-pencil-alt"></i> Edit</a>
+                                    <a asp-action="Details"  asp-route-id="@item.Id">Details</a> |
+                                    
+                                </div>
+                                
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,156 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@model IEnumerable<NAMIS.Models.createschedule>
+
+@{
+    ViewData["Title"] = "Schedule Index";
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Executive Director")
+    {
+        Layout = "~/Views/Shared/_EdLayout.cshtml";
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Director")
+    {
+        Layout = "~/Views/Shared/_DirectorLayout.cshtml";
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Unit Head")
+    {
+        Layout = "~/Views/Shared/_UnitHeadLayout.cshtml";
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Staff")
+    {
+
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Zonal Head" || HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Out Station Head")
+    {
+        Layout = "~/Views/Shared/_ZonalHeadLayout.cshtml";
+    } }
+
+<div id="ans" style="display:none">
+    <h3>Schedule Assigned Successfull</h3>
+</div>
+<div id="rowDiv" class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+
+                <tr>
+                    <th>
+                        <input type="checkbox" id="selectall" />
+                    </th>
+                    <th>
+                        Scheduled Name
+                    </th>
+
+                    <th style="display:none">
+                        Controllers
+                    </th>
+                    <th style="display:none">
+                        Actions
+                    </th>
+                    <th style="display:none">
+                        Description
+                    </th>
+
+                </tr>
+
+
+                @foreach (var item in Model)
+                {
+                    <tbody class="driver_table">
+                        <tr>
+                            <td><input type="checkbox" class="case" name="case" /></td>
+                            <td>
+                                @item.ScheduledName
+
+                            </td>
+
+                            <td style="display:none">
+                                @item.Controllers
+
+                            </td>
+                            <td style="display:none">
+                                @item.Actions
+
+                            </td>
+                            <td style="display:none">
+                                @item.Description
+
+                            </td>
+
+
+
+                        </tr>
+                    </tbody>
+                }
+
+            </table>
+            <input id="btnSubmit" type="submit" value="Assign All Selected" style="background-color:green;width:150px" class="driver_table_btn" />
+            <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+            <script type="text/javascript">
+                $(document).ready(function () {
+                    // add multiple select / deselect functionality
+                    $("#selectall").click(function () {
+                        $('.case').attr('checked', this.checked);
+                    });
+                    // if all checkbox are selected, check the selectall checkbox     // and viceversa
+                    $(".case").click(function () {
+                        if ($(".case").length == $(".case:checked").length) {
+                            $("#selectall").attr("checked", "checked");
+                        }
+                        else {
+                            $("#selectall").removeAttr("checked");
+                        }
+                    });
+                    $('.driver_table_btn').click(function () {
+
+                        //Loop through all checked CheckBoxes in GridView.
+                        $("#myTable input[type=checkbox]:checked").each(function () {
+                            var row = $(this).closest("tr")[0];
+
+                            $("#btnSubmit").hide();
+
+                            var ScheduledNames = row.cells[1].innerHTML;
+                            var Controllers = row.cells[2].innerHTML;
+                            var Actions = row.cells[3].innerHTML;
+                            var Description = row.cells[4].innerHTML;
+                            // $(this).find('td').eq(0).text(); //get the text in first column of the table. table columns are zero based
+                            //$(this).find('td').eq(1).text();//get the text in second column of the table
+                            //  $(this).find('td').eq(2).text();//get the text in third column of the table
+                            // $(this).find('td').eq(3).text();
+
+
+
+                            $.ajax({
+                                url: "/scheduleds/InsertSchedule",
+                                type: "POST",
+                                data: {
+                                    "schedulednames": ScheduledNames,
+                                    "controllers": Controllers,
+                                    "actions": Actions,
+                                    "description": Description
+
+
+                                },
+
+                                success: function (data) {
+                                    $("#ans").show();
+                                    $("#rowDiv").hide();
+                                },
+                                error: function (data) {
+                                    alert('failed');
+
+                                }
+                            });
+                        });
+
+
+                    });
+                });
+            </script>
+        </div>
+    </div>
+</div>

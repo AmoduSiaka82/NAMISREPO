@@ -1,0 +1,110 @@
+﻿@model IEnumerable<NAMIS.Models.rofgpm>
+
+@{
+    ViewData["Title"] = "Default";
+}
+
+<h4>  Record of Gratuity Payments</h4>
+
+<link href="~/css/viewComp.css" rel="stylesheet" />
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateOfPayment)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FrmDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ToDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Yrs)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Mos)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Days)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.RatePerAnum)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AmountPaid)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FilePageRef)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CheckedBy)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.SprpNo)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOfPayment)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FrmDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ToDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Yrs)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Mos)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Days)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RatePerAnum)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AmountPaid)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FilePageRef)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CheckedBy)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+                            <td>
+                               
+                                <a asp-action="Index" class="btn btn-danger btn-rounded btn-sm my-0" asp-area="" asp-controller="rofgpms" asp-route-id="@item.Id">Details</a> 
+                               
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tr>
+                    <td colspan="11"></td>
+                    <td>
+                        <a asp-action="Index" asp-area="" asp-controller="rofgpms" class="btn btn-info">Add New</a>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+    </div>

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<NAMIS.Models.educations>
+
+@{
+    ViewData["Title"] = "Default";
+}
+
+<h4>Type Of School Attended</h4>
+<link href="~/css/viewComp.css" rel="stylesheet" />
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TypeOfSchool)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FrmDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ToDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CheckedBy)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.SprpNo)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TypeOfSchool)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FrmDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ToDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CheckedBy)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+                            <td>
+                                <div>
+                                   
+                                    <a asp-action="Index" asp-controller="educations" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id">Details</a>
+                                   
+                                </div>
+                                
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tr>
+                    <td colspan="5"></td>
+                    <td>
+                        <a asp-action="Index" asp-area="" asp-controller="educations" class="btn btn-info">Add New</a>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+    </div>

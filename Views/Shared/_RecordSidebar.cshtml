@@ -1,0 +1,166 @@
+﻿@using NAMIS.Models;
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<useraccount> SignInManager
+@inject UserManager<useraccount> UserManager
+
+<li class="nav-item">
+    <a asp-area="" asp-controller="Users" asp-action="NorminalRoll" class="nav-link">
+        <i class="fas fa-info-circle"></i>
+        <p>
+            Norminal Roll
+
+        </p>
+    </a>
+</li>
+<li class="nav-item">
+    <a asp-area="" asp-controller="Users" asp-action="LeaveRoster" class="nav-link">
+        <i class="fas fa-info-circle"></i>
+        <p>
+            Leave Roster
+
+        </p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a asp-area="" asp-controller="Users" asp-action="Index" class="nav-link">
+        <i class="fas fa-info-circle"></i>
+        <p>
+            Staff Promotion
+
+        </p>
+    </a>
+</li>
+<li class="nav-item">
+    <a asp-area="" asp-controller="Users" asp-action="PostingList" class="nav-link">
+        <i class="fas fa-info-circle"></i>
+        <p>
+            Posting And Deployment
+
+        </p>
+    </a>
+</li>
+<li class="nav-item">
+    <a asp-area="" asp-controller="Users" asp-action="ConfirmationList" class="nav-link">
+        <i class="fas fa-info-circle"></i>
+        <p>
+            Confirmation Of Appoint
+
+        </p>
+    </a>
+</li>
+<li class="nav-item">
+    <a asp-area="" asp-controller="Users" asp-action="MonthlyReturn" class="nav-link">
+        <i class="fas fa-info-circle"></i>
+        <p>
+            Monthly Return
+
+        </p>
+    </a>
+</li>
+<li class="nav-item">
+    <a asp-area="" asp-controller="Users" asp-action="SeniorityList" class="nav-link">
+        <i class="fas fa-info-circle"></i>
+        <p>
+            Staff Seniority List
+
+        </p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a asp-area="" asp-controller="Users" asp-action="WastageRegister" class="nav-link">
+        <i class="fas fa-info-circle"></i>
+        <p>
+            Maintenance Of Wastage Register
+
+        </p>
+    </a>
+</li>
+<li class="nav-item">
+    <a asp-area="" asp-controller="Users" asp-action="Disposition" class="nav-link">
+        <i class="fas fa-info-circle"></i>
+        <p>
+            Staff Disposition
+
+        </p>
+    </a>
+</li>
+<li class="nav-item">
+    <a asp-area="" asp-controller="Users" asp-action="Variation" class="nav-link">
+        <i class="fas fa-info-circle"></i>
+        <p>
+             Variation
+
+        </p>
+    </a>
+</li>
+<li class="nav-item">
+    <a asp-area="" asp-controller="Users" asp-action="FileList" class="nav-link">
+        <i class="fas fa-info-circle"></i>
+        <p>
+            Monitoring Of Personnel File
+
+        </p>
+    </a>
+</li>
+<li class="nav-item">
+    <a asp-area="" asp-controller="Users" asp-action="WriteReport" class="nav-link">
+        <i class="fas fa-info-circle"></i>
+        <p>
+            Getting/Dispatching Circular/Letters
+        </p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a asp-area="" asp-controller="Users" asp-action="WriteReport" class="nav-link">
+        <i class="fas fa-info-circle"></i>
+        <p>
+            Data Collection for Manpower
+        </p>
+    </a>
+</li>
+<li class="nav-item">
+    <a asp-area="" asp-controller="Users" asp-action="WriteReport" class="nav-link">
+        <i class="fas fa-info-circle"></i>
+        <p>
+            Adoc Assignment by HOD
+        </p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a asp-area="" asp-controller="Users" asp-action="WriteReport" class="nav-link">
+        <i class="fas fa-info-circle"></i>
+        <p>
+            Directory of Office at Headquarters
+        </p>
+    </a>
+</li>
+<li class="nav-item">
+    <a asp-area="" asp-controller="Users" asp-action="WriteReport" class="nav-link">
+        <i class="fas fa-info-circle"></i>
+        <p>
+            Dispatching of Official Letter
+        </p>
+    </a>
+</li>
+<li class="nav-item">
+    <a asp-area="" asp-controller="Users" asp-action="PreparedMemo" class="nav-link">
+        <i class="fas fa-info-circle"></i>
+        <p>
+            Write Memo
+        </p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a asp-area="" asp-controller="Users" asp-action="WriteReport" class="nav-link">
+        <i class="fas fa-info-circle"></i>
+        <p>
+            Writing of Notice of Meeting
+        </p>
+    </a>
+</li>
+

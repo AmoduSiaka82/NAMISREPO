@@ -1,0 +1,87 @@
+﻿@model IEnumerable<NAMIS.Models.register>
+
+@{
+    ViewData["Title"] = "Index";
+
+
+}
+
+
+
+
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Surname)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MiddleName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FirstName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SprpNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DOB)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DOFA)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DOR)
+                        </th>
+                        <th>
+                            <a asp-area="" asp-controller="biodatas" asp-action="Create" class="btn btn-success text-white">
+                                <i class="fas fa-random"></i>
+
+                                Create New Record
+
+
+                            </a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Surname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MiddleName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SprpNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DOB)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DOFA)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DOR)
+                        </td>
+                        <td>
+                            <a asp-action="Index" asp-area="" asp-controller="Summaries" class="btn btn-primary" asp-route-id="@item.ID">Details</a> |
+
+                            <a asp-action="Delete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID">Delete</a>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

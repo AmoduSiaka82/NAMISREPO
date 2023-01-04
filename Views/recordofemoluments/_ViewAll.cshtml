@@ -1,0 +1,110 @@
+﻿@model IEnumerable<NAMIS.Models.recordofemolument>
+    <p>
+        <a class="btn btn-outline-success" asp-action="Index" asp-area="" asp-controller="recordofservices"><i class="fas"></i></a>
+
+    </p>
+    <div class="row">
+        <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+            <div class="table-responsive">
+                <table id="myTable" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DateOfEntery)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.SalaryScale)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.BasicSalaryPA)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.InducementPayPA)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.DatePaidFrm)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IncriminisDateM)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IncriminisDateYr)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Authority)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Signature)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NameAndStamp)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.SprpNo)
+                            </th>
+                            <th>
+                                <a onclick="showInPopup('@Url.Action("CreateEdit","recordofemoluments",new {Id=0},Context.Request.Scheme)','New Record')" class="btn btn-success text-white"><i class="fas fa-random"></i> New Record</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateOfEntery)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SalaryScale)
+                                </td>
+                                <td>
+                                    ₦ @Html.DisplayFor(modelItem => item.BasicSalaryPA)
+                                </td>
+                                <td>
+                                    ₦ @Html.DisplayFor(modelItem => item.InducementPayPA)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DatePaidFrm)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IncriminisDateM)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IncriminisDateYr)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Authority)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Signature)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NameAndStamp)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SprpNo)
+                                </td>
+                                <td>
+                                    <div>
+                                        <a onclick="showInPopup('@Url.Action("CreateEdit","recordofemoluments",new {id=item.ID},Context.Request.Scheme)','Update Record')" class="btn btn-info text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
+                                        <a asp-action="Details" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID">Details</a> |
+                                        <form asp-action="Delete" asp-route-id="@item.ID" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                            <input type="hidden" asp-for="@item.ID" />
+                                            <input type="submit" value="Delete" class="btn btn-danger" />
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br />
+    <form asp-action="Submitting" asp-controller="recordofemoluments">
+
+        <input type="submit" class="btn btn-info" name="save" value="Preview" />
+    </form>

@@ -1,0 +1,41 @@
+﻿@model NAMIS.Models.educations
+
+@{
+    Layout = null;
+}
+
+
+   
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form  asp-action="CreateEdit" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPost(this);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TypeOfSchool" class="control-label"></label>
+                <input asp-for="TypeOfSchool" class="form-control" />
+                <span asp-validation-for="TypeOfSchool" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrmDate" class="control-label"></label>
+                <input asp-for="FrmDate" class="form-control" />
+                <span asp-validation-for="FrmDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToDate" class="control-label"></label>
+                <input asp-for="ToDate" class="form-control" />
+                <span asp-validation-for="ToDate" class="text-danger"></span>
+            </div>
+           
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <input type="submit" id="btnSubmit" value="Save" class="btn btn-primary btn-block" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

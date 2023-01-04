@@ -1,0 +1,36 @@
+﻿@model NAMIS.ViewModels.UsersTabViewModel
+@{
+    ViewData["Title"] = "Prepared Memo";
+}
+
+<div class="card card-primary card-outline">
+
+    <div class="card-body">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="@(Model.ActiveTabMe==NAMIS.ViewModels.TabMe.PreparedMemo? "active" : string.Empty)"><a asp-route-tabname="PreparedMemo" class="btn btn-default" asp-action="SwitchToTabsMe">Prepared Memo </a></li>
+            <li role="presentation" class="@(Model.ActiveTabMe==NAMIS.ViewModels.TabMe.ApprovedMemo? "active" : string.Empty)"><a asp-route-tabname="ApprovedMemo" class="btn btn-default" asp-action="SwitchToTabsMe">Approved Memo List </a></li>
+            <li role="presentation" class="@(Model.ActiveTabMe==NAMIS.ViewModels.TabMe.ApprovedMemoLetter? "active" : string.Empty)"><a asp-route-tabname="ApprovedMemoLetter" class="btn btn-default" asp-action="SwitchToTabsMe">Written Memo </a></li>
+
+
+        </ul>
+        @switch (Model.ActiveTabMe)
+        {
+            case NAMIS.ViewModels.TabMe.PreparedMemo:
+                @await Component.InvokeAsync("PreparedMemo");
+                break;
+            case NAMIS.ViewModels.TabMe.ApprovedMemo:
+                @await Component.InvokeAsync("ApprovedMemo");
+                break;
+
+            case NAMIS.ViewModels.TabMe.ApprovedMemoLetter:
+                @await Component.InvokeAsync("ApprovedMemoLetter");
+                break;
+
+            default:
+                break;
+        }
+
+    </div>
+</div>
+
+

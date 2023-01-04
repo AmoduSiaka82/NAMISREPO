@@ -1,0 +1,73 @@
+﻿@model IEnumerable<NAMIS.Models.biodata>
+
+@{
+    ViewData["Title"] = "Default";
+}
+    <link href="~/css/viewComp.css" rel="stylesheet" />
+    <h4>Bio Data</h4>
+<div class="row">
+
+     <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Surname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MiddleName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Sex)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CurrentAppointment)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SprpNo)
+                    </th>
+
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Surname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MiddleName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Sex)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CurrentAppointment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SprpNo)
+                        </td>
+
+                        <td>
+                            <a asp-action="Edit" asp-area="" asp-controller="biodatas" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.SprpNo">Edit</a>
+                            <a asp-action="Details" asp-area="" asp-controller="biodatas" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.SprpNo">Details</a>
+                            <a asp-action="Delete" asp-area="" asp-controller="biodatas" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.SprpNo">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+           
+        </table>
+    </div>
+</div>
+</div>

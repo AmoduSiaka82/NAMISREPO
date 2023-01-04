@@ -1,0 +1,36 @@
+﻿@model NAMIS.ViewModels.UsersTabViewModel
+@{
+    ViewData["Title"] = "Prepared IT";
+}
+
+
+
+<div class="card card-primary card-outline">
+
+    <div class="card-body">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="@(Model.ActiveTabI==NAMIS.ViewModels.TabI.PreparedIt? "active" : string.Empty)"><a asp-route-tabname="PreparedIt" class="btn btn-default" asp-action="SwitchToTabsI">Prepared IT List</a></li>
+            <li role="presentation" class="@(Model.ActiveTabI==NAMIS.ViewModels.TabI.ApprovedIt? "active" : string.Empty)"><a asp-route-tabname="ApprovedIt" class="btn btn-default" asp-action="SwitchToTabsI">Approved IT List </a></li>
+            <li role="presentation" class="@(Model.ActiveTabI==NAMIS.ViewModels.TabI.ApprovedLetter? "active" : string.Empty)"><a asp-route-tabname="ApprovedLetter" class="btn btn-default" asp-action="SwitchToTabsI">Written Letter</a></li>
+           
+
+        </ul>
+        @switch (Model.ActiveTabI)
+        {
+            case NAMIS.ViewModels.TabI.PreparedIt:
+                @await Component.InvokeAsync("PreparedIt");
+                break;
+            case NAMIS.ViewModels.TabI.ApprovedIt:
+                @await Component.InvokeAsync("ApprovedIt");
+                break;
+
+            case NAMIS.ViewModels.TabI.ApprovedLetter:
+                @await Component.InvokeAsync("ApprovedLetter");
+                break;
+           
+            default:
+                break;
+        }
+
+    </div>
+</div>

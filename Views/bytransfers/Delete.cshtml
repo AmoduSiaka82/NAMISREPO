@@ -1,0 +1,81 @@
+﻿@model NAMIS.Models.bytransfers
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>bytransfers</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DateOfTransfer)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DateOfTransfer)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PensionOrContarct)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PensionOrContarct)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AggregateServiceInNigeriaYrs)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AggregateServiceInNigeriaYrs)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AggregateServiceInNigeriaMos)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AggregateServiceInNigeriaMos)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AggregateServiceInNigeriaDays)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AggregateServiceInNigeriaDays)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AggregateSalaryInNigeria)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AggregateSalaryInNigeria)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Dates)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Dates)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SprpNo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SprpNo)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,102 @@
+﻿@model NAMIS.Models.rofgpm
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+    <h4><b>Record Of Service </b>&nbsp;&nbsp;/&nbsp;&nbsp;Record of Gratuity Payments Page</h4>
+<hr />
+
+<form id="myForm" asp-action="Create">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DateOfPayment" class="control-label"></label>
+                <input asp-for="DateOfPayment" class="form-control" />
+                <span asp-validation-for="DateOfPayment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrmDate" class="control-label"></label>
+                <input asp-for="FrmDate" class="form-control" />
+                <span asp-validation-for="FrmDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToDate" class="control-label"></label>
+                <input asp-for="ToDate" class="form-control" />
+                <span asp-validation-for="ToDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Yrs" class="control-label"></label>
+                <input asp-for="Yrs" class="form-control" />
+                <span asp-validation-for="Yrs" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Mos" class="control-label"></label>
+                <input asp-for="Mos" class="form-control" />
+                <span asp-validation-for="Mos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Days" class="control-label"></label>
+                <input asp-for="Days" class="form-control" />
+                <span asp-validation-for="Days" class="text-danger"></span>
+            </div>
+        </div>
+       
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <div class="form-group">
+                    <label asp-for="RatePerAnum" class="control-label"></label>
+                    <input asp-for="RatePerAnum" class="form-control" />
+                    <span asp-validation-for="RatePerAnum" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AmountPaid" class="control-label"></label>
+                    <input asp-for="AmountPaid" class="form-control" />
+                    <span asp-validation-for="AmountPaid" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FilePageRef" class="control-label"></label>
+                    <input asp-for="FilePageRef" class="form-control" />
+                    <span asp-validation-for="FilePageRef" class="text-danger"></span>
+                </div>
+               
+
+
+                <div class="form-group">
+                    <p style="float:left"> <input type="submit" id="btnSubmit" value="Create" class="btn btn-primary" /></p>
+                    <p style="float:right">  <a asp-action="Create" asp-area="" asp-controller="recordofservices">Skip</a></p>
+                </div>
+            </div>
+        </div>
+</form>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+
+    <script src="~/lib/jquery/dist/jquery-1.4.1.min.js"></script>
+    <script>
+        $('form').submit(function () {
+
+            $(this).find(':submit').attr('disabled', 'disabled');
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('#btnSubmit').on('click', function () {
+                $(this).val('Please wait ...')
+                    .attr('disabled', 'disabled');
+                $('#myForm').submit();
+            });
+
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

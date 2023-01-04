@@ -1,0 +1,109 @@
+﻿@model IEnumerable<NAMIS.Models.recordofemolument>
+
+@{
+    ViewData["Title"] = "Default";
+}
+
+<h4> Record of Emoluments</h4>
+<link href="~/css/viewComp.css" rel="stylesheet" />
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateOfEntery)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SalaryScale)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.BasicSalaryPA)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.InducementPayPA)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DatePaidFrm)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IncriminisDateM)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IncriminisDateYr)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Authority)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Signature)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NameAndStamp)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.SprpNo)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOfEntery)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SalaryScale)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BasicSalaryPA)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InducementPayPA)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DatePaidFrm)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IncriminisDateM)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IncriminisDateYr)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Authority)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Signature)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NameAndStamp)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+                            <td>
+                                
+                                <a asp-action="Index" class="btn btn-danger btn-rounded btn-sm my-0" asp-area="" asp-controller="recordofemoluments" asp-route-id="@item.ID">Details</a>
+                               
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tr>
+                    <td colspan="11"></td>
+                    <td>
+                        <a asp-action="Index" asp-area="" asp-controller="recordofemoluments" class="btn btn-info">Add New</a>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+    </div>

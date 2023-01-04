@@ -1,0 +1,34 @@
+﻿@model NAMIS.ViewModels.UsersTabViewModel
+@{
+    ViewData["Title"] = "Disposition";
+}
+
+<div class="card card-primary card-outline">
+
+    <div class="card-body">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="@(Model.ActiveTabD==NAMIS.ViewModels.TabD.Disposition? "active" : string.Empty)"><a asp-route-tabname="Disposition" class="btn btn-default" asp-action="SwitchToTabsD">Staff Info</a></li>
+            <li role="presentation" class="@(Model.ActiveTabD==NAMIS.ViewModels.TabD.DispositionList? "active" : string.Empty)"><a asp-route-tabname="DispositionList" class="btn btn-default" asp-action="SwitchToTabsD">Disposition List </a></li>
+            <li role="presentation" class="@(Model.ActiveTabD==NAMIS.ViewModels.TabD.ApprovedDisposition? "active" : string.Empty)"><a asp-route-tabname="ApprovedDisposition" class="btn btn-default" asp-action="SwitchToTabsD">Approved Disposition</a></li>
+
+
+        </ul>
+        @switch (Model.ActiveTabD)
+        {
+            case NAMIS.ViewModels.TabD.Disposition:
+                @await Component.InvokeAsync("Disposition");
+                break;
+            case NAMIS.ViewModels.TabD.DispositionList:
+                @await Component.InvokeAsync("DispositionList");
+                break;
+
+            case NAMIS.ViewModels.TabD.ApprovedDisposition:
+                @await Component.InvokeAsync("ApprovedDisposition");
+                break;
+
+            default:
+                break;
+        }
+
+    </div>
+</div>

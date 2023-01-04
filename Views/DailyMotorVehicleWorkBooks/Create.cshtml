@@ -1,0 +1,129 @@
+﻿@model NAMIS.Models.DailyMotorVehicleWorkBook
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+<h6>Daily Motor Vehicle Work Book</h6>
+<hr />
+
+<form id="myForm" asp-action="Create">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="VehicleNo" class="control-label"></label>
+                <input asp-for="VehicleNo" class="form-control" />
+                <span asp-validation-for="VehicleNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TankCapacity" class="control-label"></label>
+                <input asp-for="TankCapacity" class="form-control" />
+                <span asp-validation-for="TankCapacity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Make" class="control-label"></label>
+                <input asp-for="Make" class="form-control" />
+                <span asp-validation-for="Make" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="TimeIn" class="control-label"></label>
+                <input asp-for="TimeIn" class="form-control" />
+                <span asp-validation-for="TimeIn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimeOut" class="control-label"></label>
+                <input asp-for="TimeOut" class="form-control" />
+                <span asp-validation-for="TimeOut" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpeedometerOut" class="control-label"></label>
+                <input asp-for="SpeedometerOut" class="form-control" />
+                <span asp-validation-for="SpeedometerOut" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Frm" class="control-label"></label>
+                <input asp-for="Frm" class="form-control" />
+                <span asp-validation-for="Frm" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            <div class="form-group">
+                <label asp-for="Tos" class="control-label"></label>
+                <input asp-for="Tos" class="form-control" />
+                <span asp-validation-for="Tos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpeedometerReadsIn" class="control-label"></label>
+                <input asp-for="SpeedometerReadsIn" class="form-control" />
+                <span asp-validation-for="SpeedometerReadsIn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalMilesKmRun" class="control-label"></label>
+                <input asp-for="TotalMilesKmRun" class="form-control" />
+                <span asp-validation-for="TotalMilesKmRun" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PetrolOilReceived" class="control-label"></label>
+                <input asp-for="PetrolOilReceived" class="form-control" />
+                <span asp-validation-for="PetrolOilReceived" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AuthorityforJourney" class="control-label"></label>
+                <input asp-for="AuthorityforJourney" class="form-control" />
+                <span asp-validation-for="AuthorityforJourney" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserSign" class="control-label"></label>
+                <input asp-for="UserSign" class="form-control" />
+                <span asp-validation-for="UserSign" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DriverName" class="control-label"></label>
+                <input asp-for="DriverName" class="form-control" />
+                <span asp-validation-for="DriverName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" id="bntSubmit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery-1.4.1.min.js"></script>
+    <script>
+        $('form').submit(function () {
+
+            $(this).find(':submit').attr('disabled', 'disabled');
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('#btnSubmit').on('click', function () {
+                $(this).val('Please wait ...')
+                    .attr('disabled', 'disabled');
+                $('#myForm').submit();
+            });
+
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/theme/plugins/jquery/jquery.min.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

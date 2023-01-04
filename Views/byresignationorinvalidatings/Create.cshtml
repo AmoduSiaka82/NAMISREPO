@@ -1,0 +1,84 @@
+﻿@model NAMIS.Models.byresignationorinvalidating
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+    <h4><b>Record Of Service </b>&nbsp;&nbsp;/&nbsp;&nbsp;By Resignation or Invalidating Page</h4>
+<hr />
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+        <form id="myForm" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DateTerminated" class="control-label"></label>
+                <input asp-for="DateTerminated" class="form-control" />
+                <span asp-validation-for="DateTerminated" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PensionOrContarct" class="control-label"></label>
+                <select asp-for="PensionOrContarct" class="form-control">
+
+                    <option value="">-----Select-----</option>
+                    <option value="Pension">Pension</option>
+                    <option value="Contarct">Contarct</option>
+
+
+                </select>
+                <span asp-validation-for="PensionOrContarct" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PensionOf" class="control-label"></label>
+                <input asp-for="PensionOf" class="form-control" />
+                <span asp-validation-for="PensionOf" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="GrantuityOf" class="control-label"></label>
+                <input asp-for="GrantuityOf" class="form-control" />
+                <span asp-validation-for="GrantuityOf" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContractGratuity" class="control-label"></label>
+                <input asp-for="ContractGratuity" class="form-control" />
+                <span asp-validation-for="ContractGratuity" class="text-danger"></span>
+            </div>
+
+           
+            <div class="form-group">
+                <p style="float:left"> <input type="submit" id="btnSubmit" value="Create" class="btn btn-primary" /></p>
+                <p style="float:right"> <a asp-action="Create" asp-area="" asp-controller="bydeaths">Skip</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+   
+        <script src="~/lib/jquery/dist/jquery-1.4.1.min.js"></script>
+        <script>
+            $('form').submit(function () {
+
+                $(this).find(':submit').attr('disabled', 'disabled');
+
+            });
+
+        </script>
+        <script>
+            $(function () {
+                $('#btnSubmit').on('click', function () {
+                    $(this).val('Please wait ...')
+                        .attr('disabled', 'disabled');
+                    $('#myForm').submit();
+                });
+
+            });
+        </script>
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

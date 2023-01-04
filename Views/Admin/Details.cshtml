@@ -1,0 +1,52 @@
+﻿@model NAMIS.Models.useraccount
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h6>Details</h6>
+
+<div>
+
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StaffName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StaffName)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Department)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RoleID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RoleID)
+        </dd>
+    </dl>
+</div>
+<div>
+
+    <a asp-action="AssignIndex">Back to List</a>
+</div>

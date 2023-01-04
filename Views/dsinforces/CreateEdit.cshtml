@@ -1,0 +1,45 @@
+﻿@model NAMIS.Models.dsinforce
+
+@{
+    Layout = null;
+}
+
+
+
+ 
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="CreateEdit" asp-route-id="@Model.ID" onsubmit="return jQueryAjaxPost(this);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ArmOfService" class="control-label"></label>
+                <input asp-for="ArmOfService" class="form-control" />
+                <span asp-validation-for="ArmOfService" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceNo" class="control-label"></label>
+                <input asp-for="ServiceNo" class="form-control" />
+                <span asp-validation-for="ServiceNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReasonForLeave" class="control-label"></label>
+                <textarea asp-for="ReasonForLeave" class="form-control"></textarea>
+                <span asp-validation-for="ReasonForLeave" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastUnit" class="control-label"></label>
+                <input asp-for="LastUnit" class="form-control" />
+                <span asp-validation-for="LastUnit" class="text-danger"></span>
+            </div>
+
+
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <input type="submit" id="btnSubmit" value="Save" class="btn btn-primary btn-block" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

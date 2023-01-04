@@ -1,0 +1,141 @@
+﻿
+@model IEnumerable<NAMIS.Models.tourandleaverecord>
+    <p>
+        <a class="btn btn-outline-success" asp-action="Index" asp-area="" asp-controller="totalpreviousservices"><i class="fas"></i></a>
+
+        <a class="btn btn-outline-success" asp-action="Index" asp-area="" asp-controller="recordofsickleaves"><i class="fa"></i></a>
+
+    </p>
+
+<div class="row">
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateStarted)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.GazetteNoticeNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LengthOfTourForAge)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateDueForLeave)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateDepartedOnLeave)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.GazetteNoticeNumber)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateExtentionGranted)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SalaryRuleForExtention)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateResumedDuty)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PassageBySeaOrAirToUk)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PassageBySeaOrAirFrmUk)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ResidentMonths)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ResidentDays)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LeaveMonths)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LeaveDays)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.SprpNo)
+                        </th>
+
+                        <th>
+                            <a onclick="showInPopup('@Url.Action("CreateEdit","tourandleaverecords",new {Id=0},Context.Request.Scheme)','New Record')" class="btn btn-success text-white"><i class="fas fa-random"></i> New Record</a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateStarted)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GazetteNoticeNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LengthOfTourForAge)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateDueForLeave)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateDepartedOnLeave)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GazetteNoticeNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateExtentionGranted)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SalaryRuleForExtention)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateResumedDuty)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PassageBySeaOrAirToUk)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PassageBySeaOrAirFrmUk)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ResidentMonths)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ResidentDays)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LeaveMonths)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LeaveDays)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+
+                            <td>
+                                <div>
+                                    <a onclick="showInPopup('@Url.Action("CreateEdit","tourandleaverecords",new {id=item.Id},Context.Request.Scheme)','Update Record')" class="btn btn-info text-white"><i class="fas fa-pencil-alt"></i> Edit</a>
+                                    <a asp-action="Details" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id">Details</a> |
+                                    <form asp-action="Delete" asp-route-id="@item.Id" onsubmit="return jQueryAjaxDelete(this)" class="d-inline">
+                                        <input type="hidden" asp-for="@item.Id" />
+                                        <input type="submit" value="Delete" class="btn btn-danger" />
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

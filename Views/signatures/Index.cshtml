@@ -1,0 +1,64 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@model IEnumerable<NAMIS.Models.signatures>
+
+@{ ViewData["Title"] = "Index";
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Executive Director")
+    {
+        Layout = "~/Views/Shared/_EdLayout.cshtml";
+    }
+                @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Director")
+                {
+                    Layout = "~/Views/Shared/_DirectorLayout.cshtml";
+                }
+                            @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Unit Head")
+                            {
+                                Layout = "~/Views/Shared/_UnitHeadLayout.cshtml";
+                            }
+                                        @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Staff")
+                                        {
+
+                                        }
+                                                    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Admin")
+                                                    {
+                                                        Layout = "~/Views/Shared/_AdminLayout.cshtml";
+                                                    }
+                                                                @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Zonal Head" || HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Out Station Head")
+                                                                {
+                                                                    Layout = "~/Views/Shared/_ZonalHeadLayout.cshtml";
+                                                                } }
+
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SignFile)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+<tr>
+    <td>
+
+        <img src="~/sign/@item.SignFile"
+             class="rounded-circle"
+             height="40" width="40"
+             asp-append-version="true" />
+       
+    </td>
+    <td>
+        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+    </td>
+</tr>}
+    </tbody>
+</table>

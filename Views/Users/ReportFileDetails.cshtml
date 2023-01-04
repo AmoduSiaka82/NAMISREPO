@@ -1,0 +1,48 @@
+﻿@model IEnumerable<NAMIS.Models.reportupload>
+
+@{
+    ViewData["Title"] = "ReportFileDetail";
+}
+
+<h6>Report File Detail</h6>
+
+
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ReportFile)
+                        </th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+
+
+                                <img src="~/image/@item.ReportFile"
+                                     class="rounded-circle"
+                                     height="40" width="40"
+                                     asp-append-version="true" />
+                                
+
+                            </td>
+                            <td>
+                                <a asp-action="DownLoad" asp-area="" asp-controller="Users" asp-route-id="@item.Id"><i class="fa fa-download" aria-hidden="true"></i></a> |
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

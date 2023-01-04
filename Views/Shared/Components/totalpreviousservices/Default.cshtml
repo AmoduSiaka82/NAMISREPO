@@ -1,0 +1,74 @@
+﻿@model IEnumerable<NAMIS.Models.totalpreviousservice>
+
+@{
+    ViewData["Title"] = "Default";
+}
+
+<h4>Total Amount Pay</h4>
+
+<link href="~/css/viewComp.css" rel="stylesheet" />
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Yrs)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Mos)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Days)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TotalAmountPay)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SprpNo)
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Yrs)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Mos)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Days)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalAmountPay)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+
+                            <td>
+                                
+                                <a asp-action="Index" class="btn btn-danger btn-rounded btn-sm my-0" asp-area="" asp-controller="totalpreviousservices" asp-route-id="@item.ID">Details</a>
+                               
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tr>
+                    <td colspan="5"></td>
+                    <td>
+                        <a asp-action="Index" asp-area="" asp-controller="totalpreviousservices" class="btn btn-info">Add New</a>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+    </div>

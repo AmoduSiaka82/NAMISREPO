@@ -1,0 +1,50 @@
+﻿@model NAMIS.Models.Memo
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div>
+    <h6>Memo</h6>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ReportTitle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ReportTitle)
+        </dd>
+        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StationName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StationName)
+        </dd>
+     
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Recipient)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Recipient)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-controller="Users" asp-action="WriteReport" class="btn btn-sm btn-primary rounded-0 text-uppercase">Back to List</a>
+</div>

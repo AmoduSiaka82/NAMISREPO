@@ -1,0 +1,76 @@
+﻿@model IEnumerable<NAMIS.Models.recordofservice>
+
+@{
+    ViewData["Title"] = "Default";
+}
+
+<h4> Record of Service</h4>
+
+
+<link href="~/css/viewComp.css" rel="stylesheet" />
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateOfEntery)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Detail)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Signature)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CheckedByAndStamp)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.SprpNo)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOfEntery)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Detail)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Signature)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CheckedByAndStamp)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+                            <td>
+                                
+                                <a asp-action="Index" class="btn btn-danger btn-rounded btn-sm my-0" asp-area="" asp-controller="recordofservices" asp-route-id="@item.ID">Details</a>
+                                
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tr>
+                    <td colspan="5"></td>
+                    <td>
+                        <a asp-action="Index" asp-area="" asp-controller="recordofservices" class="btn btn-info">Add New</a>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+    </div>

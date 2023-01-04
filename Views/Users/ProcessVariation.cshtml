@@ -1,0 +1,138 @@
+﻿@model NAMIS.Models.biodata
+
+@{
+    ViewData["Title"] = "ProcessVariation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<hr />
+        <form id="myForm" asp-action="ProcessVariation">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Surname" class="control-label"></label>
+                        <input asp-for="Surname" readonly="readonly" class="form-control" />
+                        <span asp-validation-for="Surname" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="MiddleName" class="control-label"></label>
+                        <input asp-for="MiddleName" readonly="readonly" class="form-control" />
+                        <span asp-validation-for="MiddleName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="control-label"></label>
+                        <input asp-for="FirstName" readonly="readonly" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+
+                    <input type="hidden" asp-for="SprpNo" />
+
+                    <div class="form-group">
+                        <label asp-for="SprpNo" class="control-label"></label>
+                        <input asp-for="SprpNo" readonly="readonly" class="form-control" />
+                        <span asp-validation-for="SprpNo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Old Rank</label>
+                        <input id="oldApt" name="oldApt" required="" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">New Rank</label>
+                        <input asp-for="GradeLevel" readonly="readonly" class="form-control" />
+                        <span asp-validation-for="GradeLevel" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Old Step</label>
+                        <input asp-for="Step" readonly="readonly" required="" name="OldStep" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">New Step</label>
+                        <input type="number" id="NewStep" required="" name="NewStep" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+
+
+                   
+                    <div class="form-group">
+                        <label class="control-label">Old Sal Amt</label>
+                        <input type="number" id="OldSal" required="" name="OldSal" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">New Sal Amt</label>
+                        <input type="number" id="NewSal" required="" name="NewSal" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"> Variation</label>
+                        <input id="variation" required="" name="variation" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Reason</label>
+                        <input id="Reason" name="Reason" required="" readonly="readonly" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Effective</label>
+                        <input id="effective" required="" name="effective" type="date" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Authority</label>
+                        <input id="Authority" required="" name="Authority" class="form-control" />
+                        <span class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Remark</label>
+                        <textarea id="remark" name="remark" required="" class="form-control" ></textarea>
+                        <span  class="text-danger"></span>
+                    </div>
+                    <div style="display:none" class="form-group">
+                        <label asp-for="StationName" class="control-label"></label>
+                        <input asp-for="StationName" readonly="readonly" class="form-control" />
+                        <span asp-validation-for="StationName" class="text-danger"></span>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <input type="submit" id="btnSubmit" value="Save" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        <div>
+            <a asp-action="Variation">Back to List</a>
+        </div>
+
+        @section Scripts {
+            <script src="~/lib/jquery/dist/jquery-1.4.1.min.js"></script>
+            <script>
+            $('form').submit(function () {
+
+                $(this).find(':submit').attr('disabled', 'disabled');
+
+            });
+
+            </script>
+            <script>
+            $(function () {
+                $('#btnSubmit').on('click', function () {
+                    $(this).val('Please wait ...')
+                        .attr('disabled', 'disabled');
+                    $('#myForm').submit();
+                });
+
+            });
+            </script>
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+        }

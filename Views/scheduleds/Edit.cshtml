@@ -1,0 +1,103 @@
+﻿@model NAMIS.Models.scheduled
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_UnitHeadLayout.cshtml";
+}
+
+
+
+<h4>scheduled</h4>
+<hr />
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+        <form id="myForm" asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StaffName" class="control-label"></label>
+                <select asp-for="StaffName" class="form-control"
+                        asp-items="@(new SelectList(@ViewBag.ListofUseraccount, "StaffName", "StaffName"))">
+                </select>
+                <span asp-validation-for="StaffName" class="text-danger"></span>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <label asp-for="SectionName" class="control-label"></label>
+                <select asp-for="SectionName" class="form-control"
+                        asp-items="@(new SelectList(@ViewBag.ListofSections, "SectionName", "SectionName"))">
+                </select>
+                <span asp-validation-for="SectionName" class="text-danger"></span>
+            </div>
+
+
+
+
+
+            <div class="form-group">
+                <label asp-for="ScheduledType" class="control-label"></label>
+                <select asp-for="ScheduledType" class="form-control">
+
+                    <option value="">-----Select-----</option>
+                    <option value="Permanent">Permanent</option>
+                    <option value="Temporary">Temporary</option>
+
+                </select>
+                <span asp-validation-for="ScheduledType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Expire" class="control-label"></label>
+                <input asp-for="Expire" class="form-control" />
+                <span asp-validation-for="Expire" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Create As</label>
+                <select id="sectionRole" name="sectionRole" class="form-control">
+
+                    <option value="">-----Select-----</option>
+                    <option value="Section Head">Section Head</option>
+                    <option value="Section Member">Section Member</option>
+
+                </select>
+
+            </div>
+            <input type="hidden" asp-for="ID" />
+
+
+            <div class="form-group">
+                <input type="submit" id="btnSubmit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+
+    <script src="~/lib/jquery/dist/jquery-1.4.1.min.js"></script>
+    <script>
+            $('form').submit(function () {
+
+                $(this).find(':submit').attr('disabled', 'disabled');
+
+            });
+
+    </script>
+    <script>
+            $(function () {
+                $('#btnSubmit').on('click', function () {
+                    $(this).val('Please wait ...')
+                        .attr('disabled', 'disabled');
+                    $('#myForm').submit();
+                });
+
+            });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

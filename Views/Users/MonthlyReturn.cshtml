@@ -1,0 +1,29 @@
+﻿@model NAMIS.ViewModels.UsersTabViewModel
+@{
+    ViewData["Title"] = "Monthly Return";
+}
+
+<div class="card card-primary card-outline">
+
+    <div class="card-body">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="@(Model.ActiveTabM==NAMIS.ViewModels.TabM.MonthlyReturn? "active" : string.Empty)"><a asp-route-tabname="MonthlyReturn" class="btn btn-default" asp-action="SwitchToTabsM">Monthly Return</a></li>
+            <li role="presentation" class="@(Model.ActiveTabM==NAMIS.ViewModels.TabM.PreparedMonthlyReturn? "active" : string.Empty)"><a asp-route-tabname="PreparedMonthlyReturn" class="btn btn-default" asp-action="SwitchToTabsM">Prepared Monthly Return </a></li>
+            
+
+        </ul>
+        @switch (Model.ActiveTabM)
+        {
+            case NAMIS.ViewModels.TabM.MonthlyReturn:
+                @await Component.InvokeAsync("MonthlyReturn");
+                break;
+            case NAMIS.ViewModels.TabM.PreparedMonthlyReturn:
+                @await Component.InvokeAsync("PreparedMonthlyReturn");
+                break;
+            default:
+                break;
+        }
+
+    </div>
+</div>
+

@@ -1,0 +1,42 @@
+﻿@model IEnumerable<NAMIS.Models.CountryMaster>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Natinality)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CountryCode)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Natinality)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryCode)
+            </td>
+            <td>
+                <a asp-action="Edit" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

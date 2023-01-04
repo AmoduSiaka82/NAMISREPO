@@ -1,0 +1,60 @@
+﻿
+@model NAMIS.Models.AppRoles
+
+@{
+    ViewData["Title"] = "Responsibility";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h6>Assign Unit</h6>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form id="myForm" asp-action="UpdateRole">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="sections" class="control-label"></label>
+                <select asp-for="sections" class="form-control" asp-items="ViewBag.Distances">
+                    <option value="">---Select---</option>
+
+                </select>
+                <span asp-validation-for="sections" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="departments" class="control-label"></label>
+                <select asp-for="departments" class="form-control" asp-items="ViewBag.Responsibility">
+                    <option value="">---Select---</option>
+
+
+                </select>
+                <span asp-validation-for="departments" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="units" class="control-label"></label>
+                <select asp-for="units" class="form-control" asp-items="ViewBag.Units">
+                    <option value="">---Select---</option>
+
+
+                </select>
+                <span asp-validation-for="units" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Organisation</label>
+                <input asp-for="mda" class="form-control" />
+                <span asp-validation-for="mda" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <input type="submit" id="btnSubmit" value="Submit" class="btn btn-primary btn-block" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

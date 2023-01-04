@@ -1,0 +1,140 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@model IEnumerable<NAMIS.Models.Box>
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Subject)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody style="border:0px">
+                    @foreach (var item in Model)
+                    {
+                        <tr style="border:0px">
+                            <td style="border:0px">
+                                @Html.DisplayFor(modelItem => item.Subject)
+                            </td>
+
+                            @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Executive Director")
+                            {
+                                @if (item.Status == "Waiting")
+                                {
+                                    <td style="border:0px">
+                                        <a asp-action="@item.Actions" asp-controller="@item.Controllers" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Description)</a>
+
+                                    </td>
+                                }
+                                @if (item.Status == "Read" || item.Status == "Approved")
+                                {
+                                    <td style="border:0px">
+                                        <a style="color:black" asp-action="@item.Actions" asp-controller="@item.Controllers" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Description)</a>
+
+                                    </td>
+                                }}
+                            @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Director" || HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Administrator" || HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "HOD")
+                            {
+                                @if (item.Status1 == "Waiting")
+                                {
+                                    <td style="border:0px">
+                                        <a asp-action="@item.Actions" asp-controller="@item.Controllers" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Description)</a>
+
+                                    </td>
+                                }
+                                @if (item.Status1 == "Read" || item.Status == "Approved")
+                                {
+                                    <td style="border:0px">
+                                        <a style="color:black" asp-action="@item.Actions" asp-controller="@item.Controllers" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Description)</a>
+
+                                    </td>
+                                }}
+                            @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Unit Head")
+                            {
+                                @if (item.Status2 == "Waiting")
+                                {
+                                    <td style="border:0px">
+                                        <a asp-action="@item.Actions" asp-controller="@item.Controllers" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Description)</a>
+
+                                    </td>
+                                }
+                                @if (item.Status2 == "Read" || item.Status == "Approved")
+                                {
+                                    <td style="border:0px">
+                                        <a style="color:black" asp-action="@item.Actions" asp-controller="@item.Controllers" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Description)</a>
+
+                                    </td>
+                                }}
+
+                            @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Staff" && HttpContextAccessor.HttpContext.Session.GetString("section") == "Section Head" && (item.Status4 == "Waiting" || item.Status4 == "Read" || item.Status == "Approved"))
+                            {
+                                @if (item.Status4 == "Waiting")
+                                {
+                                    <td style="border:0px">
+                                        <a asp-action="@item.Actions" asp-controller="@item.Controllers" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Description)</a>
+
+                                    </td>
+                                }
+                                else @if ((item.Status4 == "Read" || item.Status == "Approved"))
+                           {
+                            <td style="border:0px">
+                                <a style="color:black" asp-action="@item.Actions" asp-controller="@item.Controllers" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Description)</a>
+
+                            </td>
+                        }}
+                            @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Staff" && HttpContextAccessor.HttpContext.Session.GetString("section") == "Section Member" && (item.Status4 == "Read" || item.Status == "Approved"))
+                            {
+                                @if (item.UserStatus == "Waiting")
+                                {
+                                    <td style="border:0px">
+                                        <a asp-action="@item.UAction" asp-controller="@item.UController" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Description)</a>
+
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td style="border:0px">
+                                        <a style="color:black" asp-action="@item.UAction" asp-controller="@item.UController" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Description)</a>
+
+                                    </td>
+                                }}
+                            @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Zonal Head")
+                            {
+                                @if (item.Status3 == "Waiting")
+                                {
+                                    <td style="border:0px">
+                                        <a asp-action="@item.Actions" asp-controller="@item.Controllers" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Description)</a>
+
+                                    </td>
+                                }
+                                @if (item.Status3 == "Read" || item.Status == "Approved")
+                                {
+                                    <td style="border:0px">
+                                        <a style="color:black" asp-action="@item.Actions" asp-controller="@item.Controllers" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Description)</a>
+
+                                    </td>
+                                }}
+
+                            <td style="border:0px">
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

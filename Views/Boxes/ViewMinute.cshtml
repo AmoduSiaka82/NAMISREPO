@@ -1,0 +1,168 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@model IEnumerable<NAMIS.Models.MinuteOfMeeting>
+
+@{ ViewData["Title"] = "View Minute";
+
+@if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Executive Director")
+{
+    Layout = "~/Views/Shared/_EdLayout.cshtml";
+}
+            @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Director")
+            {
+                Layout = "~/Views/Shared/_DirectorLayout.cshtml";
+            }
+                        @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Unit Head")
+                        {
+                            Layout = "~/Views/Shared/_UnitHeadLayout.cshtml";
+                        }
+                                    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Staff")
+                                    {
+
+                                    }
+                                                @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Zonal Head" || HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Out Station Head")
+                                                {
+                                                    Layout = "~/Views/Shared/_ZonalHeadLayout.cshtml";
+                                                } }
+<h6>View Minute</h6>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print </title>
+    <script lang="js" type="text/javascript">
+        function printElem(divId) {
+
+            var content = document.getElementById(divId).innerHTML;
+
+            var mywindow = window.open('', 'Print', 'height=1000,width=500');
+
+            mywindow.document.write('<html><head><title>Print</title>');
+            mywindow.document.write('</head><body >');
+            mywindow.document.write(content);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close();
+            mywindow.focus();
+
+            mywindow.print();
+
+            mywindow.close();
+
+            return true;
+
+
+        }
+        var observe;
+        if (window.attachEvent) {
+            observe = function (element, event, handler) {
+                element.attachEvent('on' + event, handler);
+            };
+        }
+        else {
+            observe = function (element, event, handler) {
+                element.addEventListener(event, handler, false);
+            };
+        }
+        function init() {
+            var text = document.getElementById('text');
+            function resize() {
+                text.style.height = 'auto';
+                text.style.height = text.scrollHeight + 'px';
+            }
+            /* 0-timeout to get the already changed text */
+            function delayedResize() {
+                window.setTimeout(resize, 0);
+            }
+            observe(text, 'change', resize);
+            observe(text, 'cut', delayedResize);
+            observe(text, 'paste', delayedResize);
+            observe(text, 'drop', delayedResize);
+            observe(text, 'keydown', delayedResize);
+
+            text.focus();
+            text.select();
+            resize();
+            var text1 = document.getElementById('text1');
+            function resize1() {
+                text1.style.height = 'auto';
+                text1.style.height = text1.scrollHeight + 'px';
+            }
+            /* 0-timeout to get the already changed text */
+            function delayedResize1() {
+                window.setTimeout(resize1, 0);
+            }
+            observe(text1, 'change', resize1);
+            observe(text1, 'cut', delayedResize1);
+            observe(text1, 'paste', delayedResize1);
+            observe(text1, 'drop', delayedResize1);
+            observe(text1, 'keydown', delayedResize1);
+
+            text1.focus();
+            text1.select();
+            resize1();
+        }
+
+    </script>
+</head>
+
+<body onload="init();">
+    <form class="form-inline ml-3">
+        <div class="input-group input-group-sm">
+
+
+            <button class="btn btn-navbar" onclick="printElem('prt');" id="btnPrint" value="Print" type="submit">
+                <i class="fas fa-print"></i>
+            </button>
+
+        </div>
+    </form>
+    <div class="row">
+
+
+        <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+            <div style="overflow-y: hidden;  overflow-x: hidden" id="prt" class="table-responsive">
+
+              
+                @foreach (var item in Model)
+                {
+            <div>
+                <table style="border:1px">
+
+                    <tr style="border:1px">
+                        <td style="border:0px;width:10%;border:1px">
+                            <b>@Html.DisplayFor(modelItem => item.MinuteNo)</b>
+                        </td>
+                        <td style="border:0px;width:95%">
+
+                            <b>@Html.DisplayFor(modelItem => item.Title)</b>
+
+                            <br />
+                            <br />
+                            @if (item.MinuteTitle != "")
+                            {
+                        <b>
+                            <textarea id="text" style="border: 0 none white;
+        overflow: hidden;
+        padding: 0;
+        outline: none;
+        background-color: transparent;width:100%;font-family:Times New Roman;font-size:20px">         @Html.DisplayFor(modelItem => item.MinuteTitle)</textarea>
+                        </b>}
+                            <textarea id="text1" style="border: 0 none white;
+        overflow: hidden;
+        padding: 0;
+        outline: none;
+        background-color: transparent;width:100%;font-family:Times New Roman;font-size:20px">  @Html.DisplayFor(modelItem => item.Contents)</textarea>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>}
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

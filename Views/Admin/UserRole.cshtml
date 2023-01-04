@@ -1,0 +1,73 @@
+﻿@using Microsoft.AspNetCore.Identity;
+
+@inject RoleManager<AppRoles> roleManager;
+
+@model IEnumerable<AppRoles>
+@{
+    ViewBag.Title = "All Roles";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h1>Roles</h1>
+<br />
+
+<table class="table table-striped" id="roleTable">
+    <thead>
+        <tr>
+            <th>
+                Role
+            </th>
+            <th>
+                Dept
+            </th>
+            <th>
+                Unit
+            </th>
+            <th>
+                Section
+            </th>
+            <th>
+                Id
+            </th>
+
+            <th style="width:10%">
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var role in Model)
+        {
+<tr>
+    <td>
+        @role.Name
+    </td>
+    <td>
+        @role.departments
+    </td>
+    <td>
+        @role.units
+    </td>
+    <td>
+        @role.sections
+    </td>
+
+    <td class="text-right">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Action
+            </button>
+            <div class="dropdown-menu shadow animated--grow-in">
+
+                @if (role.Name != "SuperAdmin")
+                {
+
+<a style='margin-right:16px' asp-controller="Admin" asp-action="UpdateRole" asp-route-roleId="@role.Id" class="dropdown-item">
+    <i class="fas fa-wrench"></i> Assign
+</a>}
+            </div>
+        </div>
+    </td>
+</tr>}
+    </tbody>
+</table>

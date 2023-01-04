@@ -1,0 +1,46 @@
+﻿@model NAMIS.ViewModels.UsersTabViewModel
+@{
+    ViewData["Title"] = "Write Report";
+}
+
+<div class="card card-primary card-outline">
+
+    <div class="card-body">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="@(Model.ActiveTabRPT==NAMIS.ViewModels.TabRPT.PreparedRPT? "active" : string.Empty)"><a asp-route-tabname="PreparedRPT" class="btn btn-default" asp-action="SwitchToTabsRPT">Prepared RPT List</a></li>
+            <li role="presentation" class="@(Model.ActiveTabRPT==NAMIS.ViewModels.TabRPT.ApprovedRPT? "active" : string.Empty)"><a asp-route-tabname="ApprovedRPT" class="btn btn-default" asp-action="SwitchToTabsRPT">Approved RPT List </a></li>
+            <li role="presentation" class="@(Model.ActiveTabRPT==NAMIS.ViewModels.TabRPT.ApprovedRPTLetter? "active" : string.Empty)"><a asp-route-tabname="ApprovedRPTLetter" class="btn btn-default" asp-action="SwitchToTabsRPT">Written RPT Letter</a></li>
+
+            <li role="presentation" class="@(Model.ActiveTabRPT==NAMIS.ViewModels.TabRPT.PreparedMemo? "active" : string.Empty)"><a asp-route-tabname="PreparedMemo" class="btn btn-default" asp-action="SwitchToTabsRPT">Prepared Memo </a></li>
+            <li role="presentation" class="@(Model.ActiveTabRPT==NAMIS.ViewModels.TabRPT.ApprovedMemo? "active" : string.Empty)"><a asp-route-tabname="ApprovedMemo" class="btn btn-default" asp-action="SwitchToTabsRPT">Approved Memo List </a></li>
+            <li role="presentation" class="@(Model.ActiveTabRPT==NAMIS.ViewModels.TabRPT.ApprovedMemoLetter? "active" : string.Empty)"><a asp-route-tabname="ApprovedMemoLetter" class="btn btn-default" asp-action="SwitchToTabsRPT">Written Memo </a></li>
+        </ul>
+        @switch (Model.ActiveTabRPT)
+        {
+            case NAMIS.ViewModels.TabRPT.PreparedRPT:
+                @await Component.InvokeAsync("PreparedRPT");
+                break;
+            case NAMIS.ViewModels.TabRPT.ApprovedRPT:
+                @await Component.InvokeAsync("ApprovedRPT");
+                break;
+
+            case NAMIS.ViewModels.TabRPT.ApprovedRPTLetter:
+                @await Component.InvokeAsync("ApprovedRPTLetter");
+                break;
+            case NAMIS.ViewModels.TabRPT.PreparedMemo:
+                @await Component.InvokeAsync("PreparedMemo");
+                break;
+            case NAMIS.ViewModels.TabRPT.ApprovedMemo:
+                @await Component.InvokeAsync("ApprovedMemo");
+                break;
+
+            case NAMIS.ViewModels.TabRPT.ApprovedMemoLetter:
+                @await Component.InvokeAsync("ApprovedMemoLetter");
+                break;
+            default:
+                break;
+        }
+
+    </div>
+</div>
+

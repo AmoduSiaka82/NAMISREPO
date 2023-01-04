@@ -1,0 +1,67 @@
+﻿@model IEnumerable<NAMIS.Models.schoolcertificatehelds>
+
+@{
+    ViewData["Title"] = "Default";
+}
+
+<h4> School Certificate Helds</h4>
+
+<link href="~/css/viewComp.css" rel="stylesheet" />
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.schoolcertificateheld)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CheckedBy)
+                        </th>
+
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.SprpNo)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.schoolcertificateheld)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CheckedBy)
+                            </td>
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+                            <td>
+                                <div>
+                                   
+                                    <a asp-action="Index" asp-controller="schoolcertificatehelds" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id">Details</a> 
+                                    
+                                </div>
+                               
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tr>
+                    <td colspan="3"></td>
+                    <td>
+                        <a asp-action="Index" asp-area="" asp-controller="schoolcertificatehelds" class="btn btn-info">Add New</a>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

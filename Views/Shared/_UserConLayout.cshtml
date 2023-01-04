@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NAMIS</title>
+
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://kit.fontawesome.com/42663625c4.js" crossorigin="anonymous"></script> <!--fontawesome icons-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="~/css/popUp.css" rel="stylesheet" />
+</head>
+<body>
+    <div style="background-color: #e60000" class="nav">
+        <table style="border:0">
+            <tr style="border:0">
+                <td style="border:0">
+                    <h1> Record DashBoard</h1>
+                </td>
+            </tr>
+            <tr style="border:0">
+                <td style="border:0">
+                    <img src="~/image/logo.jpg">
+                </td>
+            </tr>
+        </table>
+        <ul>
+            <li style="width:90%">
+                <a asp-area="" asp-controller="registers" asp-action="Index">
+                    <i class="fas fa-info-circle"></i>
+                    Continue Registration
+                </a>
+            </li>
+            <li style="width:90%" class="dropdown">
+
+                <a class="dropbtn" href="#">
+                    <i class="fas fa-info-circle">
+                        &nbsp; <b class="fas fa-caret-down"></b>
+
+                    </i>Basic Details
+                </a>
+
+                <div class="dropdown-content">
+                    <a asp-area="" asp-controller="biodatas" asp-action="Create"><i class="fa fa-user"></i> Bio Data</a>
+
+                    <a asp-area="" asp-controller="nextofkins" asp-action="Create">
+                        <i class="fas fa-user-friends"></i>
+                        Next Of Kin
+                    </a>
+                    <a asp-area="" asp-controller="marragehistories" asp-action="Create">
+                        <i class="fas fa-asterisk"></i>
+                        Marrage Histories
+                    </a>
+                    <a asp-area="" asp-controller="particularofchildrens" asp-action="Create">
+
+                    </a>
+
+                    <a asp-area="" asp-controller="languages" asp-action="Create">
+                        <i class="fas fa-language"></i>
+
+                        Languages Spoken &amp; Written
+                    </a>
+                </div>
+
+            </li>
+
+
+            <li style="width:90%" class="dropdown">
+
+                <a class="dropbtn" href="#">
+                    <i class="fas fa-user-graduate"></i> &nbsp; <b class="fas fa-caret-down"></b>Educational Qualifications
+                </a>
+                <div class="dropdown-content">
+                    <a asp-area="" asp-controller="dpqs" asp-action="Create">
+                        <i class="fas fa-user-graduate"></i>
+                        Degrees &amp; Professional Qualifications
+                    </a>
+                    <a asp-area="" asp-controller="educations" asp-action="Create">
+                        <i class="fas fa-school"></i>
+
+                        Type Of School Attended
+                    </a>
+                    <a asp-area="" asp-controller="schoolcertificatehelds" asp-action="Create">
+                        <i class="fas fa-certificate"></i>
+                        School Certificate Helds
+                    </a>
+                </div>
+
+            </li>
+            <li style="width:90%">
+                <a asp-area="" asp-controller="dsinforces" asp-action="Create">
+                    <i class="fas fa-info-circle"></i>
+                    Detail Of Service In The Force
+                </a>
+            </li>
+
+            <li style="width:90%" class="dropdown">
+                <a class="dropbtn" href="#"><i class="fas fa-info-circle"></i>&nbsp; <b class="fas fa-caret-down"></b>Detail Of Previous Public Service</a>
+                <div class="dropdown-content">
+                    <a asp-area="" asp-controller="dpps" asp-action="Create">
+                        <i class="fas fa-info-circle"></i>
+                        Detail Of Previous Public Service
+                    </a>
+                    <a asp-area="" asp-controller="totalpreviousservices" asp-action="Create">
+                        Total Amount Pay
+                    </a>
+                </div>
+            </li>
+            <li style="width:90%">
+                <a asp-area="" asp-controller="tourandleaverecords" asp-action="Create">
+
+
+                    Tour and Leave Record
+                </a>
+
+            </li>
+            <li style="width:90%">
+                <a asp-area="" asp-controller="recordofsickleaves" asp-action="Create">
+
+
+                    Record of Sick and Loccal Leave
+                </a>
+
+            </li>
+            <li style="width:90%">
+                <a asp-area="" asp-controller="rofcandcs" asp-action="Create">
+
+
+                    Record of Censures and Commendations
+                </a>
+
+            </li>
+            <li style="width:90%" class="dropdown">
+                <a class="dropbtn" href="#">&nbsp; <b class="fas fa-caret-down"></b>Particular Of Termination Of Service</a>
+                <div class="dropdown-content">
+                    <a asp-area="" asp-controller="byresignationorinvalidatings" asp-action="Create">
+
+
+                        By Regination Or Invalidating
+                    </a>
+
+                    <a asp-area="" asp-controller="bydeaths" asp-action="Create">
+
+
+                        By Death
+                    </a>
+                    <a asp-area="" asp-controller="bytransfers" asp-action="Create">
+
+
+                        By Tansfer
+                    </a>
+                </div>
+            </li>
+            <li style="width:90%">
+                <a asp-area="" asp-controller="rofgpms" asp-action="Create">
+
+
+                    Record of Gratuity Payments
+                </a>
+
+            </li>
+            <li style="width:90%">
+                <a asp-area="" asp-controller="recordofservices" asp-action="Create">
+
+
+                    Record of Service
+                </a>
+
+            </li>
+            <li style="width:90%">
+                <a asp-area="" asp-controller="recordofemoluments" asp-action="Create">
+
+
+                    Record of Emoluments
+                </a>
+
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="section">
+
+
+
+
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+        <footer>
+            <p>Powered by NSPRI Information &amp; Documentation Department</p>
+        </footer>
+    </div>
+    <div class="modal" tabindex="-1" role="dialog" id="form-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="loaderbody" id="loaderbody">
+        <div class="loader"></div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

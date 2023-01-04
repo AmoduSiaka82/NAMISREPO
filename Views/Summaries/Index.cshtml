@@ -1,0 +1,35 @@
+﻿
+
+@{
+    ViewData["Title"] = "Index";
+}
+    
+            @await Component.InvokeAsync("biodata")
+            @await Component.InvokeAsync("nextofkin")
+            @await Component.InvokeAsync("marragehistory")
+            @await Component.InvokeAsync("particularofchildren")
+            @await Component.InvokeAsync("languages")
+            @await Component.InvokeAsync("dpqs")
+            @await Component.InvokeAsync("educations")
+            @await Component.InvokeAsync("schoolcertificatehelds")
+            @await Component.InvokeAsync("dsinforces")
+            @await Component.InvokeAsync("dpps")
+            @await Component.InvokeAsync("totalpreviousservices")
+
+            @await Component.InvokeAsync("tourandleaverecords")
+            @await Component.InvokeAsync("recordofsickleaves")
+            @await Component.InvokeAsync("rofcandcs")
+            @await Component.InvokeAsync("byresignationorinvalidatings")
+            @await Component.InvokeAsync("bydeaths")
+            @await Component.InvokeAsync("bytransfers")
+            @await Component.InvokeAsync("rofgpms")
+            @await Component.InvokeAsync("recordofservices")
+            @await Component.InvokeAsync("recordofemoluments")
+
+
+            <br />
+            <form asp-action="Submitting" asp-controller="Summaries">
+
+                <input type="submit" class="btn btn-info" name="save" value="Confirm Submit"/>
+            </form>
+      

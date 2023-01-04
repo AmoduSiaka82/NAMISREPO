@@ -1,0 +1,145 @@
+﻿@model NAMIS.Models.biodata
+
+@{
+    ViewData["Title"] = "Process Promotion";
+}
+
+<h6>Process Promotion</h6>
+
+
+<hr />
+
+<form id="myForm" asp-action="ProcessPromotion">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" readonly="readonly" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MiddleName" class="control-label"></label>
+                <input asp-for="MiddleName" readonly="readonly" class="form-control" />
+                <span asp-validation-for="MiddleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" readonly="readonly" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="SprpNo" />
+
+            <div class="form-group">
+                <label asp-for="DateOfFirstAppointment" class="control-label"></label>
+                <input asp-for="DateOfFirstAppointment" readonly="readonly" class="form-control" />
+                <span asp-validation-for="DateOfFirstAppointment" class="text-danger"></span>
+            </div>
+
+
+
+            <div class="form-group">
+                <label asp-for="CurrentAppointment" class="control-label"></label>
+                <input asp-for="CurrentAppointment" readonly="readonly" class="form-control" />
+                <span asp-validation-for="CurrentAppointment" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DateOfCurrentAppointment" class="control-label"></label>
+                <input asp-for="DateOfCurrentAppointment" readonly="readonly" class="form-control" />
+                <span asp-validation-for="DateOfCurrentAppointment" class="text-danger"></span>
+            </div>
+
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+
+            <div class="form-group">
+                <label asp-for="StationName" class="control-label"></label>
+                <input asp-for="StationName" readonly="readonly" class="form-control" />
+                <span asp-validation-for="StationName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GradeLevel" class="control-label"></label>
+                <input asp-for="GradeLevel" readonly="readonly" class="form-control" />
+                <span asp-validation-for="GradeLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Step" class="control-label"></label>
+                <input asp-for="Step" readonly="readonly" class="form-control" />
+                <span asp-validation-for="Step" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Propose Rank</label>
+
+                <select id="CurrentAppointmen" name="CurrentAppointmen" class="form-control"
+                        asp-items="@(new SelectList(@ViewBag.ListofDesig, "Decoration", "Decoration"))">
+
+                </select>
+                <span asp-validation-for="CurrentAppointment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Propose Grade</label>
+                <select id="ProposeGrade" name="ProposeGrade" data-val-required="Grade Level Required" class="form-control">
+
+                    <option value="">---Select---</option>
+                    <option value="CON_R 1">CON_R 1</option>
+                    <option value="CON_R 2">CON_R 2</option>
+
+                    <option value="CON_R 3">CON_R 3</option>
+                    <option value="CON_R 4">CON_R 4</option>
+                    <option value="CON_R 5">CON_R 5</option>
+                    <option value="CON_R 6">CON_R 6</option>
+                    <option value="CON_R 7">CON_R 7</option>
+                    <option value="CON_R 8">CON_R 8</option>
+                    <option value="CON_R 9">CON_R 9</option>
+                    <option value="CON_R 10">CON_R 10</option>
+                    <option value="CON_R 11">CON_R 11</option>
+                    <option value="CON_R 12">CON_R 12</option>
+                    <option value="CON_R 13">CON_R 13</option>
+                    <option value="CON_R 14">CON_R 14</option>
+                    <option value="CON_R 15">CON_R 15</option>
+                </select>
+                <span  class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Propose Step</label>
+
+                <input id="Steps" name="Steps" type="number" data-val-required="Decoration Required" class="form-control" />
+                <span asp-validation-for="Step" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" id="btnSubmit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery-1.4.1.min.js"></script>
+    <script>
+        $('form').submit(function () {
+
+            $(this).find(':submit').attr('disabled', 'disabled');
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('#btnSubmit').on('click', function () {
+                $(this).val('Please wait ...')
+                    .attr('disabled', 'disabled');
+                $('#myForm').submit();
+            });
+
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/theme/plugins/jquery/jquery.min.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

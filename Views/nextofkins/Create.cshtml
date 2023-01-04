@@ -1,0 +1,100 @@
+﻿@model NAMIS.Models.nextofkin
+
+@{
+    ViewData["Title"] = "Create";
+
+}
+
+
+    <h6><b>Record Of Service </b>&nbsp;&nbsp;/&nbsp;&nbsp;Next of kin Page</h6>
+<hr />
+
+
+
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+        <form id="myForm" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MiddleName" class="control-label"></label>
+                <input asp-for="MiddleName" class="form-control" />
+                <span asp-validation-for="MiddleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Relationship" class="control-label"></label>
+                <select asp-for="Relationship" class="form-control">
+
+                    <option value="">-----Select-----</option>
+                    <option value="FATHER">FATHER</option>
+                    <option value="MOTHER">MOTHER</option>
+                    <option value="SISTER">SISTER</option>
+                    <option value="BROTHER">BROTHER</option>
+                    <option value="UNCLE">UNCLE</option>
+                    <option value="AUNTY">AUNTY</option>
+                    <option value="COUSIN BROTHER">COUSIN BROTHER</option>
+                    <option value="COUSIN SISTER">COUSIN SISTER</option>
+                    <option value="FRIEND">FRIEND</option>
+                    <option value="NEPHEW">NEPHEW</option>
+                    <option value="NIECE">NIECE</option>
+                    <option value="SON">SON</option>
+                    <option value="HUSBAND">PHUSBAND</option>
+                    <option value="WIFE">WIFE</option>
+                    <option value="DAUGHTER">DAUGHTER</option>
+                    <option value="OTHERS">OTHERS</option>
+
+
+                </select>
+                <span asp-validation-for="Relationship" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <p style="float:left"> <input type="submit" id="btnSubmit" value="Create" class="btn btn-primary" /></p>
+                
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    
+        <script src="~/lib/jquery/dist/jquery-1.4.1.min.js"></script>
+        <script>
+            $('form').submit(function () {
+
+                $(this).find(':submit').attr('disabled', 'disabled');
+
+            });
+
+        </script>
+        <script>
+            $(function () {
+                $('#btnSubmit').on('click', function () {
+                    $(this).val('Please wait ...')
+                        .attr('disabled', 'disabled');
+                    $('#myForm').submit();
+                });
+
+            });
+        </script>
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

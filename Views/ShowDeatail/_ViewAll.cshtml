@@ -1,0 +1,1664 @@
+﻿@using NAMIS.Models
+@model dynamic
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_EdLayout.cshtml";
+}
+<link href="~/css/viewComp.css" rel="stylesheet" />
+<h4>Bio Data</h4>
+
+<div class="row">
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+
+                <thead>
+                    <tr>
+                        <th>Surname</th>
+                        <th>Middle Name</th>
+                        <th>First Name</th>
+                        <th>Sex</th>
+                        <th>Current Appointment</th>
+                        <th>Sprp No</th>
+
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (biodata item in Model.biodata)
+                    {
+
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Surname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MiddleName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sex)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CurrentAppointment)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+
+                            <td>
+                                <a onclick="showInPopup('@Url.Action("BioDataAction", "ShowDeatail", new { Id = item.SprpNo }, Context.Request.Scheme)','Directive')" class="btn btn-outline-success"><i class="far" title="Edit">&#xf044;</i> Action</a>
+                                <a asp-action="Details" asp-area="" asp-controller="ExecutiveDirector" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.SprpNo"><i class="fas fa-info-circle"></i>Details</a>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<hr />
+
+
+<h4>Next Of Kin</h4>
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Surname</th>
+                        <th>Middle Name</th>
+                        <th>First Name</th>
+                        <th>Address</th>
+                        <th>Relationship</th>
+                        <th>Sprp No</th>
+
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (nextofkin item in Model.nextofkin)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Surname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MiddleName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Relationship)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+
+                            <td>
+                                @if (item.Status == "Action")
+                                {
+                                    <a asp-action="nextofkinsEdit" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="fas fa-pencil-alt"></i>Allow Edit</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="nextofkinsEdit" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="fas fa-pencil-alt"></i>Allow Edit</a>
+                                }
+                                @if (item.Status == "Delete")
+                                {
+                                    <a asp-action="nextofkinsDelete" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="fas fa-trash-alt"></i>Allow Delete</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="nextofkinsDelete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="fas fa-trash-alt"></i>Allow Delete</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<h4>Marriage History</h4>
+
+
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Marital Status
+                        </th>
+                        <th>
+                            Date Of Marriage
+                        </th>
+                        <th>
+                            Name Of Spouse
+                        </th>
+                        <th>
+                            Spouse Date Of Birth
+                        </th>
+                        <th>
+                            Sprp No
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (marragehistory item in Model.marragehistory)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MaritalStatus)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOfMarriage)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NameOfWife)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.WifeDateOfBirth)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+
+                            <td>
+                                @if (item.Status == "Action")
+                                {
+                                    <a asp-action="marragehistoriesEdit" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pecil"></i>Allow Edit</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="marragehistoriesEdit" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pecil"></i>Allow Edit</a>
+                                }
+                                @if (item.Status == "Delete")
+                                {
+                                    <a asp-action="marragehistoriesDelete" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="marragehistoriesDelete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<h4>Particular of Children</h4>
+
+
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Surname
+                        </th>
+                        <th>
+                            Middle Name
+                        </th>
+                        <th>
+                            First Name
+                        </th>
+                        <th>
+                            Sex
+                        </th>
+                        <th>
+                            Date Of Birth
+                        </th>
+
+                        <th>
+                            Sprp No
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (particularofchildren item in Model.particularofchildren)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Surname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MiddleName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sex)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOfBirth)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+
+                            <td>
+                                @if (item.Status == "Action")
+                                {
+                                    <a asp-action="particularofchildrensEdit" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="particularofchildrensEdit" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                @if (item.Status == "Delete")
+                                {
+
+
+                                    <a asp-action="particularofchildrensDelete" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+
+                                }
+                                else
+                                {
+                                    <a asp-action="particularofchildrensDelete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<h4>Languages</h4>
+
+
+
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Language
+                        </th>
+                        <th>
+                            Spoken
+                        </th>
+                        <th>
+                            Written
+                        </th>
+                        <th>
+                            Exam Qualified
+                        </th>
+
+                        <th>
+                            SprpNo
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (languages item in Model.languages)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Language)
+                                *
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Spoken)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Written)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ExamQualified)
+                            </td>
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+                            <td>
+
+                                @if (item.Status == "Action")
+                                {
+                                    <a asp-action="languagesEdit" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="languagesEdit" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                @if (item.Status == "Delete")
+                                {
+                                    <a asp - action="languagesDelete" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"> <i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+                                else
+                                {
+
+                                    <a asp-action="languagesDelete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"> <i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<h4>Type Of School Attended</h4>
+
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Type Of School
+                        </th>
+                        <th>
+                            From
+                        </th>
+                        <th>
+                            To
+                        </th>
+                        <th>
+                            Checked By
+                        </th>
+
+                        <th>
+                            SprpNo
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (educations item in Model.educations)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TypeOfSchool)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FrmDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ToDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CheckedBy)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+                            <td>
+                                @if (item.Status == "Action")
+                                {
+                                    <a asp-action="educationsEdit" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="educationsEdit" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                @if (item.Status == "Delete")
+                                {
+                                    <a asp-action="educationsDelete" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"> <i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="educationsDelete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"> <i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+
+
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<h4> School Certificate Helds</h4>
+
+
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            school certificate held)
+                        </th>
+                        <th>
+                            Checked By
+                        </th>
+
+
+                        <th>
+                            Sprp No
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (schoolcertificatehelds item in Model.schoolcertificatehelds)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.schoolcertificateheld)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CheckedBy)
+                            </td>
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+                            <td>
+                                @if (item.Status == "Action")
+                                {
+                                    <a asp-action="schoolcertificateheldsEdit" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="schoolcertificateheldsEdit" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                @if (item.Status == "Delete")
+                                {
+                                    <a asp-action="schoolcertificateheldsDelete" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="schoolcertificateheldsDelete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+
+
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<h4> Detail Of Service In The Force</h4>
+
+
+<div class="row">
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Arm Of Service
+                        </th>
+                        <th>
+                            ServiceNo
+                        </th>
+                        <th>
+                            Reason For Leave
+                        </th>
+                        <th>
+                            Last Unit
+                        </th>
+
+                        <th>
+                            Sprp No
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (dsinforce item in Model.dsinforce)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ArmOfService)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ServiceNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ReasonForLeave)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastUnit)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+                            <td>
+                                @if (item.Status == "Action")
+                                {
+                                    <a asp-action="dsinforcesEdit" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="dsinforcesEdit" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                @if (item.Status == "Delete")
+                                {
+                                    <a asp-action="dsinforcesDelete" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="dsinforcesDelete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+
+
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<h4>Degree and Other Professional Qaulification</h4>
+
+
+<div class="row">
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Degree and Other Professional Qeulification)
+                        </th>
+                        <th>
+                            Checked By
+                        </th>
+
+                        <th>
+                            Sprp No
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (dpq item in Model.dpq)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Dpq)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CheckedBy)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+
+                            <td>
+                                @if (item.Status == "Action")
+                                {
+                                    <a asp-action="dpqsEdit" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="dpqsEdit" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                @if (item.Status == "Delete")
+                                {
+                                    <a asp-action="dpqsDelete" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="dpqsDelete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+
+
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<h4>Total Amount Pay</h4>
+
+
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Yrs
+                        </th>
+                        <th>
+                            Mos
+                        </th>
+                        <th>
+                            Days
+                        </th>
+                        <th>
+                            Total Amount Pay
+                        </th>
+                        <th>
+                            SprpNo
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (totalpreviousservice item in Model.totalpreviousservice)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Yrs)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Mos)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Days)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalAmountPay)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+
+                            <td>
+                                @if (item.Status == "Action")
+                                {
+                                    <a asp-action="totalpreviousservicesEdit" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="totalpreviousservicesEdit" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                @if (item.Status == "Delete")
+                                {
+                                    <a asp-action="totalpreviousservicesDelete" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="totalpreviousservicesDelete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+
+
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<h4>Tour and Leave Record</h4>
+
+
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Date Started
+                        </th>
+                        <th>
+                            Gazette Notice No
+                        </th>
+                        <th>
+                            Length Of Tour For Age
+                        </th>
+                        <th>
+                            Date Due For Leave
+                        </th>
+                        <th>
+                            Date Departed On Leave
+                        </th>
+                        <th>
+                            Gazette Notice Number
+                        </th>
+                        <th>
+                            Date Extention Granted
+                        </th>
+                        <th>
+                            Salary Rule For Extention
+                        </th>
+                        <th>
+                            Date Resumed Duty
+                        </th>
+                        <th>
+                            Passage By Sea Or Air To Uk
+                        </th>
+                        <th>
+                            Passage By Sea Or Air Frm Uk
+                        </th>
+                        <th>
+                            Resident Months
+                        </th>
+                        <th>
+                            Resident Days
+                        </th>
+                        <th>
+                            Leave Months
+                        </th>
+                        <th>
+                            Leave Days
+                        </th>
+
+                        <th>
+                            Sprp No
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (tourandleaverecord item in Model.tourandleaverecord)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateStarted)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GazetteNoticeNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LengthOfTourForAge)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateDueForLeave)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateDepartedOnLeave)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GazetteNoticeNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateExtentionGranted)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SalaryRuleForExtention)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateResumedDuty)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PassageBySeaOrAirToUk)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PassageBySeaOrAirFrmUk)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ResidentMonths)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ResidentDays)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LeaveMonths)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LeaveDays)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+
+                            <td>
+                                @if (item.Status == "Action")
+                                {
+                                    <a asp-action="tourandleaverecordsEdit" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="tourandleaverecordsEdit" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                @if (item.Status == "Delete")
+                                {
+                                    <a asp-action="tourandleaverecordsDelete" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="tourandleaverecordsDelete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<h4> Record of Sick and Loccal Leave</h4>
+
+<div class="row">
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Type Of Leave
+                        </th>
+                        <th>
+                            From
+                        </th>
+                        <th>
+                            To
+                        </th>
+                        <th>
+                            No Of Days
+                        </th>
+
+                        <th>
+                            File Page No
+                        </th>
+
+                        <th>
+                            Sprp No
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (recordofsickleaves item in Model.recordofsickleaves)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TypeOfLeave)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FrmDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ToDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NoOfDays)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FilePageNo)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+
+                            <td>
+                                @if (item.Status == "Action")
+                                {
+                                    <a asp-action="recordofsickleavesEdit" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="recordofsickleavesEdit" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                @if (item.Status == "Delete")
+                                {
+                                    <a asp-action="recordofsickleavesDelete" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="recordofsickleavesDelete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+
+
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<h4>Record of Censures and Commendations</h4>
+
+
+<div class="row">
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Summary
+                        </th>
+                        <th>
+                            CompiledBy
+                        </th>
+                        <th>
+                            Date
+                        </th>
+                        <th>
+                            Dates
+                        </th>
+                        <th>
+                            Sprp No
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (rofcandcs item in Model.rofcandcs)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Summary)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CompiledBy)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+
+                            <td>
+                                @if (item.Status == "Action")
+                                {
+                                    <a asp-action="rofcandcsEdit" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+
+                                }
+                                else
+                                {
+                                    <a asp-action="rofcandcsEdit" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+
+                                }
+                                @if (item.Status == "Delete")
+                                {
+                                    <a asp-action="rofcandcsDelete" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="rofcandcsDelete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<h4> By Regination Or Invalidating</h4>
+
+
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Date Terminated
+                        </th>
+                        <th>
+                            Pension Or Contarct
+                        </th>
+                        <th>
+                            Pension Of
+                        </th>
+                        <th>
+                            Grantuity Of
+                        </th>
+                        <th>
+                            Contract Gratuity
+                        </th>
+
+                        <th>
+                            Sprp No
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (byresignationorinvalidating item in Model.byresignationorinvalidating)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateTerminated)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PensionOrContarct)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PensionOf)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GrantuityOf)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContractGratuity)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+                            <td>
+                                @if (item.Status == "Action")
+                                {
+                                    <a asp-action="byresignationorinvalidatingsEdit" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+
+                                }
+                                else
+                                {
+                                    <a asp-action="byresignationorinvalidatingsEdit" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+
+                                }
+                                @if (item.Status == "Delete")
+                                {
+                                    <a asp-action="byresignationorinvalidatingsDelete" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="byresignationorinvalidatingsDelete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+
+
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<h4>
+    By Death
+</h4>
+
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Date Of Death
+                        </th>
+                        <th>
+                            Gratuity Paid To Estate
+                        </th>
+                        <th>
+                            Windows Pension Paid
+                        </th>
+                        <th>
+                            Orphans Pension Paid
+                        </th>
+
+                        <th>
+                            Sprp No
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (bydeaths item in Model.bydeaths)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOfDeath)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GratuityPaidToEstate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.WindowsPensionPaid)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.OrphansPensionPaid)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+                            <td>
+                                @if (item.Status == "Action")
+                                {
+                                    <a asp-action="bydeathsEdit" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="bydeathsEdit" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+
+                                }
+                                @if (item.Status == "Delete")
+                                {<a asp-action="bydeathsDelete" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="bydeathsDelete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<h4>By Tansfer</h4>
+
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Date Of Transfer
+                        </th>
+                        <th>
+                            Pension Or Contarct
+                        </th>
+                        <th>
+                            Aggregate Service In  Nigeria Yrs
+                        </th>
+                        <th>
+                            Aggregate Service In Nigeria Mos
+                        </th>
+                        <th>
+                            Aggregate Service In Nigeria Days
+                        </th>
+                        <th>
+                            Aggregate Salary In Nigeria
+                        </th>
+
+                        <th>
+                            Sprp No
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (bytransfers item in Model.bytransfers)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOfTransfer)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PensionOrContarct)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AggregateServiceInNigeriaYrs)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AggregateServiceInNigeriaMos)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AggregateServiceInNigeriaDays)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AggregateSalaryInNigeria)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+                            <td>
+                                @if (item.Status == "Action")
+                                {
+                                    <a asp-action="bytransfersEdit" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="bytransfersEdit" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+
+                                }
+                                @if (item.Status == "Delete")
+                                {<a asp-action="bytransfersDelete" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="bytransfersDelete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+
+
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<h4>  Record of Gratuity Payments</h4>
+
+
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Date Of Payment
+                        </th>
+                        <th>
+                            From
+                        </th>
+                        <th>
+                            To
+                        </th>
+                        <th>
+                            Yrs
+                        </th>
+                        <th>
+                            Mos
+                        </th>
+                        <th>
+                            Days
+                        </th>
+                        <th>
+                            Rate Per Anum
+                        </th>
+                        <th>
+                            Amount Paid
+                        </th>
+                        <th>
+                            File Page Ref
+                        </th>
+                        <th>
+                            Checked By
+                        </th>
+
+                        <th>
+                            Sprp No
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (rofgpm item in Model.rofgpm)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOfPayment)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FrmDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ToDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Yrs)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Mos)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Days)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RatePerAnum)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AmountPaid)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FilePageRef)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CheckedBy)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+                            <td>
+                                @if (item.Status == "Action")
+                                {
+                                    <a asp-action="rofgpmsEdit" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="rofgpmsEdit" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+
+                                }
+                                @if (item.Status == "Delete")
+                                {
+                                    <a asp-action="rofgpmsDelete" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="rofgpmsDelete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+
+
+
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+<h4> Record of Service</h4>
+
+
+
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+
+                <thead>
+                    <tr>
+                        <th>
+                            Date Of Entery
+                        </th>
+                        <th>
+                            Detail
+                        </th>
+                        <th>
+                            Signature
+                        </th>
+                        <th>
+                            Checked By And Stamp
+                        </th>
+
+                        <th>
+                            Sprp No
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (recordofservice item in Model.recordofservice)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOfEntery)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Detail)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Signature)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CheckedByAndStamp)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+                            <td>
+                                @if (item.Status == "Action")
+                                {
+                                    <a asp-action="recordofservicesEdit" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="recordofservicesEdit" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+
+                                }
+                                @if (item.Status == "Delete")
+                                {
+                                    <a asp-action="recordofservicesDelete" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="recordofservicesDelete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+
+
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<h4> Record of Emoluments</h4>
+
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Date Of Entery
+                        </th>
+                        <th>
+                            Salary Scale
+                        </th>
+                        <th>
+                            Basic Salary PA
+                        </th>
+                        <th>
+                            Inducement Pay  PA
+                        </th>
+                        <th>
+                            Date Paid Frm
+                        </th>
+                        <th>
+                            Incriminis Date Mos
+                        </th>
+                        <th>
+                            Incriminis Date Yr
+                        </th>
+                        <th>
+                            Authority
+                        </th>
+                        <th>
+                            Signature
+                        </th>
+                        <th>
+                            Name And Stamp
+                        </th>
+
+                        <th>
+                            Sprp No
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (recordofemolument item in Model.recordofemolument)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOfEntery)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SalaryScale)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.BasicSalaryPA)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.InducementPayPA)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DatePaidFrm)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IncriminisDateM)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.IncriminisDateYr)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Authority)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Signature)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NameAndStamp)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+                            <td>
+                                @if (item.Status == "Action")
+                                {
+                                    <a asp-action="recordofemolumentsEdit" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="recordofemolumentsEdit" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-pencil"></i>Allow Edit</a>
+
+                                }
+                                @if (item.Status == "Delete")
+                                {
+                                    <a asp-action="recordofemolumentsDelete" style="background-color:yellow" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="recordofemolumentsDelete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID"><i class="glyphicon glyphicon-trash"></i>Allow Delete</a>
+                                }
+
+
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<div id="MyPopup" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h4 class="modal-title">
+                    Allow Edit
+                </h4>
+            </div>
+            <div class="modal-body" id="MyPopupBody">
+
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script>
+
+    var Allow = function (id) {
+        var url = "/ShowDeatail/Allow?Id=" + id;
+        $("#MyPopupBody").load(url, function () {
+            $("#MyPopup").modal("show");
+        })
+    }
+</script>

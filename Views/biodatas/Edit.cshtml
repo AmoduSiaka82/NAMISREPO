@@ -1,0 +1,369 @@
+﻿@model NAMIS.Models.biodata
+
+@{
+    ViewData["Title"] = "Edit";
+
+    ViewData["Title"] = "Create";
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var items = "<option value='0'>---Select---</option>";
+            $('#StateOfOrigin').html(items);
+            $('#LGAOrigin').html(items);
+            $('#CurrentAppointment').html(items);
+            $('#Carder').html(items);
+        });
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#Natinality').change(function () {
+                var url = '@Url.Content("~/")' + "biodatas/GetState";
+                var ddlsource = "#Natinality";
+                $.getJSON(url, { ID: $(ddlsource).val() }, function (data) {
+                    var ites = "<option value='0'>---Select---</option>";
+                    $('#LGAOrigin').html(ites);
+                    var items = '';
+                    $("#StateOfOrigin").empty();
+                    $.each(data, function (i, subcategory) {
+                        items += "<option value='" + subcategory.value + "'>" + subcategory.text + "</option>";
+                    });
+                    $('#StateOfOrigin').html(items);
+
+                });
+
+
+
+
+            });
+
+            $('#StateOfOrigin').change(function () {
+                var url = '@Url.Content("~/")' + "biodatas/GetLocal";
+                var ddlsource = "#StateOfOrigin";
+                $.getJSON(url, { state_id: $(ddlsource).val() }, function (data) {
+                    var items = '';
+                    $('#LGAOrigin').empty();
+                    $.each(data, function (i, product) {
+                        items += "<option value='" + product.value + "'>" + product.text + "</option>";
+                    });
+                    $('#LGAOrigin').html(items);
+                });
+            });
+             $('#Department').change(function () {
+                var url = '@Url.Content("~/")' + "biodatas/GetCadre";
+                var ddlsource = "#Department";
+                $.getJSON(url, { DeptID: $(ddlsource).val() }, function (data) {
+                    var items = '';
+                    $('#Carder').empty();
+                    $.each(data, function (i, products) {
+                        items += "<option value='" + products.value + "'>" + products.text + "</option>";
+                    });
+                    $('#Carder').html(items);
+                });
+            });
+            $('#Department').change(function () {
+                var url = '@Url.Content("~/")' + "biodatas/GetDesignation";
+                var ddlsource = "#Department";
+                $.getJSON(url, { DeptID: $(ddlsource).val() }, function (data) {
+                    var items = '';
+                    $('#CurrentAppointment').empty();
+                    $.each(data, function (i, products) {
+                        items += "<option value='" + products.value + "'>" + products.text + "</option>";
+                    });
+                    $('#CurrentAppointment').html(items);
+                });
+            });
+        });
+    </script>
+}
+<h6><b>Record Of Service </b>&nbsp;&nbsp;/&nbsp;&nbsp;Bio Data Page</h6>
+<hr />
+
+
+<form id="myForm" asp-action="Edit"  onsubmit="return jQueryAjaxPostConfirms(this);" >
+    <input type="hidden" asp-for="SprpNo" />
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Decoration" class="control-label"></label>
+                <input asp-for="Decoration" data-val-required="Decoration Required" class="form-control" />
+                <span asp-validation-for="Decoration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" data-val-required="Surname required." class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MiddleName" class="control-label"></label>
+                <input asp-for="MiddleName" class="form-control" />
+                <span asp-validation-for="MiddleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" data-val-required="First Name required." class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SprpNo" class="control-label"></label>
+                <input asp-for="SprpNo" data-val-required="Sprp no Required" class="form-control" />
+                <span asp-validation-for="SprpNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sex" class="control-label"></label>
+
+                <select asp-for="Sex" data-val-required="Sex Required" class="form-control">
+
+                    <option value="">-----Select-----</option>
+                    <option value="MALE">MALE</option>
+                    <option value="FEMALE">FEMALE</option>
+
+                    <option value="Others">Others</option>
+                </select>
+                <span asp-validation-for="Sex" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Carder" class="control-label"></label>
+                <select asp-for="Carder" id="Carder" name="Carder" data-val-required="Carder Required" class="form-control">
+
+                    asp-items="@(new SelectList(string.Empty, "Cadre", "Cadre"))">
+
+
+                </select>
+                <span asp-validation-for="Carder" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Department" class="control-label"></label>
+                <select asp-for="Department" data-val-required="Department Required" id="Department" name="Department" class="form-control"
+                        asp-items="@(new SelectList(@ViewBag.ListofDept, "Department", "Department"))">
+                </select>
+                <span asp-validation-for="Department" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CurrentAppointment" class="control-label"></label>
+
+                <select asp-for="CurrentAppointment" id="CurrentAppointment" name="CurrentAppointment" class="form-control"
+                        asp-items="@(new SelectList(string.Empty, "CurrentAppointment", "CurrentAppointment"))">
+                </select>
+                <span asp-validation-for="CurrentAppointment" class="text-danger"></span>
+            </div>
+
+
+
+
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            <div class="form-group">
+                <label asp-for="Natinality" class="control-label"></label>
+
+                <select asp-for="Natinality" data-val-required="Nationality Required" id="Natinality" name="Natinality" class="form-control"
+                        asp-items="@(new SelectList(@ViewBag.ListofCountryMaster,"ID", "Natinality"))"></select>
+                <span asp-validation-for="Natinality" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GeographicalLocation" class="control-label"></label>
+                <select asp-for="GeographicalLocation" data-val-required="Geographical Location Required" class="form-control">
+
+                    <option value="">-----Select-----</option>
+                    <option value="NorthCentral">North Central</option>
+                    <option value="NorthEast">North East</option>
+                    <option value="NorthWest">North West</option>
+                    <option value="SougthEast">South East</option>
+                    <option value="SougthSougth">South Sougth</option>
+                    <option value="SougthWest">South West</option>
+                    <option value="Others">Others</option>
+                </select>
+                <span asp-validation-for="GeographicalLocation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StateOfOrigin" class="control-label"></label>
+                <select asp-for="StateOfOrigin" data-val-required="State of Origin Required" id="StateOfOrigin" name="StateOfOrigin" class="form-control"
+                        asp-items="@(new SelectList(string.Empty,"state_id", "StateOfOrigin"))"></select>
+                <span asp-validation-for="StateOfOrigin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LGAOrigin" class="control-label"></label>
+                <select asp-for="LGAOrigin" id="LGAOrigin" data-val-required="L G A Of Required" name="LGAOrigin" class="form-control"
+                        asp-items="@(new SelectList(string.Empty,"LGAOrigin", "LGAOrigin"))"></select>
+                <span asp-validation-for="LGAOrigin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfFirstAppointment" class="control-label"></label>
+                <input asp-for="DateOfFirstAppointment" data-val-required=" Date of First Appointment Required" class="form-control" />
+                <span asp-validation-for="DateOfFirstAppointment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfFirstArrival" class="control-label"></label>
+                <input asp-for="DateOfFirstArrival" data-val-required="Date of First Arrival Required" class="form-control" />
+                <span asp-validation-for="DateOfFirstArrival" class="text-danger"></span>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <label asp-for="PlaceOfBirth" class="control-label"></label>
+                <input asp-for="PlaceOfBirth" data-val-required="Place of Birth Required" class="form-control" />
+                <span asp-validation-for="PlaceOfBirth" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Proof" class="control-label"></label>
+                <select asp-for="Proof" data-val-required="Substansive Required" class="form-control">
+
+                    <option value="">---Select---</option>
+                    <option value="Birth Certificate">Birth Certificate</option>
+                    <option value="Age of Decleration">Age Decleration</option>
+
+
+                </select>
+                <span asp-validation-for="Proof" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+
+           
+            <div class="form-group">
+                <label asp-for="HomeAddress" class="control-label"></label>
+                <input asp-for="HomeAddress" data-val-required="Home Address Required" class="form-control" />
+                <span asp-validation-for="HomeAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubstansiveAppointment" class="control-label"></label>
+                <select asp-for="SubstansiveAppointment" data-val-required="Substansive Required" class="form-control">
+
+                    <option value="">-----Select-----</option>
+                    <option value="Permanent">Permanent</option>
+                    <option value="Contract">Contract</option>
+
+                    <option value="Temporary">Temporary</option>
+                </select>
+                <span asp-validation-for="SubstansiveAppointment" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group">
+                <label asp-for="TermsOfEngagement" class="control-label"></label>
+                <select asp-for="TermsOfEngagement" data-val-required="Substansive Required" class="form-control">
+
+                    <option value="">---Select---</option>
+                    <option value="Permanent">Permanent</option>
+                    <option value="Month-Month">Month-Month</option>
+
+                    <option value="Temporary">Temporary</option>
+                </select>
+                <span asp-validation-for="TermsOfEngagement" class="text-danger"></span>
+            </div>
+
+           
+
+            <div class="form-group">
+                <label asp-for="StationName" class="control-label"></label>
+                <select asp-for="StationName" data-val-required=" Station Name Required" class="form-control"
+                        asp-items="@(new SelectList(@ViewBag.ListofStation, "StationName", "StationName"))"></select>
+
+                <span asp-validation-for="StationName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HighestQualification" class="control-label"></label>
+
+                <select asp-for="HighestQualification" data-val-required="Sex Required" class="form-control">
+
+                    <option value="">---Select---</option>
+                    <option value="Phd">Phd</option>
+                    <option value="Msc">Msc</option>
+                    <option value="Msc Ed">Msc Ed</option>
+                    <option value="M Ed">M Ed</option>
+                    <option value="M Tech">M Tech</option>
+                    <option value="M Eng">M Eng</option>
+                    <option value="MBA">MBA</option>
+                    <option value="MBA Ed">MBA Ed</option>
+                    <option value="B.sc">B.sc</option>
+                    <option value="B.sc Ed">B.sc Ed</option>
+                    <option value="B Ed">B Ed</option>
+                    <option value="BA">BA</option>
+                    <option value="BA Ed">BA Ed</option>
+                    <option value="B Tech">B Tech</option>
+                    <option value="B Eng">B Eng</option>
+                    <option value="HND">HND</option>
+                    <option value="ND">ND</option>
+                    <option value="OND">OND</option>
+                    <option value="NCE">NCE</option>
+                    <option value="Diploma">Diploma</option>
+                    <option value="SSCE">SSCE</option>
+                    <option value="Certification">Certification</option>
+                    <option value="Certificate">Certificate</option>
+                    <option value="FSLC">FSLC</option>
+
+                    <option value="Others">Others</option>
+                </select>
+                <span asp-validation-for="HighestQualification" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GradeLevel" class="control-label"></label>
+                <select asp-for="GradeLevel" data-val-required="Grade Level Required" class="form-control">
+
+                    <option value="">---Select---</option>
+                    <option value="CON_R 1">CON_R 1</option>
+                    <option value="CON_R 2">CON_R 2</option>
+
+                    <option value="CON_R 3">CON_R 3</option>
+                    <option value="CON_R 4">CON_R 4</option>
+                    <option value="CON_R 5">CON_R 5</option>
+                    <option value="CON_R 6">CON_R 6</option>
+                    <option value="CON_R 7">CON_R 7</option>
+                    <option value="CON_R 8">CON_R 8</option>
+                    <option value="CON_R 9">CON_R 9</option>
+                    <option value="CON_R 10">CON_R 10</option>
+                    <option value="CON_R 11">CON_R 11</option>
+                    <option value="CON_R 12">CON_R 12</option>
+                    <option value="CON_R 13">CON_R 13</option>
+                    <option value="CON_R 14">CON_R 14</option>
+                    <option value="CON_R 15">CON_R 15</option>
+                </select>
+                <span asp-validation-for="GradeLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Step" class="control-label"></label>
+
+                <input asp-for="Step" type="number" data-val-required="Decoration Required" class="form-control" />
+                <span asp-validation-for="Step" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" id="btnSubmit" value="Save" class="btn btn-danger btn-rounded btn-sm my-0" />
+            </div>
+
+        </div>
+    </div>
+</form>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+@section Scripts {
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/theme/plugins/jquery/jquery.min.js"></script>
+    @*<script src="~/lib/jquery/dist/jquery-1.4.1.min.js"></script>
+    <script>
+        $('form').submit(function () {
+
+            $(this).find(':submit').attr('disabled', 'disabled');
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('#btnSubmit').on('click', function () {
+                $(this).val('Please wait ...')
+                    .attr('disabled', 'disabled');
+                $('#myForm').submit();
+            });
+
+        });
+    </script>*@
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

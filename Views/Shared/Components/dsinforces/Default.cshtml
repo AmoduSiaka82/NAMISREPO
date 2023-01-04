@@ -1,0 +1,76 @@
+﻿@model IEnumerable<NAMIS.Models.dsinforce>
+
+@{
+    ViewData["Title"] = "Default";
+}
+
+<h4> Detail Of Service In The Force</h4>
+
+<link href="~/css/viewComp.css" rel="stylesheet" />
+<div class="row">
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ArmOfService)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ServiceNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ReasonForLeave)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.LastUnit)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.SprpNo)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ArmOfService)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ServiceNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ReasonForLeave)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastUnit)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+                            <td>
+                                <div>
+                                   
+                                    <a asp-action="Index" asp-controller="dsinforces" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.ID">Details</a>
+                                    
+                                </div>
+                                
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tr>
+                    <td colspan="5"></td>
+                    <td>
+                        <a asp-action="Index" asp-area="" asp-controller="dsinforces" class="btn btn-info">Add New</a>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

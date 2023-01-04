@@ -1,0 +1,191 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@model IEnumerable<NAMIS.Models.Confirmationofappointment>
+
+@{
+    ViewData["Title"] = "ViewConfirmationLetter";
+ @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Executive Director")
+    {
+        Layout = "~/Views/Shared/_EdLayout.cshtml";
+    }
+                @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Director")
+                {
+                    Layout = "~/Views/Shared/_DirectorLayout.cshtml";
+                }
+                            @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Unit Head")
+                            {
+                                Layout = "~/Views/Shared/_UnitHeadLayout.cshtml";
+                            }
+                                        @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Staff")
+                                        {
+
+                                        }
+                                                    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Zonal Head" || HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Out Station Head")
+                                                    {
+                                                        Layout = "~/Views/Shared/_ZonalHeadLayout.cshtml";
+                                                    } }
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print </title>
+    <script lang="js" type="text/javascript">
+        function printElem(divId) {
+
+            var content = document.getElementById(divId).innerHTML;
+
+            var mywindow = window.open('', 'Print', 'height=1000,width=500');
+
+            mywindow.document.write('<html><head><title>Print</title>');
+            mywindow.document.write('</head><body >');
+            mywindow.document.write(content);
+            mywindow.document.write('</body></html>');
+
+            mywindow.document.close();
+            mywindow.focus();
+
+            mywindow.print();
+
+            mywindow.close();
+
+            return true;
+
+
+        }
+        var observe;
+        if (window.attachEvent) {
+            observe = function (element, event, handler) {
+                element.attachEvent('on' + event, handler);
+            };
+        }
+        else {
+            observe = function (element, event, handler) {
+                element.addEventListener(event, handler, false);
+            };
+        }
+        function init() {
+            var text = document.getElementById('text');
+            function resize() {
+                text.style.height = 'auto';
+                text.style.height = text.scrollHeight + 'px';
+            }
+            /* 0-timeout to get the already changed text */
+            function delayedResize() {
+                window.setTimeout(resize, 0);
+            }
+            observe(text, 'change', resize);
+            observe(text, 'cut', delayedResize);
+            observe(text, 'paste', delayedResize);
+            observe(text, 'drop', delayedResize);
+            observe(text, 'keydown', delayedResize);
+
+            text.focus();
+            text.select();
+            resize();
+        }
+
+    </script>
+</head>
+
+<body onload="init();">
+    <form class="form-inline ml-3">
+        <div class="input-group input-group-sm">
+
+
+            <button class="btn btn-navbar" onclick="printElem('prt');" id="btnPrint" value="Print" type="submit">
+                <i class="fas fa-print"></i>
+            </button>
+
+        </div>
+    </form>
+    <div class="row">
+
+
+        <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+            <div style="overflow-y: hidden;  overflow-x: hidden" id="prt" class="table-responsive">
+                @foreach (var item in Model)
+                {@*@Html.DisplayFor(modelItem => item.Remark)*@
+                                <br />
+                                                <br />
+                                                                <br />
+                                                                                <br />
+                                                                                                <br />
+                                                                                                                <br />
+                                                                                                                                <br />
+                                                                                                                                                <br />
+                                                                                                                                                                <br />
+
+                                                                                                                                                                                <div style="display:flex;flex-flow: row;justify-content:space-between">
+                                                                                                                                                                                    <div style="width:50%;margin-right:.5rem;">
+
+                                                                                                                                                                                    </div>
+                                                                                                                                                                                    <div style="width:27%;padding-left:3rem">
+
+                                                                                                                                                                                        <p style="margin-bottom:.5rem">Ref No: @Html.DisplayFor(modelItem => item.RefNo)</p>
+                                                                                                                                                                                        <p>Date: @Html.DisplayFor(modelItem => item.Date)</p>
+
+                                                                                                                                                                                    </div>
+                                                                                                                                                                                </div>
+                                                                                                                                                                                                <div style="display:flex;flex-flow: row;justify-content:space-between">
+                                                                                                                                                                                                    <div style="width:50%;margin-right:.5rem;">
+                                                                                                                                                                                                        <p style="margin-bottom:.5rem">
+
+                                                                                                                                                                                                            @Html.DisplayFor(modelItem => item.Recipient)
+                                                                                                                                                                                                        </p>
+                                                                                                                                                                                                        <p>  @Html.DisplayFor(modelItem => item.Address) </p>
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                    <div style="width:50%;padding-left:3rem">
+
+
+
+                                                                                                                                                                                                    </div>
+                                                                                                                                                                                                </div>
+                                                                                                                                                                                                                <b>@Html.DisplayFor(modelItem => item.Title)</b>
+                                                                                                                                                                                                                                <br />
+
+
+
+
+                                                                                                                                                                                                                                                <br />
+                                                                                                                                                                                                                                                                <br />
+
+<textarea id="text" style="border: 0 none white;
+        overflow: hidden;
+        padding: 0;
+        outline: none;
+        background-color: transparent;width:100%;font-family:Times New Roman;font-size:20px">  @Html.DisplayFor(modelItem => item.Body)</textarea>
+
+
+
+
+
+
+                                                                                                                                                                                                                                                                                                <br />
+                                                                                                                                                                                                                                                                                                                <br />
+                                                                                                                                                                                                                                                                                                                                <br />
+                                                                                                                                                                                                                                                                                                                                                <br />
+
+
+
+
+                                                                                                                                                                                                                                                                                                                                                                <img src="~/sign/@item.Authorise"
+                                                                                                                                                                                                                                                                                                                                                                     class="rounded-circle"
+                                                                                                                                                                                                                                                                                                                                                                     height="40" width="40"
+                                                                                                                                                                                                                                                                                                                                                                     asp-append-version="true" />
+                                                                                                                                                                                                                                                                                                                                                                                <br />
+                                                                                                                                                                                                                                                                                                                                                                                                @Html.DisplayFor(modelItem => item.Authorisedby)
+                                                                                                                                                                                                                                                                                                                                                                                                                <br />
+
+                                                                                                                                                                                                                                                                                                                                                                                                                                @Html.DisplayFor(modelItem => item.SignFor)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                <a asp-action="ApproveConfirmationLetter" asp-controller="Boxes" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id">Approve</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                               
+                                                                                                                                                                                                                                                                                                                                                                                                                                                }
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

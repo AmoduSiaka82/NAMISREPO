@@ -1,0 +1,36 @@
+﻿@model NAMIS.ViewModels.UsersTabViewModel
+@{
+    ViewData["Title"] = "Posting List";
+}
+
+<div class="card card-primary card-outline">
+
+    <div class="card-body">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="@(Model.ActiveTabP==NAMIS.ViewModels.TabP.PostingList? "active" : string.Empty)"><a asp-route-tabname="PostingList" class="btn btn-default" asp-action="SwitchToTabsP">Posting and Deployment List</a></li>
+            <li role="presentation" class="@(Model.ActiveTabP==NAMIS.ViewModels.TabP.PreparedPosting? "active" : string.Empty)"><a asp-route-tabname="PreparedPosting" class="btn btn-default" asp-action="SwitchToTabsP">Prepared Posting and Deployment </a></li>
+            <li role="presentation" class="@(Model.ActiveTabP==NAMIS.ViewModels.TabP.ApprovedPosting? "active" : string.Empty)"><a asp-route-tabname="ApprovedPosting" class="btn btn-default" asp-action="SwitchToTabsP">Approved Posting and Deployment</a></li>
+            <li role="presentation" class="@(Model.ActiveTabP==NAMIS.ViewModels.TabP.WrittenPostingLetter? "active" : string.Empty)"><a asp-route-tabname="WrittenPostingLetter" class="btn btn-default" asp-action="SwitchToTabsP">Written Letters</a></li>
+
+        </ul>
+        @switch (Model.ActiveTabP)
+        {
+            case NAMIS.ViewModels.TabP.PostingList:
+                @await Component.InvokeAsync("PostingList");
+                break;
+            case NAMIS.ViewModels.TabP.PreparedPosting:
+                @await Component.InvokeAsync("PreparedPosting");
+                break;
+
+            case NAMIS.ViewModels.TabP.ApprovedPosting:
+                @await Component.InvokeAsync("ApprovedPosting");
+                break;
+            case NAMIS.ViewModels.TabP.WrittenPostingLetter:
+                @await Component.InvokeAsync("WrittenPostingLetter");
+                break;
+            default:
+                break;
+        }
+
+    </div>
+</div>

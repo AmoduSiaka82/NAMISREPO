@@ -1,0 +1,127 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@model NAMIS.Models.TrainingAndStudy
+
+@{
+    ViewData["Title"] = "ApproveTraining";
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Executive Director")
+    {
+        Layout = "~/Views/Shared/_EdLayout.cshtml";
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Director")
+    {
+        Layout = "~/Views/Shared/_DirectorLayout.cshtml";
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Unit Head")
+    {
+        Layout = "~/Views/Shared/_UnitHeadLayout.cshtml";
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Staff")
+    {
+
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Zonal Head" || HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Out Station Head")
+    {
+        Layout = "~/Views/Shared/_ZonalHeadLayout.cshtml";
+    } }
+<h6>Approve Training/Study</h6>
+<hr />
+
+<form asp-action="ApproveTraining">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MiddleName" class="control-label"></label>
+                <input asp-for="MiddleName" class="form-control" />
+                <span asp-validation-for="MiddleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SprpNo" class="control-label"></label>
+                <input asp-for="SprpNo" class="form-control" />
+                <span asp-validation-for="SprpNo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="SDate" class="control-label"></label>
+                <input asp-for="SDate" class="form-control" />
+                <span asp-validation-for="SDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EDate" class="control-label"></label>
+                <input asp-for="EDate" class="form-control" />
+                <span asp-validation-for="EDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="NoOfDays" class="control-label"></label>
+                <input asp-for="NoOfDays" class="form-control" />
+                <span asp-validation-for="NoOfDays" class="text-danger"></span>
+            </div>
+
+
+            <input type="hidden" asp-for="Id" />
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            <div class="form-group">
+                <label asp-for="QualificationInView" class="control-label"></label>
+                <input asp-for="QualificationInView" class="form-control" />
+                <span asp-validation-for="QualificationInView" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TrainingDescription" class="control-label"></label>
+                <textarea asp-for="TrainingDescription" class="form-control"></textarea>
+                <span asp-validation-for="TrainingDescription" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="StationName" class="control-label"></label>
+                <input asp-for="StationName" class="form-control" />
+                <span asp-validation-for="StationName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Department" class="control-label"></label>
+                <input asp-for="Department" class="form-control" />
+                <span asp-validation-for="Department" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GradeLevel" class="control-label"></label>
+                <input asp-for="GradeLevel" class="form-control" />
+                <span asp-validation-for="GradeLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Step" class="control-label"></label>
+                <input asp-for="Step" class="form-control" />
+                <span asp-validation-for="Step" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HighestQualification" class="control-label"></label>
+                <input asp-for="HighestQualification" class="form-control" />
+                <span asp-validation-for="HighestQualification" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+<div>
+    <a asp-action="StaffOnTrainingList">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

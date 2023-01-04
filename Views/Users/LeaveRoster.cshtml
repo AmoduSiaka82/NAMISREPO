@@ -1,0 +1,36 @@
+﻿@model NAMIS.ViewModels.UsersTabViewModel
+@{
+    ViewData["Title"] = "Leave Roaster";
+}
+
+    <div class="card card-primary card-outline">
+
+        <div class="card-body">
+            <ul class="nav nav-tabs">
+                <li role="presentation" class="@(Model.ActiveTabL==NAMIS.ViewModels.TabL.LeaveRoaster? "active" : string.Empty)"><a asp-route-tabname="LeaveRoaster" class="btn btn-default" asp-action="SwitchToTabsL">Leave Roaster</a></li>
+                <li role="presentation" class="@(Model.ActiveTabL==NAMIS.ViewModels.TabL.PreparedLeave? "active" : string.Empty)"><a asp-route-tabname="PreparedLeave" class="btn btn-default" asp-action="SwitchToTabsL">Prepare Leave List </a></li>
+                <li role="presentation" class="@(Model.ActiveTabL==NAMIS.ViewModels.TabL.ApprovedLeave? "active" : string.Empty)"><a asp-route-tabname="ApprovedLeave" class="btn btn-default" asp-action="SwitchToTabsL">Approved Leave List</a></li>
+                <li role="presentation" class="@(Model.ActiveTabL==NAMIS.ViewModels.TabL.WrittenLetter? "active" : string.Empty)"><a asp-route-tabname="WrittenLetter" class="btn btn-default" asp-action="SwitchToTabsL">Written Letters</a></li>
+
+            </ul>
+            @switch (Model.ActiveTabL)
+            {
+                case NAMIS.ViewModels.TabL.LeaveRoaster:
+                    @await Component.InvokeAsync("LeaveRoaster");
+                    break;
+                case NAMIS.ViewModels.TabL.PreparedLeave:
+                    @await Component.InvokeAsync("PreparedLeave");
+                    break;
+                    
+                case NAMIS.ViewModels.TabL.ApprovedLeave:
+                    @await Component.InvokeAsync("ApprovedLeave");
+                    break;
+                case NAMIS.ViewModels.TabL.WrittenLetter:
+                    @await Component.InvokeAsync("WrittenLetter");
+                    break;
+                default:
+                    break;
+            }
+
+        </div>
+    </div>

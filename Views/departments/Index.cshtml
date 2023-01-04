@@ -1,0 +1,36 @@
+﻿@model IEnumerable<NAMIS.Models.department>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                <a asp-action="Edit" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.DeptID">Edit</a> |
+                <a asp-action="Details" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.DeptID">Details</a> |
+                <a asp-action="Delete" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.DeptID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

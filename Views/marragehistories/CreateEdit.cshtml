@@ -1,0 +1,56 @@
+﻿@model NAMIS.Models.marragehistory
+
+@{
+    Layout = null;
+}
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <form id="myForm" asp-action="CreateEdit" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPost(this);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MaritalStatus" class="control-label"></label>
+                <select asp-for="MaritalStatus" class="form-control">
+
+                    <option value="">-----Select-----</option>
+                    <option value="Married">Married</option>
+                    <option value="Single">Single</option>
+                    <option value="Divorced">Divorced</option>
+                    <option value="Widower">Widower</option>
+                    <option value="Widow">Widow</option>
+
+
+                </select>
+                <span asp-validation-for="MaritalStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfMarriage" class="control-label"></label>
+                <input asp-for="DateOfMarriage" class="form-control" />
+                <span asp-validation-for="DateOfMarriage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NameOfWife" class="control-label"></label>
+                <input asp-for="NameOfWife" class="form-control" />
+                <span asp-validation-for="NameOfWife" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WifeDateOfBirth" class="control-label"></label>
+                <input asp-for="WifeDateOfBirth" class="form-control" />
+                <span asp-validation-for="WifeDateOfBirth" class="text-danger"></span>
+            </div>
+
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <input type="submit" id="btnSubmit" value="Save" class="btn btn-primary btn-block" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,137 @@
+﻿@model NAMIS.Models.biodata
+
+@{
+    ViewData["Title"] = "ProcessRetirement";
+}
+
+<h6>Process Retirement</h6>
+
+
+<hr />
+
+<form id="myForm" asp-action="ProcessRetirement">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" readonly="readonly" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MiddleName" class="control-label"></label>
+                <input asp-for="MiddleName" readonly="readonly" class="form-control" />
+                <span asp-validation-for="MiddleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" readonly="readonly" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="SprpNo" />
+            <div class="form-group">
+                <label asp-for="Sex" class="control-label"></label>
+                <input asp-for="Sex" readonly="readonly" class="form-control" />
+                <span asp-validation-for="Sex" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SprpNo" class="control-label"></label>
+                <input asp-for="SprpNo" readonly="readonly" class="form-control" />
+                <span asp-validation-for="SprpNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfFirstAppointment" class="control-label"></label>
+                <input asp-for="DateOfFirstAppointment" readonly="readonly" class="form-control" />
+                <span asp-validation-for="DateOfFirstAppointment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfBirth" class="control-label"></label>
+                <input asp-for="DateOfBirth" readonly="readonly" class="form-control" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+           
+
+            <div class="form-group">
+                <label asp-for="CurrentAppointment" class="control-label"></label>
+                <input asp-for="CurrentAppointment" readonly="readonly" class="form-control" />
+                <span asp-validation-for="CurrentAppointment" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DateOfRetirement" class="control-label"></label>
+                <input asp-for="DateOfRetirement" readonly="readonly" class="form-control" />
+                <span asp-validation-for="DateOfRetirement" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="PhoneNo" class="control-label"></label>
+                <input asp-for="PhoneNo" class="form-control" />
+                <span asp-validation-for="PhoneNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NHISNO" class="control-label"></label>
+                <input asp-for="NHISNO" class="form-control" />
+                <span asp-validation-for="NHISNO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NHFNO" class="control-label"></label>
+                <input asp-for="NHFNO" class="form-control" />
+                <span asp-validation-for="NHFNO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IPPISNO" class="control-label"></label>
+                <input asp-for="IPPISNO" class="form-control" />
+                <span asp-validation-for="IPPISNO" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RMode" class="control-label"></label>
+                <select asp-for="RMode" data-val-required="Exit Mode Required" class="form-control">
+
+                    <option value="">---Select---</option>
+                    <option value="Retirement">Retirement</option>
+                    <option value="Resigned">Resigned</option>
+                    <option value="Retrenched">Retrenched</option>
+                    <option value="Sacced">Sacked</option>
+                    
+
+                    <option value="Others">Others</option>
+                </select>
+                <span asp-validation-for="RMode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" id="btnSubmit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<div>
+    <a asp-action="PrepareRetirementList">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery-1.4.1.min.js"></script>
+    <script>
+            $('form').submit(function () {
+
+                $(this).find(':submit').attr('disabled', 'disabled');
+
+            });
+
+    </script>
+    <script>
+            $(function () {
+                $('#btnSubmit').on('click', function () {
+                    $(this).val('Please wait ...')
+                        .attr('disabled', 'disabled');
+                    $('#myForm').submit();
+                });
+
+            });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

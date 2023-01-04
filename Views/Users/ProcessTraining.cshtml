@@ -1,0 +1,145 @@
+﻿@model NAMIS.Models.biodata
+
+@{
+    ViewData["Title"] = "ProcessTraining";
+}
+
+<h6>Process Training</h6>
+
+
+<hr />
+<form id="myForm" asp-action="ProcessTraining">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" readonly="readonly" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MiddleName" class="control-label"></label>
+                <input asp-for="MiddleName" readonly="readonly" class="form-control" />
+                <span asp-validation-for="MiddleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" readonly="readonly" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="SprpNo" />
+            <div class="form-group">
+                <label asp-for="SprpNo" class="control-label"></label>
+                <input asp-for="SprpNo" readonly="readonly" class="form-control" />
+                <span asp-validation-for="SprpNo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Department" class="control-label"></label>
+                <input asp-for="Department" readonly="readonly" class="form-control" />
+                <span asp-validation-for="Department" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StationName" class="control-label"></label>
+                <input asp-for="StationName" readonly="readonly" class="form-control" />
+                <span asp-validation-for="StationName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HighestQualification" class="control-label"></label>
+                <input asp-for="HighestQualification" readonly="readonly" class="form-control" />
+                <span asp-validation-for="HighestQualification" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            
+            
+            <div class="form-group">
+                <label asp-for="GradeLevel" class="control-label"></label>
+                <input asp-for="GradeLevel" readonly="readonly" class="form-control" />
+                <span asp-validation-for="GradeLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Step" class="control-label"></label>
+                <input asp-for="Step" readonly="readonly" class="form-control" />
+                <span asp-validation-for="Step" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QualificationInView" class="control-label"></label>
+                <select id="QualificationInView" name="QualificationInView" data-val-required="Qualification In View Required" class="form-control">
+
+                    <option value="">---Select---</option>
+                    <option value="Phd">Phd</option>
+                    <option value="Msc">Msc</option>
+                    <option value="M Tech">M Tech</option>
+                    <option value="MBA">MBA</option>
+                    <option value="B.sc">B.sc</option>
+                    <option value="BA">BA</option>
+                    <option value="B Tech">B Tech</option>
+                    <option value="HND">HND</option>
+                    <option value="ND">ND</option>
+                    <option value="OND">OND</option>
+                    <option value="NCE">NCE</option>
+                    <option value="Diploma">Diploma</option>
+                    <option value="SSCE">SSCE</option>
+                    <option value="Certification">Certification</option>
+                    <option value="Certificate">Certificate</option>
+                    <option value="FSLC">FSLC</option>
+
+                    <option value="Others">Others</option>
+                </select>
+
+                <span asp-validation-for="QualificationInView" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Training Description</label>
+                <textarea type="" id="TrainingDescription" name="TrainingDescription" class="form-control"></textarea>
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Start Date</label>
+                <input id="date" name="date" type="date" class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Expected Date Of Completion</label>
+                <input id="dates" name="dates" type="date" class="form-control" />
+                <span class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" id="btnSubmit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<div>
+    <a asp-action="StaffOnTrainingList">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery-1.4.1.min.js"></script>
+    <script>
+        $('form').submit(function () {
+
+            $(this).find(':submit').attr('disabled', 'disabled');
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('#btnSubmit').on('click', function () {
+                $(this).val('Please wait ...')
+                    .attr('disabled', 'disabled');
+                $('#myForm').submit();
+            });
+
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/theme/plugins/jquery/jquery.min.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

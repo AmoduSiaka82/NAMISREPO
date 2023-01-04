@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "Prepare Staff Training List";
+}
+
+<div class="card card-primary card-outline">
+
+    <div class="card-body">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="@(Model.ActiveTabT==NAMIS.ViewModels.TabT.StaffOnTrainingList? "active" : string.Empty)"><a asp-route-tabname="StaffOnTrainingList" class="btn btn-default" asp-action="SwitchToTabsT">Prepare Staff Training List</a></li>
+            <li role="presentation" class="@(Model.ActiveTabT==NAMIS.ViewModels.TabT.PreparedStaffOnTraining? "active" : string.Empty)"><a asp-route-tabname="PreparedStaffOnTraining" class="btn btn-default" asp-action="SwitchToTabsT">Prepared Staff Training List </a></li>
+            <li role="presentation" class="@(Model.ActiveTabT==NAMIS.ViewModels.TabT.ApprovedStaffOnTraining? "active" : string.Empty)"><a asp-route-tabname="ApprovedStaffOnTraining" class="btn btn-default" asp-action="SwitchToTabsT">Approved Staff Training List</a></li>
+            <li role="presentation" class="@(Model.ActiveTabT==NAMIS.ViewModels.TabT.ReleaseLetter? "active" : string.Empty)"><a asp-route-tabname="ReleaseLetter" class="btn btn-default" asp-action="SwitchToTabsT">Release Letter</a></li>
+
+        </ul>
+        @switch (Model.ActiveTabT)
+        {
+            case NAMIS.ViewModels.TabT.StaffOnTrainingList:
+                @await Component.InvokeAsync("StaffOnTrainingList");
+                break;
+            case NAMIS.ViewModels.TabT.PreparedStaffOnTraining:
+                @await Component.InvokeAsync("PreparedStaffOnTraining");
+                break;
+
+            case NAMIS.ViewModels.TabT.ApprovedStaffOnTraining:
+                @await Component.InvokeAsync("ApprovedStaffOnTraining");
+                break;
+            case NAMIS.ViewModels.TabT.ReleaseLetter:
+                @await Component.InvokeAsync("ReleaseLetter");
+                break;
+            default:
+                break;
+        }
+
+    </div>
+</div>
+
+

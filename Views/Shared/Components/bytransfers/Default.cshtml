@@ -1,0 +1,85 @@
+﻿@model IEnumerable<NAMIS.Models.bytransfers>
+
+@{
+    ViewData["Title"] = "Default";
+}
+
+<h4>By Tansfer</h4>
+<link href="~/css/viewComp.css" rel="stylesheet" />
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateOfTransfer)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PensionOrContarct)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AggregateServiceInNigeriaYrs)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AggregateServiceInNigeriaMos)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AggregateServiceInNigeriaDays)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AggregateSalaryInNigeria)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.SprpNo)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOfTransfer)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PensionOrContarct)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AggregateServiceInNigeriaYrs)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AggregateServiceInNigeriaMos)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AggregateServiceInNigeriaDays)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AggregateSalaryInNigeria)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+                            <td>
+                              
+                                <a asp-action="Index" class="btn btn-danger btn-rounded btn-sm my-0" asp-area="" asp-controller="bytransfers" asp-route-id="@item.Id">Details</a> 
+                               
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tr>
+                    <td colspan="7"></td>
+                    <td>
+                        <a asp-action="Index" asp-area="" asp-controller="bytransfers" class="btn btn-info">Add New</a>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+    </div>

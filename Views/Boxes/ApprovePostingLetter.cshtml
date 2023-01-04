@@ -1,0 +1,95 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@model NAMIS.Models.StaffPosting
+
+@{
+    ViewData["Title"] = "ApprovePostingLetter";
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Executive Director")
+    {
+        Layout = "~/Views/Shared/_EdLayout.cshtml";
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Director")
+    {
+        Layout = "~/Views/Shared/_DirectorLayout.cshtml";
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Unit Head")
+    {
+        Layout = "~/Views/Shared/_UnitHeadLayout.cshtml";
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Staff")
+    {
+
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Zonal Head" || HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Out Station Head")
+    {
+        Layout = "~/Views/Shared/_ZonalHeadLayout.cshtml";
+    } }
+
+<h6>Approve Posting Letter</h6>
+
+
+<hr />
+<div class="row">
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <form asp-action="ApprovePostingLetter">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MiddleName" class="control-label"></label>
+                <input asp-for="MiddleName" class="form-control" />
+                <span asp-validation-for="MiddleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="SprpNo" class="control-label"></label>
+                <input asp-for="SprpNo" class="form-control" />
+                <span asp-validation-for="SprpNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Remark" class="control-label"></label>
+                <textarea asp-for="Remark" class="form-control"></textarea>
+                <span asp-validation-for="Remark" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Body" class="control-label"></label>
+                <textarea style="width:100%;height:25rem" asp-for="Body" class="form-control"></textarea>
+                <span asp-validation-for="Body" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SignFor" class="control-label"></label>
+                <select asp-for="SignFor" class="form-control">
+
+                    <option value="">---Select---</option>
+                    <option value="Executive Director">Executive Director</option>
+                    <option value="Director Administration">Director Administration</option>
+
+                    <option value="Assg. Director Administration">Assg. Director Administration</option>
+                    <option value="HOD Administration">HOD Administration</option>
+                    <option value="Act. HOD">Act. HOD</option>
+                </select>
+                <span asp-validation-for="SignFor" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Approve" class="btn btn-primary" />
+                <a asp-action="ViewPostingLetter" class="btn btn-sm btn-primary rounded-0 text-uppercase">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

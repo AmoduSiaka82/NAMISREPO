@@ -1,0 +1,144 @@
+﻿@model NAMIS.Models.DailyMotorVehicleWorkBook
+
+@{
+    Layout = null;
+}
+
+<form id="myForm" asp-action="CreateEdit" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPost(this);">
+    <div class="row">
+        <div class="col-md-12">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="VehicleNo" class="control-label"></label>
+                        <select asp-for="VehicleNo"  class="form-control"
+                                asp-items="@(new SelectList(@ViewBag.ListofVehicle, "VehicleNo", "VehicleNo"))"></select>
+                        <span asp-validation-for="VehicleNo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="TankCapacity" class="control-label"></label>
+                        <select asp-for="TankCapacity" class="form-control"
+                                asp-items="@(new SelectList(@ViewBag.ListofCapacity, "TankCapacity", "TankCapacity"))"></select>
+                        <span asp-validation-for="TankCapacity" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+
+            <input type="hidden" asp-for="Id" />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Make" class="control-label"></label>
+                        <select asp-for="Make" class="form-control"
+                                asp-items="@(new SelectList(@ViewBag.ListofMake, "Make", "Make"))"></select>
+                        <span asp-validation-for="Make" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="AuthorityforJourney" class="control-label"></label>
+                        <input asp-for="AuthorityforJourney" class="form-control" />
+                        <span asp-validation-for="AuthorityforJourney" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+          
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="TimeIn" class="control-label"></label>
+                        <input asp-for="TimeIn" class="form-control" />
+                        <span asp-validation-for="TimeIn" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="TimeOut" class="control-label"></label>
+                        <input asp-for="TimeOut" class="form-control" />
+                        <span asp-validation-for="TimeOut" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="SpeedometerReadsIn" class="control-label"></label>
+                        <input asp-for="SpeedometerReadsIn" class="form-control" />
+                        <span asp-validation-for="SpeedometerReadsIn" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="SpeedometerOut" class="control-label"></label>
+                        <input asp-for="SpeedometerOut" class="form-control" />
+                        <span asp-validation-for="SpeedometerOut" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Frm" class="control-label"></label>
+                        <input asp-for="Frm" class="form-control" />
+                        <span asp-validation-for="Frm" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="Tos" class="control-label"></label>
+                        <input asp-for="Tos" class="form-control" />
+                        <span asp-validation-for="Tos" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="TotalMilesKmRun" class="control-label"></label>
+                        <input asp-for="TotalMilesKmRun" class="form-control" />
+                        <span asp-validation-for="TotalMilesKmRun" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="PetrolOilReceived" class="control-label"></label>
+                        <input asp-for="PetrolOilReceived" class="form-control" />
+                        <span asp-validation-for="PetrolOilReceived" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="DriverName" class="control-label"></label>
+                        <input asp-for="DriverName" class="form-control" />
+                        <span asp-validation-for="DriverName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="UserSign" class="control-label"></label>
+                        <input asp-for="UserSign" class="form-control" />
+                        <span asp-validation-for="UserSign" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <input type="submit" id="btnSubmit" value="Submit" class="btn btn-primary btn-block" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+

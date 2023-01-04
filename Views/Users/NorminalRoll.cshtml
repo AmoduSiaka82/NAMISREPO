@@ -1,0 +1,112 @@
+﻿@model IEnumerable<NAMIS.Models.biodata>
+
+@{
+    ViewData["Title"] = "NorminalRoll";
+}
+
+<script>
+
+    function toolbarClick(args) {
+        if (args.item.id === 'Click') {
+            alert("Custom toolbar click...");
+        }
+    }
+    function toolbarClick(args) {
+        var gridObj = document.getElementById("Grid").ej2_instances[0];
+        if (args.item.id === 'Grid_pdfexport') {
+            gridObj.pdfExport();
+        }
+    }
+    function toolbarClick(args) {
+        var gridObj = document.getElementById("Grid").ej2_instances[0];
+        if (args.item.id === 'Grid_excelexport') {
+            gridObj.excelExport();
+        }
+    }
+    document.getElementById('collapse').addEventListener('click', () => {
+        var grid = document.getElementById('Grid').ej2_instances[0];
+        if (grid.getSelectedRowIndexes().length) {
+            var currentTr = grid.getRows()[grid.getSelectedRowIndexes()[0]];
+            while (currentTr.classList && currentTr.classList.length) {
+                currentTr = currentTr.previousSibling;
+            }
+            let collapseElement = currentTr.querySelector('.e-recordplusexpand');
+            grid.groupModule.expandCollapseRows(collapseElement); //Pass the collapse row element.
+        }
+    });
+</script>
+
+<style>
+    .e-expand::before {
+        content: '\e5b8';
+    }
+
+    .e-grid .e-rowcell.customcss {
+        background-color: #ecedee;
+        color: black;
+        font-family: 'Time New Roman';
+        font-size: 16px;
+    }
+
+    .e-grid .e-headercell.customcss {
+        background-color: #2382c3;
+        color: white;
+        font-family: 'Time New Roman';
+        font-size: 16px;
+    }
+</style>
+
+<h6>Norminal Roll</h6>
+
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+
+                <ejs-grid id="Grid" dataSource="@ViewBag.data" allowExcelExport="true" allowMultiSorting="true" allowGrouping="true" allowSorting="true" toolbarClick="toolbarClick" toolbar="@(new List<string>() { "Search","Print","ExcelExport","PdfExport"})">
+                    <e-grid-searchSettings ignoreCase="true"></e-grid-searchSettings>
+                    <e-grid-groupsettings allowReordering="true"></e-grid-groupsettings>
+                    @*<e-grid-aggregates>
+                            <e-grid-aggregate>
+                                <e-aggregate-columns>
+                                    <e-aggregate-column field="Qty" type="Sum" footerTemplate="Sum: ${Sum}" format="C2"></e-aggregate-column>
+                                    <e-aggregate-column field="Amount" type="Sum" footerTemplate="Sum: ${Sum}" format="C2"></e-aggregate-column>
+
+                                </e-aggregate-columns>
+                            </e-grid-aggregate>
+                        </e-grid-aggregates>*@
+
+                <e-grid-columns>
+                    <e-grid-column field="Surname" customAttributes=@(new { @class="customcss" } ) headerText="Surname" width="100"></e-grid-column>
+                    <e-grid-column field="FisrtName" customAttributes=@(new { @class="customcss" } ) headerText="First Name" textAlign="Left" width="150"></e-grid-column>
+
+                    <e-grid-column field="MiddleName" customAttributes=@(new { @class="customcss" } ) headerText="Middle Name" width="100" textAlign="Left"></e-grid-column>
+                    
+                    <e-grid-column field="Carder" customAttributes=@(new { @class="customcss" } ) headerText="Carder" width="150"></e-grid-column>
+                    <e-grid-column field="CurrentAppointment" customAttributes=@(new { @class="customcss" } ) headerText="Current Appointment" width="150"></e-grid-column>
+                    <e-grid-column field="Sex" customAttributes=@(new { @class="customcss" } ) headerText="Gender" width="150"></e-grid-column>
+                    <e-grid-column field="HighestQualification" customAttributes=@(new { @class="customcss" } ) headerText="Qualification" width="120" textAlign="Left"></e-grid-column>
+                    <e-grid-column field="Department" headerText="Department" textAlign="Left" customAttributes=@(new { @class="customcss" } ) width="120"></e-grid-column>
+
+                    <e-grid-column field="DateOfBirth" headerText="DOB" customAttributes=@(new { @class="customcss" } ) format="dd/MM/yyyy" width="120" textAlign="Left"></e-grid-column>
+                    <e-grid-column field="StateOfOrigin" customAttributes=@(new { @class="customcss" } ) headerText="State of Origin" width="120"></e-grid-column>
+                    <e-grid-column field="LGAOrigin" headerText="LGA" customAttributes=@(new { @class="customcss" } ) width="120"></e-grid-column>
+                    <e-grid-column field="DateOfFirstAppointment" format="dd/MM/yyyy" headerText="DFA" customAttributes=@(new { @class="customcss" } ) width="120" textAlign="Left" format="dMy"></e-grid-column>
+
+                    <e-grid-column field="ConfirmationDate" format="dd/MM/yyyy" headerText="DOC" width="120" customAttributes=@(new { @class="customcss" } ) textAlign="Left"></e-grid-column>
+                    <e-grid-column field="DateOfCurrentAppointment" format="dd/MM/yyyy" customAttributes=@(new { @class="customcss" } ) headerText="DOCA" width="120"></e-grid-column>
+                    <e-grid-column field="IPPISNO" headerText="IPPIS No" customAttributes=@(new { @class="customcss" } ) width="120"></e-grid-column>
+                    <e-grid-column field="SprpNo" headerText="File No" width="120" customAttributes=@(new { @class="customcss" } ) textAlign="Left"></e-grid-column>
+
+                    <e-grid-column field="GradeLevel" headerText="Grade" customAttributes=@(new { @class="customcss" } ) width="120" textAlign="Left"></e-grid-column>
+                    <e-grid-column field="Step" customAttributes=@(new { @class="customcss" } ) headerText="Step" width="120"></e-grid-column>
+                    <e-grid-column field="StationName" headerText="Location" customAttributes=@(new { @class="customcss" } ) width="120"></e-grid-column>
+                    <e-grid-column field="DateOfRetirement" format="dd/MM/yyyy" headerText="DOR" width="120" textAlign="Left"></e-grid-column>
+
+                </e-grid-columns>
+                </ejs-grid>
+            </table>
+        </div>
+    </div>
+</div>

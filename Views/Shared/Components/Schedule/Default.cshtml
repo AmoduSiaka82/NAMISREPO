@@ -1,0 +1,20 @@
+﻿@model IEnumerable<NAMIS.Models.scheduled>
+
+@{
+
+    Layout = null;
+}
+
+@foreach (var item in Model)
+{
+    <li class="nav-item">
+        <a asp-action="@item.Actions" asp-controller="@item.Controllers" asp-route-id="@item.ID" class="nav-link">
+
+            @Html.DisplayFor(modelItem => item.Description)
+
+
+        </a>
+    </li>
+}
+
+

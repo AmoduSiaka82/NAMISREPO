@@ -1,0 +1,193 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@model IEnumerable<NAMIS.Models.Memo>
+
+@{
+    ViewData["Title"] = "Memo Report";
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Executive Director")
+    {
+        Layout = "~/Views/Shared/_EdLayout.cshtml";
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Director")
+    {
+        Layout = "~/Views/Shared/_DirectorLayout.cshtml";
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Unit Head")
+    {
+        Layout = "~/Views/Shared/_UnitHeadLayout.cshtml";
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Staff")
+    {
+
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Zonal Head" || HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Out Station Head")
+    {
+        Layout = "~/Views/Shared/_ZonalHeadLayout.cshtml";
+    } }
+
+<h6>Memo Report</h6>
+
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    #myInput {
+        background-image: url('~/images/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 90%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+</style>
+<script>
+    function myFunction() {
+
+        // Declare variables
+        var input = document.getElementById("myInputs");
+        var filter = input.value.toUpperCase();
+        var table = document.getElementById("myTable");
+        var trs = table.tBodies[0].getElementsByTagName("tr");
+
+        // Loop through first tbody's rows
+        for (var i = 0; i < trs.length; i++) {
+
+            // define the row's cells
+            var tds = trs[i].getElementsByTagName("td");
+
+            // hide the row
+            trs[i].style.display = "none";
+
+            // loop through row cells
+            for (var i2 = 0; i2 < tds.length; i2++) {
+
+                // if there's a match
+                if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
+
+                    // show the row
+                    trs[i].style.display = "";
+
+                    // skip to the next row
+                    continue;
+
+                }
+            }
+        }
+
+    }
+</script>
+<form class="form-inline ml-3">
+    <div class="input-group input-group-sm">
+        <input id="myInputs" onkeyup="myFunction()" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+            <button class="btn btn-navbar" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+</form>
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Body)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.ReportTitle)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Address)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Recipient)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </th>
+                        @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Executive Director")
+                        {
+
+                    <th>
+                        <form>
+                            <input type="submit" class="btn btn-info" name="save" value="Approve All"
+                                   formaction="/Boxes/ApproveAllMemo" formmethod="post" />
+                            <input type="submit" class="btn btn-info" name="save" value="Disapprove All"
+                                   formaction="/Boxes/DisapproveAllMemo" formmethod="post" />
+                        </form>
+                    </th> }
+                                else
+                                {
+                    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Staff" && HttpContextAccessor.HttpContext.Session.GetString("section") == "Section Member")
+                    {
+                    }
+                    else
+                    {
+                    <th>
+                        <form>
+                            <input type="submit" class="btn btn-info" name="save" value="Submit"
+                                   formaction="/Boxes/SubmitMemo" formmethod="post" />
+                        </form>
+                    </th>}}
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Body)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ReportTitle)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Recipient)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Executive Director")
+                        {
+                    <td>
+                        <a asp-action="ApproveMemo" asp-controller="Boxes" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id">Approve</a>|
+                        <a asp-action="DisapproveMemo" asp-controller="Boxes" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id">Disapprove</a>
+
+
+                    </td>
+ }
+                else
+                {
+                    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Staff" && HttpContextAccessor.HttpContext.Session.GetString("section") == "Section Member")
+                    {
+                    <td>
+                       
+
+
+                    </td> }
+                                        else
+                                        {
+                    <td>
+                        <a asp-action="RemoveMemo" asp-controller="Boxes" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id">Remove</a>
+                        <a asp-action="ApproveMe" asp-controller="Boxes" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id">Approve</a>
+                    </td>
+}}
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

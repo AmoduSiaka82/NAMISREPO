@@ -1,0 +1,64 @@
+﻿@model NAMIS.Models.recordofsickleaves
+
+@{
+    Layout = null;
+}
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <form id="myForm" asp-action="CreateEdit" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPost(this);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TypeOfLeave" class="control-label"></label>
+                <select asp-for="TypeOfLeave" class="form-control">
+                    <option value="">---Select---</option>
+                    <option value="Pro Lata Leave">Pro Lata Leave</option>
+                    <option value="Annual Leave">Annual Leave</option>
+                    <option value="Casual Leave">Casual Leave</option>
+                    <option value="Sabbatical Leave">Sabbatical Leave</option>
+                    <option value="Maternity Leave">Maternity Leave</option>
+                    <option value="Study Leave">Study Leave</option>
+                    <option value="Leave of Absence">Leave of Absence</option>
+                    <option value="Sick Leave">Sick Leave</option>
+                    <option value="Terminal Leave">Terminal Leave</option>
+                    <option value="Others">Others</option>
+                </select>
+                <span asp-validation-for="TypeOfLeave" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FrmDate" class="control-label"></label>
+                <input asp-for="FrmDate" class="form-control" />
+                <span asp-validation-for="FrmDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ToDate" class="control-label"></label>
+                <input asp-for="ToDate" class="form-control" />
+                <span asp-validation-for="ToDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NoOfDays" class="control-label"></label>
+                <input asp-for="NoOfDays" class="form-control" />
+                <span asp-validation-for="NoOfDays" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="FilePageNo" class="control-label"></label>
+                <input asp-for="FilePageNo" class="form-control" />
+                <span asp-validation-for="FilePageNo" class="text-danger"></span>
+            </div>
+
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <input type="submit" id="btnSubmit" value="Save" class="btn btn-primary btn-block" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

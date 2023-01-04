@@ -1,0 +1,71 @@
+﻿@model NAMIS.Models.bytransfers
+
+@{
+    Layout = null;
+}
+
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <form id="myForm" asp-action="CreateEdit"  asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPost(this);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DateOfTransfer" class="control-label"></label>
+                <input asp-for="DateOfTransfer" class="form-control" />
+                <span asp-validation-for="DateOfTransfer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PensionOrContarct" class="control-label"></label>
+                <input asp-for="PensionOrContarct" class="form-control" />
+                <span asp-validation-for="PensionOrContarct" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="AggregateServiceInNigeriaYrs" class="control-label"></label>
+                        <input asp-for="AggregateServiceInNigeriaYrs" class="form-control" />
+                        <span asp-validation-for="AggregateServiceInNigeriaYrs" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="AggregateServiceInNigeriaMos" class="control-label"></label>
+                        <input asp-for="AggregateServiceInNigeriaMos" class="form-control" />
+                        <span asp-validation-for="AggregateServiceInNigeriaMos" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label asp-for="AggregateServiceInNigeriaDays" class="control-label"></label>
+                        <input asp-for="AggregateServiceInNigeriaDays" class="form-control" />
+                        <span asp-validation-for="AggregateServiceInNigeriaDays" class="text-danger"></span>
+                    </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AggregateSalaryInNigeria" class="control-label"></label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                ₦
+                            </div>
+                        </div>
+                        <input asp-for="AggregateSalaryInNigeria" class="form-control" />
+                    </div>
+                    
+                    <span asp-validation-for="AggregateSalaryInNigeria" class="text-danger"></span>
+                </div>
+
+
+                <input type="hidden" asp-for="Id" />
+                <div class="form-group">
+                    <div class="col-md-6 offset-md-3">
+                        <input type="submit" id="btnSubmit" value="Save" class="btn btn-primary btn-block" />
+                    </div>
+                </div>
+</form>
+    </div>
+</div>
+

@@ -1,0 +1,210 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@model IEnumerable<NAMIS.Models.DailyMotorVehicleWorkBook>
+
+@{
+    ViewData["Title"] = "DailyMotorVehicleWorkBookList";
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Executive Director")
+    {
+        Layout = "~/Views/Shared/_EdLayout.cshtml";
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Director")
+    {
+        Layout = "~/Views/Shared/_DirectorLayout.cshtml";
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Unit Head")
+    {
+        Layout = "~/Views/Shared/_UnitHeadLayout.cshtml";
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Staff")
+    {
+
+    }
+    @if (HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Zonal Head" || HttpContextAccessor.HttpContext.Session.GetString("RoleID") == "Out Station Head")
+    {
+        Layout = "~/Views/Shared/_ZonalHeadLayout.cshtml";
+    } }
+
+<h6>Daily Motor Vehicle Work Book List</h6>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    #myInput {
+        background-image: url('~/images/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 90%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+</style>
+<script>
+    function myFunction() {
+
+        // Declare variables
+        var input = document.getElementById("myInputs");
+        var filter = input.value.toUpperCase();
+        var table = document.getElementById("myTable");
+        var trs = table.tBodies[0].getElementsByTagName("tr");
+
+        // Loop through first tbody's rows
+        for (var i = 0; i < trs.length; i++) {
+
+            // define the row's cells
+            var tds = trs[i].getElementsByTagName("td");
+
+            // hide the row
+            trs[i].style.display = "none";
+
+            // loop through row cells
+            for (var i2 = 0; i2 < tds.length; i2++) {
+
+                // if there's a match
+                if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
+
+                    // show the row
+                    trs[i].style.display = "";
+
+                    // skip to the next row
+                    continue;
+
+                }
+            }
+        }
+
+    }
+</script>
+<form class="form-inline ml-3">
+    <div class="input-group input-group-sm">
+        <input id="myInputs" onkeyup="myFunction()" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+            <button class="btn btn-navbar" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+</form>
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.VehicleNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TankCapacity)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Make)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Date)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Dates)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TimeIn)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TimeOut)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SpeedometerOut)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Frm)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Tos)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SpeedometerReadsIn)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TotalMilesKmRun)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.PetrolOilReceived)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AuthorityforJourney)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserSign)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DriverName)
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.VehicleNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TankCapacity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Make)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Dates)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TimeIn)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TimeOut)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SpeedometerOut)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Frm)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Tos)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SpeedometerReadsIn)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TotalMilesKmRun)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PetrolOilReceived)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AuthorityforJourney)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserSign)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DriverName)
+                            </td>
+
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

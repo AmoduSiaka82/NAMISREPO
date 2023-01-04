@@ -1,0 +1,63 @@
+﻿@model NAMIS.Models.reportwriting
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+
+<h6>Report writing</h6>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Body" class="control-label"></label>
+                <textarea asp-for="Body" class="form-control"></textarea>
+                <span asp-validation-for="Body" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <textarea asp-for="Address" class="form-control"></textarea>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReportTitle" class="control-label"></label>
+                <input asp-for="ReportTitle" class="form-control" />
+                <span asp-validation-for="ReportTitle" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ReportFile" class="control-label"></label>
+                <div class="custom-file">
+                    <input asp-for="ReportFile" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+                <span asp-validation-for="ReportFile" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-sm btn-primary rounded-0 text-uppercase"><i class="fas fa-fast-backward"></i>Back to List</a>
+</div>
+
+@section Scripts {
+   
+        <script type="text/javascript">
+
+        // Add the following code if you want the name of the file appear on select
+        $(".custom-file-input").on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+        </script>
+    
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

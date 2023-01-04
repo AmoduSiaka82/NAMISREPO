@@ -1,0 +1,86 @@
+﻿@model IEnumerable<NAMIS.Models.particularofchildren>
+
+@{
+    ViewData["Title"] = "Default";
+}
+
+<h4>Particular of Children</h4>
+
+
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Surname)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MiddleName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FirstName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Sex)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateOfBirth)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.SprpNo)
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Surname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MiddleName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sex)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DateOfBirth)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+
+                            <td>
+
+                                <div>
+                                   
+                                    <a asp-action="Index" asp-controller="particularofchildrens" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.Id">Details</a>
+                                   
+                                </div>
+                                
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tr>
+                    <td colspan="6"></td>
+                    <td>
+                        <a asp-action="Index" asp-area="" asp-controller="particularofchildrens" class="btn btn-info">Add New</a>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
+    </div>
+    </div>

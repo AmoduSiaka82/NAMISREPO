@@ -1,0 +1,74 @@
+﻿@model NAMIS.Models.biodataViewModel
+
+<h4>biodataViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+        <form id="myForm" asp-action="Allow">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MiddleName" class="control-label"></label>
+                <input asp-for="MiddleName" class="form-control" />
+                <span asp-validation-for="MiddleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="SprpNo" />
+            <div class="form-group">
+                <label asp-for="EdNote" class="control-label"></label>
+                <textarea asp-for="EdNote" class="form-control"></textarea>
+                <span asp-validation-for="EdNote" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" id="btnSubmit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script>
+
+$(document).ready(function () {
+
+$("#btnSubmit").click(function () {
+
+
+
+
+    var myformdata = $("#myForm").serialize();
+
+    $.ajax({
+
+        type: "POST",
+        url: "/ShowDeatail/Index",
+        data: myformdata,
+        success: function () {
+
+            $("#MyPopup").modal("hide");
+            window.location.href = "/ShowDeatail/Index";
+
+
+        }
+
+    })
+})
+
+})
+
+
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

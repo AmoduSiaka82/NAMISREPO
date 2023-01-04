@@ -1,0 +1,120 @@
+﻿@model NAMIS.Models.monthlyreturn
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+
+<h6>monthlyreturn</h6>
+<hr />
+
+<form asp-action="Edit">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" readonly="readonly" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MiddleName" class="control-label"></label>
+                <input asp-for="MiddleName" readonly="readonly" class="form-control" />
+                <span asp-validation-for="MiddleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" readonly="readonly" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SprpNo" class="control-label"></label>
+                <input asp-for="SprpNo" readonly="readonly" class="form-control" />
+                <span asp-validation-for="SprpNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CurrentAppointment" class="control-label"></label>
+                <input asp-for="CurrentAppointment" readonly="readonly" class="form-control" />
+                <span asp-validation-for="CurrentAppointment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfCurrentAppointment" class="control-label"></label>
+                <input asp-for="DateOfCurrentAppointment" readonly="readonly" class="form-control" />
+                <span asp-validation-for="DateOfCurrentAppointment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Department" class="control-label"></label>
+                <input asp-for="Department" readonly="readonly" class="form-control" />
+                <span asp-validation-for="Department" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+
+            <div class="form-group">
+                <label asp-for="DateDue" class="control-label"></label>
+                <input asp-for="DateDue" readonly="readonly" class="form-control" />
+                <span asp-validation-for="DateDue" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="GradeLevel" class="control-label"></label>
+                <input asp-for="GradeLevel" readonly="readonly" class="form-control" />
+                <span asp-validation-for="GradeLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StationName" class="control-label"></label>
+                <input asp-for="StationName" readonly="readonly" class="form-control" />
+                <span asp-validation-for="StationName" class="text-danger"></span>
+            </div>
+
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group">
+                <label asp-for="HighestQualification" class="control-label"></label>
+                <select asp-for="HighestQualification" data-val-required="Sex Required" class="form-control">
+
+                    <option value="">-----Select-----</option>
+                    <option value="Phd">Phd</option>
+                    <option value="Msc">Msc</option>
+                    <option value="MBA">MBA</option>
+                    <option value="B.sc">B.sc</option>
+                    <option value="BA">BA</option>
+                    <option value="B Tech">B Tech</option>
+                    <option value="HND">HND</option>
+                    <option value="ND">ND</option>
+                    <option value="OND">OND</option>
+                    <option value="NCE">NCE</option>
+                    <option value="SSCE">SSCE</option>
+                    <option value="School Certificate">School Certificate</option>
+
+                    <option value="Others">Others</option>
+                </select>
+                <span asp-validation-for="HighestQualification" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhoneNo" class="control-label"></label>
+                <input asp-for="PhoneNo" class="form-control" />
+                <span asp-validation-for="PhoneNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailID" class="control-label"></label>
+                <input asp-for="EmailID"   class="form-control" />
+                <span asp-validation-for="EmailID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+  
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

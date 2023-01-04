@@ -1,0 +1,50 @@
+﻿
+@using NAMIS.Models
+@using Microsoft.AspNetCore.Components
+@using Microsoft.AspNetCore.Http
+<h3>Station</h3>
+<h3>
+    Hello, @AStation.StationName
+    <br />
+    <input type="button" @onclick="ChangeName" value="Change Name" />
+    <br />
+    <input @bind="currentValue" /> Current value: @currentValue
+    <input @bind="currentId" /> Current value: @currentId
+</h3>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Fist Name
+            </th>
+            <th>
+                Last Name
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @AStation.StationName
+            </td>
+
+            <td>
+                @AStation.StationID
+            </td>
+        </tr>
+    </tbody>
+</table>
+@code {
+    [Parameter]
+    public StationViewModel AStation { get; set; }
+    private string currentValue;
+    private int currentId;
+
+    private void ChangeName()
+    {
+        AStation.StationName = currentValue;
+        AStation.StationID = currentId;
+    }
+}

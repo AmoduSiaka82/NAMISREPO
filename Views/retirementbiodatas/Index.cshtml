@@ -1,0 +1,329 @@
+﻿@model IEnumerable<NAMIS.Models.retirementbiodata>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MiddleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sex)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Decoration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Natinality)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfFirstAppointment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfFirstArrival)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LGAOrigin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlaceOfBirth)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CheckBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proof)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dates)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HomeAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GeographicalLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SubstansiveAppointment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfAppointment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TermsOfEngagement)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrentAppointment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StateOfOrigin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfCurrentAppointment)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carder)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EdNote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HodNote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UnitNote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HighestQualification)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GradeLevel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Step)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TrainingStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QualificationInView)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProYr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RYr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AppointmentStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ConfirmationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ConfirmationYr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfRetirement)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IPPISNO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateOfPromotion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NHISNO)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NHFNO)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MiddleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sex)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Decoration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Natinality)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfFirstAppointment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfFirstArrival)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LGAOrigin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlaceOfBirth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proof)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dates)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GeographicalLocation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubstansiveAppointment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfAppointment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TermsOfEngagement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentAppointment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StateOfOrigin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfCurrentAppointment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carder)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EdNote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HodNote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitNote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HighestQualification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GradeLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Step)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TrainingStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QualificationInView)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProYr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RYr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AppointmentStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConfirmationDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConfirmationYr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfRetirement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IPPISNO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateOfPromotion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NHISNO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NHFNO)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SprpNo">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SprpNo">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SprpNo">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

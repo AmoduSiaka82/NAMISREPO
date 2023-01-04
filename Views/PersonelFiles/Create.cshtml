@@ -1,0 +1,123 @@
+﻿@model NAMIS.Models.PersonelFile
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>PersonelFile</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MiddleName" class="control-label"></label>
+                <input asp-for="MiddleName" class="form-control" />
+                <span asp-validation-for="MiddleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FistName" class="control-label"></label>
+                <input asp-for="FistName" class="form-control" />
+                <span asp-validation-for="FistName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SprpNo" class="control-label"></label>
+                <input asp-for="SprpNo" class="form-control" />
+                <span asp-validation-for="SprpNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dates" class="control-label"></label>
+                <input asp-for="Dates" class="form-control" />
+                <span asp-validation-for="Dates" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Time" class="control-label"></label>
+                <input asp-for="Time" class="form-control" />
+                <span asp-validation-for="Time" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpDate" class="control-label"></label>
+                <input asp-for="ExpDate" class="form-control" />
+                <span asp-validation-for="ExpDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpDates" class="control-label"></label>
+                <input asp-for="ExpDates" class="form-control" />
+                <span asp-validation-for="ExpDates" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserID" class="control-label"></label>
+                <input asp-for="UserID" class="form-control" />
+                <span asp-validation-for="UserID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DestinationName" class="control-label"></label>
+                <input asp-for="DestinationName" class="form-control" />
+                <span asp-validation-for="DestinationName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReceiverID" class="control-label"></label>
+                <input asp-for="ReceiverID" class="form-control" />
+                <span asp-validation-for="ReceiverID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReceiverID1" class="control-label"></label>
+                <input asp-for="ReceiverID1" class="form-control" />
+                <span asp-validation-for="ReceiverID1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReceiverID2" class="control-label"></label>
+                <input asp-for="ReceiverID2" class="form-control" />
+                <span asp-validation-for="ReceiverID2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReceiverID3" class="control-label"></label>
+                <input asp-for="ReceiverID3" class="form-control" />
+                <span asp-validation-for="ReceiverID3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReceiverID4" class="control-label"></label>
+                <input asp-for="ReceiverID4" class="form-control" />
+                <span asp-validation-for="ReceiverID4" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConId" class="control-label"></label>
+                <input asp-for="ConId" class="form-control" />
+                <span asp-validation-for="ConId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Remark" class="control-label"></label>
+                <input asp-for="Remark" class="form-control" />
+                <span asp-validation-for="Remark" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

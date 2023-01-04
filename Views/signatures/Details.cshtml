@@ -1,0 +1,27 @@
+﻿@model NAMIS.Models.signatures
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h6>signatures</h6>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SignFile)
+        </dt>
+        <dd class = "col-sm-10">
+            <img src="~/images/@Model.SignFile"
+                 class="rounded-circle"
+                 height="40" width="40"
+                 asp-append-version="true" />
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

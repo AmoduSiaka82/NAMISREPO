@@ -1,0 +1,211 @@
+﻿@model IEnumerable<NAMIS.Models.CareerProgression>
+
+@{
+    ViewData["Title"] = "ApprovedPromotion";
+}
+
+<h6>Approved Promotion</h6>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    #myInput {
+        background-image: url('~/images/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 90%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+</style>
+<script>
+    function myFunction() {
+
+        // Declare variables
+        var input = document.getElementById("myInputs");
+        var filter = input.value.toUpperCase();
+        var table = document.getElementById("myTable");
+        var trs = table.tBodies[0].getElementsByTagName("tr");
+
+        // Loop through first tbody's rows
+        for (var i = 0; i < trs.length; i++) {
+
+            // define the row's cells
+            var tds = trs[i].getElementsByTagName("td");
+
+            // hide the row
+            trs[i].style.display = "none";
+
+            // loop through row cells
+            for (var i2 = 0; i2 < tds.length; i2++) {
+
+                // if there's a match
+                if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
+
+                    // show the row
+                    trs[i].style.display = "";
+
+                    // skip to the next row
+                    continue;
+
+                }
+            }
+        }
+
+    }
+</script>
+@*<form class="form-inline ml-3">
+    <div class="input-group input-group-sm">
+        <input id="myInputs" onkeyup="myFunction()" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+            <button class="btn btn-navbar" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+</form>*@
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+
+
+
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Surname)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MiddleName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FirstName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SprpNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StationName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateOfFirstAppointment)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CurrentAppointment)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Department)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateofCurrentAppointment)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.GradeLevel)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Step)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProposeRank)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProposeGrade)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ProposeStep)
+                        </th>
+
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+
+
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Surname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MiddleName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SprpNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StationName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateOfFirstAppointment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CurrentAppointment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateofCurrentAppointment)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Department)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GradeLevel)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Step)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProposeRank)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProposeGrade)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProposeStep)
+                        </td>
+
+                        @if (item.Status == "Approved")
+                        {
+                            <td>
+                                <a asp-action="PromotionLetter" asp-controller="CareerProgressions" asp-route-id="@item.Id">Letter</a>
+                            </td>
+                        }
+                        @if (item.LStatus == "No")
+                        {
+                            <td>
+                                <a asp-action="PromotionLetter" asp-controller="CareerProgressions" asp-route-id="@item.Id">Edit Letter</a>
+                            </td>
+                        }
+                        @if (item.LStatus == "Approved")
+                        {
+                    <td>
+                        <a asp-action="PrintPromotionLetter" asp-controller="Users" asp-route-id="@item.Id">Print</a>
+                    </td>
+                        }
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<br />
+<form>
+
+    <input type="submit" class="btn btn-info" name="save" value="Submit"
+           formaction="/Users/SubmitPromotionLetter" formmethod="post" />
+</form>
+

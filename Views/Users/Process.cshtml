@@ -1,0 +1,110 @@
+﻿@model NAMIS.Models.biodata
+
+@{
+    ViewData["Title"] = "Process";
+}
+
+<h4>Process Leave</h4>
+
+
+<hr />
+
+<form id="myForm" asp-action="Process">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Surname" class="control-label"></label>
+                <input asp-for="Surname" readonly="readonly" class="form-control" />
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MiddleName" class="control-label"></label>
+                <input asp-for="MiddleName" readonly="readonly" class="form-control" />
+                <span asp-validation-for="MiddleName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" readonly="readonly" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="SprpNo" />
+            <div class="form-group">
+                <label asp-for="Sex" class="control-label"></label>
+                <input asp-for="Sex" readonly="readonly" class="form-control" />
+                <span asp-validation-for="Sex" class="text-danger"></span>
+            </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <div class="form-group">
+                    <label asp-for="Department" class="control-label"></label>
+                    <input asp-for="Department" readonly="readonly" class="form-control" />
+                    <span asp-validation-for="Department" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Leave Type</label>
+
+                    <select id="LeaveType" name="LeaveType" data-val-required="Leave Type Required" class="form-control">
+
+                        <option value="">---Select---</option>
+                        <option value="Pro rata Leave">Pro rata Leave</option>
+                        <option value="Annual Leave">Annual Leave</option>
+                        <option value="Casual Leave">Casual Leave</option>
+
+                        <option value="Sabbatical Leave">Sabbatical Leave</option>
+                        <option value="Maternity Leave">Maternity Leave</option>
+                        <option value="Study Leave">Study Leave</option>
+                        <option value="Patanity Leave">Patanity Leave</option>
+                        <option value="Leave Of Absence">Leave Of Absence</option>
+                        <option value="Sick Leave">Sick Leave</option>
+                        <option value="Terminal Leave">Terminal Leave</option>
+                        <option value="Others">Others</option>
+
+
+                    </select>
+                   
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Start</label>
+                    <input id="StartDate" type="date" data-val-required="Start Date Required" name="StartDate" class="form-control"></>
+
+                </div>
+                <div class="form-group">
+                    <label class="control-label">End</label>
+                    <input id="EndDate" type="date" name="EndDate" data-val-required="End Date Required" class="form-control"></>
+
+                </div>
+                <div class="form-group">
+                    <input type="submit" id="btnSubmit" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+
+</form>
+  
+<div>
+    <a asp-action="LeaveRoster">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery-1.4.1.min.js"></script>
+    <script>
+            $('form').submit(function () {
+
+                $(this).find(':submit').attr('disabled', 'disabled');
+
+            });
+
+    </script>
+    <script>
+            $(function () {
+                $('#btnSubmit').on('click', function () {
+                    $(this).val('Please wait ...')
+                        .attr('disabled', 'disabled');
+                    $('#myForm').submit();
+                });
+
+            });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

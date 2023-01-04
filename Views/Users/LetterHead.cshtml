@@ -1,0 +1,30 @@
+﻿@model NAMIS.ViewModels.UsersTabViewModel
+@{
+    ViewData["Title"] = "Letter Head";
+}
+    
+<div class="card card-primary card-outline">
+
+    <div class="card-body">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="@(Model.ActiveTabRANDM==NAMIS.ViewModels.TabRANDM.LetterHead? "active" : string.Empty)"><a asp-route-tabname="LetterHead" class="btn btn-default" asp-action="SwitchToTabsTabRANDM">Write and Print on Letter Head</a></li>
+
+            <li role="presentation" class="@(Model.ActiveTabRANDM==NAMIS.ViewModels.TabRANDM.PrintMemo? "active" : string.Empty)"><a asp-route-tabname="PrintMemo" class="btn btn-default" asp-action="SwitchToTabsTabRANDM">Write and Print as Memo</a></li>
+
+
+        </ul>
+        @switch (Model.ActiveTabRANDM)
+        {
+            case NAMIS.ViewModels.TabRANDM.LetterHead:
+                @await Component.InvokeAsync("LetterHead");
+                break;
+            case NAMIS.ViewModels.TabRANDM.PrintMemo:
+
+                @await Component.InvokeAsync("PrintMemo");
+                break;
+            default:
+                break;
+        }
+
+    </div>
+</div>

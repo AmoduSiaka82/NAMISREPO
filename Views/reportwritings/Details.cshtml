@@ -1,0 +1,46 @@
+﻿@model NAMIS.Models.reportwriting
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+
+<div>
+    <h6>report writing</h6>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Body)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ReportTitle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ReportTitle)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ReportFile)
+        </dt>
+        <dd class="col-sm-10">
+            <img src="~/image/@Model.ReportFile"
+                 class="rounded-circle"
+                 height="40" width="40"
+                 asp-append-version="true" />
+        </dd>
+        
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="WriteReport" asp-controller="Users" class="btn btn-sm btn-primary rounded-0 text-uppercase">Back to List</a>
+</div>

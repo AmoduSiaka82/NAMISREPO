@@ -1,0 +1,127 @@
+﻿@model IEnumerable<NAMIS.Models.biodata>
+
+@{
+    ViewData["Title"] = "Personel File";
+}
+
+<h6>Personel File</h6>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    #myInput {
+        background-image: url('~/images/searchicon.png');
+        background-position: 10px 10px;
+        background-repeat: no-repeat;
+        width: 90%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+</style>
+<script>
+    function myFunction() {
+
+        // Declare variables
+        var input = document.getElementById("myInputs");
+        var filter = input.value.toUpperCase();
+        var table = document.getElementById("myTable");
+        var trs = table.tBodies[0].getElementsByTagName("tr");
+
+        // Loop through first tbody's rows
+        for (var i = 0; i < trs.length; i++) {
+
+            // define the row's cells
+            var tds = trs[i].getElementsByTagName("td");
+
+            // hide the row
+            trs[i].style.display = "none";
+
+            // loop through row cells
+            for (var i2 = 0; i2 < tds.length; i2++) {
+
+                // if there's a match
+                if (tds[i2].innerHTML.toUpperCase().indexOf(filter) > -1) {
+
+                    // show the row
+                    trs[i].style.display = "";
+
+                    // skip to the next row
+                    continue;
+
+                }
+            }
+        }
+
+    }
+</script>
+@*<form class="form-inline ml-3">
+    <div class="input-group input-group-sm">
+        <input id="myInputs" onkeyup="myFunction()" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+        <div class="input-group-append">
+            <button class="btn btn-navbar" type="submit">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+    </div>
+</form>*@
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Surname)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.MiddleName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FirstName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.SprpNo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Department)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Surname)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.MiddleName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FirstName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SprpNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Department)
+                            </td>
+                            
+                            <td>
+
+                                <a asp-action="ProcessFile" asp-controller="Users" class="btn btn-danger btn-rounded btn-sm my-0" asp-route-id="@item.SprpNo">Process</a>
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

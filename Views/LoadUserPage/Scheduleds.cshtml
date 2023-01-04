@@ -1,0 +1,67 @@
+﻿@model NAMIS.Models.scheduled
+
+@{
+    ViewData["Title"] = "Scheduleds";
+}
+
+<h4>Schedule</h4>
+<hr />
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+        <form id="myForm" asp-action="Scheduleds">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="StaffName" class="control-label"></label>
+                <select asp-for="StaffName" class="form-control"
+                        asp-items="@(new SelectList(@ViewBag.ListofUseraccount, "StaffName", "StaffName"))">
+                </select>
+                <span asp-validation-for="StaffName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ScheduledType" class="control-label"></label>
+                <select asp-for="ScheduledType" class="form-control">
+
+                    <option value="">-----Select-----</option>
+                    <option value="Permanent">Permanent</option>
+                    <option value="Temporary">Temporary</option>
+
+                </select>
+                <span asp-validation-for="ScheduledType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Expire" class="control-label"></label>
+                <input asp-for="Expire" class="form-control" />
+                <span asp-validation-for="Expire" class="text-danger"></span>
+            </div>
+
+          
+            <div class="form-group">
+                <input type="submit" id="btnSubmit" value="Next" class="btn btn-primary btn-block" />
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+
+    <script src="~/lib/jquery/dist/jquery-1.4.1.min.js"></script>
+    <script>
+            $('form').submit(function () {
+
+                $(this).find(':submit').attr('disabled', 'disabled');
+
+            });
+
+    </script>
+    <script>
+            $(function () {
+                $('#btnSubmit').on('click', function () {
+                    $(this).val('Please wait ...')
+                        .attr('disabled', 'disabled');
+                    $('#myForm').submit();
+                });
+
+            });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

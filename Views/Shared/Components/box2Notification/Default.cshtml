@@ -1,0 +1,26 @@
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@using Microsoft.AspNetCore.Http
+@model IEnumerable<NAMIS.Models.Box>
+
+@{ Layout = null; }
+<li class="nav-item dropdown">
+    <a class="nav-link" data-toggle="dropdown" href="#">
+        <i class="far fa-bell"></i>
+        <span class="badge badge-warning navbar-badge">@HttpContextAccessor.HttpContext.Session.GetString("nMessage")</span>
+    </a>
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+        <span class="dropdown-header">@HttpContextAccessor.HttpContext.Session.GetString("nMessage") Notifications</span>
+        <div class="dropdown-divider"></div>
+        @foreach (var item in Model)
+        {
+
+<a asp-action="@item.Actions" asp-controller="@item.Controllers" asp-route-id="@item.Id" class="dropdown-item">
+
+
+
+    <i class="fas fa-envelope mr-2"></i>  @Html.DisplayFor(modelItem => item.Description)
+    <span class="float-right text-muted text-sm"></span>
+</a>
+                <div class="dropdown-divider"></div>}
+    </div>
+</li>

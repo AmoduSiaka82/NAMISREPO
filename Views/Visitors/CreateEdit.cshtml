@@ -1,0 +1,79 @@
+﻿@model NAMIS.Models.Visitor
+
+@{
+
+    Layout = null;
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <form id="myForm" asp-action="CreateEdit" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPost(this);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="VisitorName" class="control-label"></label>
+                <input asp-for="VisitorName" class="form-control" />
+                <span asp-validation-for="VisitorName" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="PhoneNo" class="control-label"></label>
+                        <input asp-for="PhoneNo" class="form-control" />
+                        <span asp-validation-for="PhoneNo" class="text-danger"></span>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="EmailID" class="control-label"></label>
+                        <input asp-for="EmailID" class="form-control" />
+                        <span asp-validation-for="EmailID" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label asp-for="PurposeOfVisit" class="control-label"></label>
+                <textarea asp-for="PurposeOfVisit" class="form-control"></textarea>
+                <span asp-validation-for="PurposeOfVisit" class="text-danger"></span>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label asp-for="DidKnow" class="control-label"></label>
+                        <input asp-for="DidKnow" class="form-control" />
+                        <span asp-validation-for="DidKnow" class="text-danger"></span>
+                    </div>
+
+
+                </div>
+                <div class="col-md-6">
+
+
+                    <div class="form-group">
+                        <label asp-for="TimeOfVisit" class="control-label"></label>
+                        <input asp-for="TimeOfVisit" class="form-control" />
+                        <span asp-validation-for="TimeOfVisit" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="WhoToVisit" class="control-label"></label>
+                <input asp-for="WhoToVisit" class="form-control" />
+                <span asp-validation-for="WhoToVisit" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-6 offset-md-3">
+                    <input type="submit" id="btnSubmit" value="Submit" class="btn btn-primary btn-block" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

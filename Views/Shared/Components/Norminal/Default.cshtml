@@ -1,0 +1,82 @@
+﻿@model IEnumerable<NAMIS.Models.biodata>
+
+@{
+    ViewData["Title"] = "Default";
+}
+<script>
+   
+    function toolbarClick(args) {
+        if (args.item.id === 'Click') {
+            alert("Custom toolbar click...");
+        }
+    }
+    function toolbarClick(args) {
+        var gridObj = document.getElementById("Grid").ej2_instances[0];
+        if (args.item.id === 'Grid_pdfexport') {
+            gridObj.pdfExport();
+        }
+    }
+    function toolbarClick(args) {
+        var gridObj = document.getElementById("Grid").ej2_instances[0];
+        if (args.item.id === 'Grid_excelexport') {
+            gridObj.excelExport();
+        }
+    }
+</script>
+
+<style>
+    .e-expand::before {
+        content: '\e5b8';
+    }
+</style>
+<h4>Norminal Roll</h4>
+
+<div class="row">
+
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <div class="table-responsive">
+            <table id="myTable" class="table table-hover">
+                
+                    <ejs-grid id="Grid" dataSource="@ViewBag.data" allowExcelExport="true" allowPdfExport="true" allowGrouping="true" allowPaging="true" allowSorting="true" toolbarClick="toolbarClick" toolbar="@(new List<string>() { "Search","Print","ExcelExport","PdfExport"})">
+                        <e-grid-searchSettings ignoreCase="true"></e-grid-searchSettings>
+                        @*<e-grid-aggregates>
+                            <e-grid-aggregate>
+                                <e-aggregate-columns>
+                                    <e-aggregate-column field="Qty" type="Sum" footerTemplate="Sum: ${Sum}" format="C2"></e-aggregate-column>
+                                    <e-aggregate-column field="Amount" type="Sum" footerTemplate="Sum: ${Sum}" format="C2"></e-aggregate-column>
+
+                                </e-aggregate-columns>
+                            </e-grid-aggregate>
+                        </e-grid-aggregates>*@
+                        <e-grid-pagesettings pageSize="8"></e-grid-pagesettings>
+                        <e-grid-columns>
+                            <e-grid-column field="Surname" headerText="Surname" width="100"></e-grid-column>
+                            <e-grid-column field="FisrtName" headerText="Sirst Name" textAlign="Left" width="150"></e-grid-column>
+
+                            <e-grid-column field="MiddleName" headerText="Middle ame" width="100" textAlign="Left"></e-grid-column>
+                            <e-grid-column field="CurrentAppointment" headerText="Current Appointment" width="150"></e-grid-column>
+                            <e-grid-column field="Sex" headerText="Gender" width="150"></e-grid-column>
+                            <e-grid-column field="HighestQualification" headerText="Qualification" width="120" textAlign="Left"></e-grid-column>
+                            <e-grid-column field="Department" headerText="Department" textAlign="Left" width="120"></e-grid-column>
+
+                            <e-grid-column field="DateOfBirth" headerText="Date Of Birth" width="120" textAlign="Left"></e-grid-column>
+                            <e-grid-column field="StateOfOrigin" headerText="State Origin" width="120"></e-grid-column>
+                            <e-grid-column field="LGAOrigin" headerText="LGA Origin" width="120"></e-grid-column>
+                            <e-grid-column field="DateOfFirstAppointment" headerText="First Appnt Date" width="120" textAlign="Left" format="dMy"></e-grid-column>
+
+                            <e-grid-column field="ConfirmationDate" headerText="Date Of Confirmation" width="120" textAlign="Left"></e-grid-column>
+                            <e-grid-column field="DateOfCurrentAppointment" headerText="Date Of Pre Appnt" width="120"></e-grid-column>
+                            <e-grid-column field="IPPISNO" headerText="IPPIS No" width="120"></e-grid-column>
+                            <e-grid-column field="SprpNo" headerText="File No" width="120" textAlign="Left"></e-grid-column>
+
+                            <e-grid-column field="GradeLevel" headerText="Grade" width="120" textAlign="Left"></e-grid-column>
+                            <e-grid-column field="Step" headerText="Step" width="120"></e-grid-column>
+                            <e-grid-column field="StationName" headerText="Location" width="120"></e-grid-column>
+                            <e-grid-column field="DateOfRetirement" headerText="Date Of Retirement" width="120" textAlign="Left"></e-grid-column>
+
+                        </e-grid-columns>
+                    </ejs-grid>
+                </table>
+                </div>
+</div>
+</div>

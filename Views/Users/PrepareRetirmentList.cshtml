@@ -1,0 +1,38 @@
+﻿@model NAMIS.ViewModels.UsersTabViewModel
+@{
+    ViewData["Title"] = "Prepare Retirment List";
+}
+
+
+<div class="card card-primary card-outline">
+
+    <div class="card-body">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="@(Model.ActiveTabR==NAMIS.ViewModels.TabR.PrepareRetirmentList? "active" : string.Empty)"><a asp-route-tabname="PrepareRetirmentList" class="btn btn-default" asp-action="SwitchToTabsR">Prepare Retirment List</a></li>
+            <li role="presentation" class="@(Model.ActiveTabR==NAMIS.ViewModels.TabR.PrepareRetirmentRoll? "active" : string.Empty)"><a asp-route-tabname="PrepareRetirmentRoll" class="btn btn-default" asp-action="SwitchToTabsR">Prepare Retirment Roll </a></li>
+            <li role="presentation" class="@(Model.ActiveTabR==NAMIS.ViewModels.TabR.ApprovedRetirment? "active" : string.Empty)"><a asp-route-tabname="ApprovedRetirment" class="btn btn-default" asp-action="SwitchToTabsR">Approved Retirement</a></li>
+            <li role="presentation" class="@(Model.ActiveTabR==NAMIS.ViewModels.TabR.WastedRegister? "active" : string.Empty)"><a asp-route-tabname="WastedRegister" class="btn btn-default" asp-action="SwitchToTabsR">Wasted Register</a></li>
+           
+
+        </ul>
+        @switch (Model.ActiveTabR)
+        {
+            case NAMIS.ViewModels.TabR.PrepareRetirmentList:
+                @await Component.InvokeAsync("PrepareRetirmentList");
+                break;
+            case NAMIS.ViewModels.TabR.PrepareRetirmentRoll:
+                @await Component.InvokeAsync("PrepareRetirmentRoll");
+                break;                
+            case NAMIS.ViewModels.TabR.ApprovedRetirment:
+                @await Component.InvokeAsync("ApprovedRetirment");
+                break;
+            case NAMIS.ViewModels.TabR.WastedRegister:
+                @await Component.InvokeAsync("WastedRegister");
+                break;
+
+            default:
+                break;
+        }
+
+    </div>
+</div>

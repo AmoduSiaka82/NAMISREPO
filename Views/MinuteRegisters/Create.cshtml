@@ -1,0 +1,62 @@
+﻿@model NAMIS.Models.MinuteRegister
+
+@{
+    ViewData["Title"] = "Minute Register";
+}
+<h6>Minute Register</h6>
+<hr />
+<div class="row">
+    <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+        <form id="myForm" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MinuteTitle" class="control-label"></label>
+                
+                <textarea style="width:100%;height:5rem" asp-for="MinuteTitle" class="form-control"></textarea>
+                <span asp-validation-for="MinuteTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MinuteNo" class="control-label"></label>
+                <textarea asp-for="MinuteNo" class="form-control"></textarea>
+                <span asp-validation-for="MinuteNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Attendance" class="control-label"></label>
+                <textarea style="width:100%;height:25rem" asp-for="Attendance" class="form-control"></textarea>
+                <span asp-validation-for="Attendance" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" id="btnSubmit" value="Create" class="btn btn-primary" />
+                <a  asp-action="Index" class="btn btn-sm btn-primary rounded-0 text-uppercase">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery-1.4.1.min.js"></script>
+    <script>
+        $('form').submit(function () {
+
+            $(this).find(':submit').attr('disabled', 'disabled');
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('#btnSubmit').on('click', function () {
+                $(this).val('Please wait ...')
+                    .attr('disabled', 'disabled');
+                $('#myForm').submit();
+            });
+
+        });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/theme/plugins/jquery/jquery.min.js"></script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

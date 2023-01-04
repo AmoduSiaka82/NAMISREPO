@@ -1,0 +1,143 @@
+﻿@model IEnumerable<NAMIS.Models.PersonelFile>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MiddleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FistName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SprpNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Dates)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpDates)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DestinationName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiverID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiverID1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiverID2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiverID3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReceiverID4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ConId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remark)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MiddleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FistName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SprpNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dates)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Time)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpDates)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DestinationName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReceiverID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReceiverID1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReceiverID2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReceiverID3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ReceiverID4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Remark)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
