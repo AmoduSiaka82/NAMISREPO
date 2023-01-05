@@ -1348,7 +1348,7 @@ namespace NAMIS.Controllers
                 myBox.UAction = "ApprovedLeave";
                 myBox.UserID = userID;
                 myBox.UserStatus = "Waiting";
-                //myBox.ReceiverID= sch.AllocatedUserID;
+               // myBox.ReceiverID= sch.AllocatedUserID;
                 //myBox.ReceiverID1= sch.AllocatedUserID;
                 //myBox.ReceiverID2 = sch.AllocatedUserID;
                 //myBox.ReceiverID3 = sch.AllocatedUserID;

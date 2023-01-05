@@ -162,11 +162,19 @@ namespace NAMIS.Controllers
                 int k = 0;
                 string staffName = HttpContext.Session.GetString("StaffName");
                 string roleID = HttpContext.Session.GetString("RoleID");
-                var dir = await _context.Directives.FirstOrDefaultAsync(m => m.RefNo== Id && m.UserID== HttpContext.Request.Form["miniteTo"].ToString() && m.SprpNo==bio.SprpNo && m.Status=="Waiting");
+                var dir = await _context.Directives.FirstOrDefaultAsync(m => m.RefNo== Id && m.SprpNo==bio.SprpNo && m.Status=="Waiting");
                 if (dir != null)
                 {
                     dir.Act = bio.EdNote;
-                    dir.Remarks = bio.HodNote;
+                    if (User.IsInRole("ED"))
+                    {
+                        dir.Remarks = bio.HodNote;
+                    }
+                    else
+                    {
+                        dir.Remarks = HttpContext.Request.Form["hodNote"].ToString();
+                    }
+                    
                     _context.Update(dir);
                     k = await _context.SaveChangesAsync();
                 }
@@ -184,6 +192,7 @@ namespace NAMIS.Controllers
                         dr.Remarks= HttpContext.Request.Form["hodNote"].ToString();
                     }
                     dr.RefNo = Id;
+                    
                     dr.OfficerName = staffName;
                     dr.Responsibility = roleID;
                     dr.Date = DateTime.UtcNow.AddHours(1).Date;

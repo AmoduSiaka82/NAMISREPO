@@ -41,5 +41,6 @@ namespace NAMIS.Models
         [Display(Name = "Status")]
         [Column(TypeName = "varchar(50)")]
         public string Status { get; set; }
+       
     }
 }

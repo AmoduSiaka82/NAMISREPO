@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using NAMIS.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace NAMIS.Areas.Identity.Pages.Account
 {
@@ -78,11 +79,19 @@ namespace NAMIS.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
+                var user = await _userManager.FindByEmailAsync(Input.Email);
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
+                    HttpContext.Session.SetString("UserID", user.UserID);
+                    HttpContext.Session.SetString("UserName", user.UserName);
+                    HttpContext.Session.SetString("RoleID", user.RoleID);
+                    HttpContext.Session.SetString("StaffName", user.StaffName);
+                    HttpContext.Session.SetString("Department", user.Department);
+                    HttpContext.Session.SetString("station", user.StationName);
+                    HttpContext.Session.SetString("SPRP", "");
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(returnUrl);
                 }
