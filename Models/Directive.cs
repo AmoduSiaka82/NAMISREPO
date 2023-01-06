@@ -17,21 +17,19 @@ namespace NAMIS.Models
         [Display(Name = "Directed By")]       
         [Column(TypeName = "varchar(1000)")]
         public string OfficerName { get; set; }
-        [Display(Name = "Directed By")]
+        [Display(Name = "Responsibility")]
         [Column(TypeName = "varchar(200)")]
         public string Responsibility { get; set; }
         [Display(Name = "Remark")]
         [DataType(DataType.MultilineText)]
         [Column(TypeName = "varchar(5000)")]
         public string Remarks { get; set; }
-
         [Display(Name = "Ref No")]
         [Column(TypeName = "varchar(200)")]
         public string RefNo { get; set; }
-        [Display(Name = "Spprp No")]
+        [Display(Name = "Sprp No")]
         [Column(TypeName = "varchar(50)")]
         public string SprpNo { get; set; }
-
         [Display(Name = "UserID")]
         [Column(TypeName = "varchar(50)")]
         public string UserID { get; set; }

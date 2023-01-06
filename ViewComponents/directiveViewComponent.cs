@@ -12,7 +12,6 @@ namespace NAMIS.ViewComponents
     public class directiveViewComponent : ViewComponent
     {
         private readonly ApplicationDbContext _context;
-
         public directiveViewComponent(ApplicationDbContext context)
         {
             _context = context;
@@ -21,13 +20,8 @@ namespace NAMIS.ViewComponents
         {
             string userID = HttpContext.Session.GetString("UserID");
             string stationName = HttpContext.Session.GetString("station");
-           
-                var bio = (from s in _context.Directives where (s.Status == "Waiting" && s.UserID==userID) select s);
-
-                return View(await bio.ToListAsync());
-
-           
-
+            var bio = (from s in _context.Directives where s.Status == "Waiting" && s.UserID==userID orderby s.Id ascending select s);
+            return View(await bio.ToListAsync());
         }
     }
 }
