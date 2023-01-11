@@ -1,0 +1,103 @@
+﻿@model NAMIS.Models.ManPower
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form id="myForm" asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Cadre" class="control-label"></label>
+                <select asp-for="Cadre" class="form-control" asp-items="ViewBag.Cadre">
+                    <option value="">---Select Cadre---</option>
+
+                </select>
+                <span asp-validation-for="Cadre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GradeLevel" class="control-label"></label>
+                <select asp-for="GradeLevel" data-val-required="Grade Level Required" class="form-control">
+
+                    <option value="">---Select---</option>
+                    <option value="CON_R 1">CON_R 1</option>
+                    <option value="CON_R 2">CON_R 2</option>
+
+                    <option value="CON_R 3">CON_R 3</option>
+                    <option value="CON_R 4">CON_R 4</option>
+                    <option value="CON_R 5">CON_R 5</option>
+                    <option value="CON_R 6">CON_R 6</option>
+                    <option value="CON_R 7">CON_R 7</option>
+                    <option value="CON_R 8">CON_R 8</option>
+                    <option value="CON_R 9">CON_R 9</option>
+                    <option value="CON_R 10">CON_R 10</option>
+                    <option value="CON_R 11">CON_R 11</option>
+                    <option value="CON_R 12">CON_R 12</option>
+                    <option value="CON_R 13">CON_R 13</option>
+                    <option value="CON_R 14">CON_R 14</option>
+                    <option value="CON_R 15">CON_R 15</option>
+                </select>
+                <span asp-validation-for="GradeLevel" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StaffInPost" class="control-label"></label>
+                <input asp-for="StaffInPost" class="form-control" />
+                <span asp-validation-for="StaffInPost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NoDue" class="control-label"></label>
+                <input asp-for="NoDue" class="form-control" />
+                <span asp-validation-for="NoDue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Approved" class="control-label"></label>
+                <input asp-for="Approved" class="form-control" />
+                <span asp-validation-for="Approved" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="StationName" class="control-label"></label>
+
+                <select asp-for="StationName" class="form-control" asp-items="ViewBag.Station">
+                    <option value="">---Select Station---</option>
+
+                </select>
+                <span asp-validation-for="StationName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" id="btnSubmit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery-1.4.1.min.js"></script>
+    <script>
+        $('form').submit(function () {
+
+            $(this).find(':submit').attr('disabled', 'disabled');
+
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('#btnSubmit').on('click', function () {
+                $(this).val('Please wait ...')
+                    .attr('disabled', 'disabled');
+                $('#myForm').submit();
+            });
+
+        });
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

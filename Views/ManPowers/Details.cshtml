@@ -1,0 +1,68 @@
+﻿@model NAMIS.Models.ManPower
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div>
+   
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cadre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cadre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.GradeLevel)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.GradeLevel)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StaffInPost)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StaffInPost)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NoDue)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NoDue)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Approved)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Approved)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DoneBy)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DoneBy)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StationName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StationName)
+        </dd>
+       
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

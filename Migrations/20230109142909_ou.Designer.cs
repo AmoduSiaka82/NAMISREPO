@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NAMIS.Data;
 
 namespace NAMIS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230109142909_ou")]
+    partial class ou
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -930,9 +932,6 @@ namespace NAMIS.Migrations
                     b.Property<decimal>("Approved")
                         .HasColumnType("decimal(18, 2)");
 
-                    b.Property<string>("BoxId")
-                        .HasColumnType("varchar(150)");
-
                     b.Property<string>("Cadre")
                         .HasColumnType("varchar(200)");
 
@@ -948,17 +947,8 @@ namespace NAMIS.Migrations
                     b.Property<decimal>("NoDue")
                         .HasColumnType("decimal(18, 2)");
 
-                    b.Property<string>("RecieverId")
-                        .HasColumnType("varchar(150)");
-
                     b.Property<decimal>("StaffInPost")
                         .HasColumnType("decimal(18, 2)");
-
-                    b.Property<string>("StationName")
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("Status")
-                        .HasColumnType("varchar(50)");
 
                     b.HasKey("Id");
 
@@ -1805,9 +1795,6 @@ namespace NAMIS.Migrations
                     b.Property<string>("GeographicalLocation")
                         .IsRequired()
                         .HasColumnType("varchar(50)");
-
-                    b.Property<decimal>("Gl")
-                        .HasColumnType("decimal(18, 2)");
 
                     b.Property<string>("GradeLevel")
                         .IsRequired()

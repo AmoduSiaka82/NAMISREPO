@@ -62,7 +62,11 @@ namespace NAMIS.Controllers
         [NoDirectAccess]
         public async Task<IActionResult> CreateEdit(int id=0)
         {
-         
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SPRP")) || HttpContext.Session.GetString("SPRP") == "")
+            {
+
+                return RedirectToAction("Index", "registers");
+            }
             if (id == 0)
             {
                 return View(new educations());
@@ -147,8 +151,12 @@ namespace NAMIS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateEdit(int id, [Bind("TypeOfSchool,FrmDate,ToDate,CheckedBy,Dates,Date,Status,Id,SprpNo")] educations educations)
         {
-           
-           
+
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SPRP")) || HttpContext.Session.GetString("SPRP") == "")
+            {
+
+                return RedirectToAction("Index", "registers");
+            }
 
             if (ModelState.IsValid)
             {

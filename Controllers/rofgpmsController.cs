@@ -60,7 +60,11 @@ namespace NAMIS.Controllers
         [NoDirectAccess]
         public async Task<IActionResult> CreateEdit(int id = 0)
         {
-           
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SPRP")) || HttpContext.Session.GetString("SPRP") == "")
+            {
+
+                return RedirectToAction("Index", "registers");
+            }
             ViewBag.SPRP = HttpContext.Session.GetString("SPRP");
             if (id == 0)
             {
@@ -152,8 +156,12 @@ namespace NAMIS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateEdit(int id, [Bind("DateOfPayment,FrmDate,ToDate,Yrs,Mos,Days,RatePerAnum,AmountPaid,FilePageRef,CheckedBy,Status,Date,Dates,SprpNo,Id")] rofgpm rofgpm)
         {
-        
-           
+
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SPRP")) || HttpContext.Session.GetString("SPRP") == "")
+            {
+
+                return RedirectToAction("Index", "registers");
+            }
 
             if (ModelState.IsValid)
             {

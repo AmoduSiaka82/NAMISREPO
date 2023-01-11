@@ -1,0 +1,66 @@
+﻿@model NAMIS.Models.ManPower
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ManPower</h4>
+    <hr />
+    <dl class="row">
+        
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Cadre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Cadre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.GradeLevel)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.GradeLevel)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StaffInPost)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StaffInPost)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.NoDue)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.NoDue)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Approved)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Approved)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DoneBy)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DoneBy)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.StationName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.StationName)
+        </dd>
+      
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

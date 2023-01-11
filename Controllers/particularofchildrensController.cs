@@ -62,7 +62,11 @@ namespace NAMIS.Controllers
         [NoDirectAccess]
         public async Task<IActionResult> CreateEdit(int id=0)
         {
-            
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SPRP")) || HttpContext.Session.GetString("SPRP") == "")
+            {
+
+                return RedirectToAction("Index", "registers");
+            }
             if (id == 0)
             {
                 return View( new particularofchildren());
@@ -152,7 +156,11 @@ namespace NAMIS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateEdit(int id, [Bind("Surname,MiddleName,FirstName,Sex,DateOfBirth,CheckedBy,SprpNo,Date,Status,Time,Id")] particularofchildren particularofchildren)
         {
-          
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SPRP")) || HttpContext.Session.GetString("SPRP") == "")
+            {
+
+                return RedirectToAction("Index", "registers");
+            }
             if (id != particularofchildren.Id)
             {
                 return NotFound();

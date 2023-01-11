@@ -76,7 +76,11 @@ namespace NAMIS.Controllers
         [NoDirectAccess]
         public IActionResult Create()
         {
-           
+            //if (string.IsNullOrEmpty(HttpContext.Session.GetString("SPRP")) || HttpContext.Session.GetString("SPRP") == "")
+            //{
+
+            //    return RedirectToAction("Index", "registers");
+            //}
             PopulateDepartmentDropDownList();
             PopulateStationDropDownList();
 
@@ -111,7 +115,12 @@ namespace NAMIS.Controllers
 
                     return View();
                 }
-               
+                //if (string.IsNullOrEmpty(HttpContext.Session.GetString("SPRP")) || HttpContext.Session.GetString("SPRP") == "")
+                //{
+                    
+                //    return RedirectToAction("Index", "registers");
+                //}
+
                 string formats = "MM/dd/yyyy";
                 string formatedTime = DateTime.Now.ToString("HH:mm:ss");
                 string format = "dd/MM/yyyy";
@@ -255,6 +264,68 @@ namespace NAMIS.Controllers
                 string CDate= Convert.ToString(cmdate.ToString(formats));
                 string RDate = Convert.ToString(Rtdate.ToString(formats));
                 string userID = HttpContext.Session.GetString("UserID");
+                decimal gl = 0;
+                if (biodata.GradeLevel == "CON_R 15")
+                {
+                    gl = 15;
+                }
+                else if (biodata.GradeLevel == "CON_R 14")
+                {
+                    gl = 14;
+                }
+                else if (biodata.GradeLevel == "CON_R 13")
+                {
+                    gl = 13;
+                }
+                else if (biodata.GradeLevel == "CON_R 12")
+                {
+                    gl = 12;
+                }
+                else if (biodata.GradeLevel == "CON_R 11")
+                {
+                    gl = 11;
+                }
+                else if (biodata.GradeLevel == "CON_R 10")
+                {
+                    gl = 10;
+                }
+                else if (biodata.GradeLevel == "CON_R 9")
+                {
+                    gl = 9;
+                }
+                else if (biodata.GradeLevel == "CON_R 8")
+                {
+                    gl = 8;
+                }
+                else if (biodata.GradeLevel == "CON_R 7")
+                {
+                    gl = 7;
+                }
+                else if (biodata.GradeLevel == "CON_R 6")
+                {
+                    gl = 6;
+                }
+                else if (biodata.GradeLevel == "CON_R 5")
+                {
+                    gl = 5;
+                }
+                else if (biodata.GradeLevel == "CON_R 4")
+                {
+                    gl = 4;
+                }
+                else if (biodata.GradeLevel == "CON_R 3")
+                {
+                    gl = 3;
+                }
+                else if (biodata.GradeLevel == "CON_R 2")
+                {
+                    gl = 2;
+                }
+                else if (biodata.GradeLevel == "CON_R 1")
+                {
+                    gl = 1;
+                }
+                biodata.Gl = gl;
                 biodata.ConfirmationDate = cmdate;
                 biodata.DateOfRetirement = Rtdate;
                 biodata.DateOfPromotion = Pdate;
@@ -338,7 +409,11 @@ namespace NAMIS.Controllers
             {
                 return NotFound();
             }
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SPRP")) || HttpContext.Session.GetString("SPRP") == "")
+            {
 
+                return RedirectToAction("Index", "registers");
+            }
             var biodata = await _context.biodata.FindAsync(id);
             if (biodata == null)
             {
@@ -479,7 +554,11 @@ namespace NAMIS.Controllers
             {
                 return NotFound();
             }
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SPRP")) || HttpContext.Session.GetString("SPRP") == "")
+            {
 
+                return RedirectToAction("Index", "registers");
+            }
             if (ModelState.IsValid)
             {
                 try
@@ -507,7 +586,68 @@ namespace NAMIS.Controllers
                     string date = Convert.ToString(CurrentServerTime.ToString(format));
                     string dates = Convert.ToString(CurrentServerTime.ToString(formats));
                     string time = Convert.ToString(CurrentServerTime.ToString(formatedTime));
-                    
+                    decimal gl = 0;
+                    if (biodata.GradeLevel == "CON_R 15")
+                    {
+                        gl = 15;
+                    }
+                    else if (biodata.GradeLevel == "CON_R 14")
+                    {
+                        gl = 14;
+                    }
+                    else if (biodata.GradeLevel == "CON_R 13")
+                    {
+                        gl = 13;
+                    }
+                    else if (biodata.GradeLevel == "CON_R 12")
+                    {
+                        gl = 12;
+                    }
+                    else if (biodata.GradeLevel == "CON_R 11")
+                    {
+                        gl = 11;
+                    }
+                    else if (biodata.GradeLevel == "CON_R 10")
+                    {
+                        gl = 10;
+                    }
+                    else if (biodata.GradeLevel == "CON_R 9")
+                    {
+                        gl = 9;
+                    }
+                    else if (biodata.GradeLevel == "CON_R 8")
+                    {
+                        gl = 8;
+                    }
+                    else if (biodata.GradeLevel == "CON_R 7")
+                    {
+                        gl = 7;
+                    }
+                    else if (biodata.GradeLevel == "CON_R 6")
+                    {
+                        gl = 6;
+                    }
+                    else if (biodata.GradeLevel == "CON_R 5")
+                    {
+                        gl = 5;
+                    }
+                    else if (biodata.GradeLevel == "CON_R 4")
+                    {
+                        gl = 4;
+                    }
+                    else if (biodata.GradeLevel == "CON_R 3")
+                    {
+                        gl = 3;
+                    }
+                    else if (biodata.GradeLevel == "CON_R 2")
+                    {
+                        gl = 2;
+                    }
+                    else if (biodata.GradeLevel == "CON_R 1")
+                    {
+                        gl = 1;
+                    }
+                    biodata.Gl = gl;
                     biodata.GeographicalLocation = biodata.GeographicalLocation;
                     biodata.SubstansiveAppointment = biodata.SubstansiveAppointment;
                     biodata.DateOfAppointment = "";

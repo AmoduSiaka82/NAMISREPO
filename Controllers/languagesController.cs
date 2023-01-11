@@ -63,7 +63,11 @@ namespace NAMIS.Controllers
         [NoDirectAccess]
         public async Task<IActionResult> CreateEdit(int id = 0)
         {
-           
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SPRP")) || HttpContext.Session.GetString("SPRP") == "")
+            {
+
+                return RedirectToAction("Index", "registers");
+            }
             if (id == 0)
             {
                 return View(new languages());
@@ -146,7 +150,11 @@ namespace NAMIS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateEdit(int id, [Bind("Language,Spoken,Written,ExamQualified,CheckedBy,Dates,Date,Status,ID,SprpNo")] languages languages)
         {
-           
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SPRP")) || HttpContext.Session.GetString("SPRP") == "")
+            {
+
+                return RedirectToAction("Index", "registers");
+            }
             if (id != languages.ID)
             {
                 return NotFound();

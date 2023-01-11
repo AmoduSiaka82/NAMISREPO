@@ -62,7 +62,11 @@ namespace NAMIS.Controllers
         [NoDirectAccess]
         public async Task<IActionResult> CreateEdit(int id=0)
         {
-            
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SPRP")) || HttpContext.Session.GetString("SPRP") == "")
+            {
+
+                return RedirectToAction("Index", "registers");
+            }
             if (id == 0)
             {
                 ViewData["Dpqs"] = new SelectList(_context.Qualifications, "Qualify", "Qualify");
@@ -146,8 +150,12 @@ namespace NAMIS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateEdit(int id, [Bind("Dpq,CheckedBy,Date,Dates,SprpNo,Status,Id")] dpq dpqs)
         {
-            
-           
+
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SPRP")) || HttpContext.Session.GetString("SPRP") == "")
+            {
+
+                return RedirectToAction("Index", "registers");
+            }
 
             if (ModelState.IsValid)
             {

@@ -1305,7 +1305,7 @@ namespace NAMIS.Controllers
 
             
            
-            DateTime CurrentServerTime = DateTime.UtcNow.AddHours(1);
+            DateTime CurrentServerTime = DateTime.UtcNow.AddHours(1).Date;
             string formats = "dd/MM/yyyy";
             string format = "MM/dd/yyyy";
             string formatedTime = DateTime.Now.ToString("HH:mm:ss");
@@ -4164,13 +4164,13 @@ namespace NAMIS.Controllers
             string stationName = HttpContext.Session.GetString("station");
             if (stationName == "Headqauaters Ilorin")
             {
-                var bio = (from s in _context.biodata orderby s.GradeLevel descending select s);
+                var bio =  _context.biodata.Where(x=>x.GradeLevel!="").OrderByDescending(y=>y.Gl).ThenByDescending(c=>c.Step).ThenBy(l => l.DateOfFirstAppointment).ThenBy(k=>k.SprpNo);
                 ViewBag.data = bio.ToList();
                 return View(bio.ToList());
             }
             else
             {
-                var bio = (from s in _context.biodata where s.StationName == stationName orderby s.GradeLevel descending select s);
+                var bio = _context.biodata.Where(x => x.GradeLevel == stationName).OrderByDescending(y => y.Gl).ThenByDescending(c => c.Step).ThenBy(l => l.DateOfFirstAppointment).ThenBy(k => k.SprpNo);
                 ViewBag.data = bio.ToList();
                 return View(bio.ToList());
             }

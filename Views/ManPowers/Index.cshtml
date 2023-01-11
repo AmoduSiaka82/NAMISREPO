@@ -1,0 +1,169 @@
+﻿@model IEnumerable<NAMIS.Models.ManPower>
+    @{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    <form method="post" asp-action="FilterByDateDaily" asp-controller="ManPowers">
+        <div id="exampleModal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Detail</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>From:</label>
+                            <input type="date" id="FrmDate" name="FrmDate" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label>To:</label>
+                            <input type="date" id="ToDate" name="ToDate" class="form-control" />
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Filter</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="callout callout-info">
+
+        <div class="row no-print">
+            <div class="col-12">
+                
+
+
+
+                <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">Find</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div style="height: 100%;width: 100%;overflow-y: scroll;  overflow-x: auto" class="col-xs-12">
+            <div class="table-responsive">
+                <table id="myTable" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.StationName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Cadre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.GradeLevel)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.StaffInPost)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.NoDue)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Approved)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Date)
+                            </th>
+                            <th>
+                                <a asp-action="Create">Create New</a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model) {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StationName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cadre)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GradeLevel)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StaffInPost)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NoDue)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Approved)
+                            </td>
+                            <td>
+                                @item.Date.ToString("dd/MM/yyyy")
+                            </td>
+                            <td style="display:none">
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @if(item.Status=="No" && item.Date==DateTime.UtcNow.AddHours(1).Date)
+                                {
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                }
+                            </td>
+                        </tr>
+}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="1"></td>
+                            <td> <input type="button" value="Submit" id="send-data" class="btn btn-primary" /></td>
+                            <td>
+                                
+                                <select id="pModes" style="width:200px" name="pModes" class="form-control" asp-items="ViewBag.SubmitTo">
+                                    <option value="">---Select Person---</option>
+
+                                </select>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+                <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+                <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+                <script type="text/javascript" lang="en">
+                $(document).ready(function () {
+                    $('#send-data').click(function () {  
+                        var product = $('#pModes');
+                        if (product.val() === '') {
+                            alert("Please select the person to submit to and then proceed!");
+                            $('#product').focus();
+                            return false;
+                        }
+                        $("#send-data").hide();
+            var rows = [];
+            $('#myTable tbody tr').each(function () {
+                var row = $(this).closest("tr");
+                var Id = $(this).find('td').eq(7).text().trim();
+                var Oga = $('.PayMode').val();
+                    var row = Oga + "-" + Id;
+                    rows.push(row);
+            });
+                        if (confirm("Sure to Submit?")) {
+                            $.post('@Url.Action("ProccessSubmission","ManPowers")', { rows: rows }, function (data) {
+                                alert('Submission Successful');
+                                window.location.href = data;
+                            });
+                        }
+                        else {
+                            $("#send-data").show();   
+                        }
+        });
+    });
+   </script>
+  </div>
+  </div>
+ </div>

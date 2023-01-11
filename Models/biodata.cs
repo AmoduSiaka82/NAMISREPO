@@ -209,5 +209,10 @@ namespace NAMIS.Models
 
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime DateOfResumetion { get; set; }
+        [Display(Name = "G L")]
+        [Range(0, 1000000000)]
+
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal Gl { get; set; }
     }
 }

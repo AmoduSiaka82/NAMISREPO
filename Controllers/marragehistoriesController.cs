@@ -63,7 +63,11 @@ namespace NAMIS.Controllers
         [NoDirectAccess]
         public async Task<IActionResult> CreateEdit(int id=0)
         {
-            
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SPRP")) || HttpContext.Session.GetString("SPRP") == "")
+            {
+
+                return RedirectToAction("Index", "registers");
+            }
             if (id == 0)
             {
                 return View(new marragehistory());
@@ -147,8 +151,12 @@ namespace NAMIS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateEdit(int id, [Bind("MaritalStatus,DateOfMarriage,NameOfWife,WifeDateOfBirth,SprpNo,Date,Dates,Id,Status")] marragehistory marragehistory)
         {
-           
-           
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SPRP")) || HttpContext.Session.GetString("SPRP") == "")
+            {
+
+                return RedirectToAction("Index", "registers");
+            }
+
             if (ModelState.IsValid)
             {
                 if (id == 0)

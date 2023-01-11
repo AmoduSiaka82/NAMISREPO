@@ -69,7 +69,11 @@ namespace NAMIS.Controllers
         [NoDirectAccess]
         public async Task<IActionResult> CreateEdit(int id=0)
         {
-          
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SPRP")) || HttpContext.Session.GetString("SPRP") == "")
+            {
+
+                return RedirectToAction("Index", "registers");
+            }
             ViewBag.SPRP =  HttpContext.Session.GetString("SPRP");
             if (id == 0)
             {
@@ -188,7 +192,11 @@ namespace NAMIS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateEdit(int id, [Bind("Surname,MiddleName,FirstName,Address,Relationship,SprpNo,Date,Status,ID")] nextofkin nextofkin)
         {
-           
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SPRP")) || HttpContext.Session.GetString("SPRP") == "")
+            {
+
+                return RedirectToAction("Index", "registers");
+            }
             if (id != nextofkin.ID)
             {
                 return NotFound();

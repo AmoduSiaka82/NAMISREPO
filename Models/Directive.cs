@@ -27,7 +27,7 @@ namespace NAMIS.Models
         [Display(Name = "Ref No")]
         [Column(TypeName = "varchar(200)")]
         public string RefNo { get; set; }
-        [Display(Name = "Sprp No")]
+        [Display(Name = "Sprp")]
         [Column(TypeName = "varchar(50)")]
         public string SprpNo { get; set; }
         [Display(Name = "UserID")]

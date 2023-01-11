@@ -63,7 +63,11 @@ namespace NAMIS.Controllers
         [NoDirectAccess]
         public async Task<IActionResult> CreateEdit(int id = 0)
         {
-         
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SPRP")) || HttpContext.Session.GetString("SPRP") == "")
+            {
+
+                return RedirectToAction("Index", "registers");
+            }
             ViewBag.SPRP = HttpContext.Session.GetString("SPRP");
             if (id == 0)
             {
@@ -148,7 +152,11 @@ namespace NAMIS.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateEdit(int id, [Bind("DateTerminated,PensionOrContarct,PensionOf,GrantuityOf,ContractGratuity,Date,Dates,Status,SprpNo,Id")] byresignationorinvalidating byresignationorinvalidating)
         {
-            
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("SPRP")) || HttpContext.Session.GetString("SPRP") == "")
+            {
+
+                return RedirectToAction("Index", "registers");
+            }
             if (id != byresignationorinvalidating.Id)
             {
                 return NotFound();

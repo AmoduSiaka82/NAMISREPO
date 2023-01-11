@@ -112,6 +112,6 @@ namespace NAMIS.Data
         public DbSet<NAMIS.Models.Qualification> Qualifications { get; set; }
         public DbSet<NAMIS.Models.VariationAdvice> VariationAdvices { get; set; }
         public DbSet<NAMIS.Models.Disposition> Dispositions { get; set; }
-
+        public DbSet<NAMIS.Models.ManPower> ManPowers { get; set; }
     }
 }
